@@ -1,0 +1,103 @@
+<html>
+<head>
+  <title> Gabim! </title>
+  <meta http-equiv="refresh" content="5;url=http://amici.byethost8.com/index.php"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+     <link rel="icon" type="image/png" href="people.png" />
+  <meta name="theme-color" content="#2f476d">
+  <meta name="msapplication-navbutton-color" content="#2f476d">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2f476d">
+  <style>
+    @font-face {
+  font-family: 'SamsungSharpSans-Bold';
+  src: url('converted-files/SamsungSharpSans-Bold.eot');
+  src: url('converted-files/SamsungSharpSans-Bold.woff2') format('woff2'),
+       url('converted-files/SamsungSharpSans-Bold.woff') format('woff'),
+       url('converted-files/SamsungSharpSans-Bold.ttf') format('truetype'),
+       url('converted-files/SamsungSharpSans-Bold.svg#SamsungSharpSans-Bold') format('svg'),
+       url('converted-files/SamsungSharpSans-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  margin:0;
+  padding: 0;
+
+}
+.wallpaper{
+  
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  background: url("http://amici.epizy.com/img/2673268.jpg")  no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+overflow: hidden;
+cursor: pointer;
+
+}
+.wallpaper-mob{
+  display: none;
+}
+  @media screen and (max-width:640px){
+.wallpaper{
+  display: none;
+}
+.wallpaper-mob{
+  display: block;
+ 
+  width: 100% !important;
+
+}
+.avatar{
+  width: 100% !important;
+  height: auto !important;
+}
+.redirektimi{
+  padding-left: 5px;
+  padding-right: 5px;
+  display: block;
+  font-size: 20px;
+  font-family:SamsungSharpSans-Bold;
+  text-align: center;
+  display: block !important;
+}
+  }
+.redirektimi{
+display: none;
+}
+  </style>
+
+</head>
+<body>
+  <div class = "wallpaper" onclick="redirect()" title="Ridirektohu ne kryefaqe">
+
+  </div>
+  <div class = "wallpaper-mob" onclick="redirect()">
+    <img src = "http://amici.epizy.com/img/2673268.jpg" class = "avatar"/>
+  </div>
+
+<script type="text/javascript">
+    var timeleft = 5;
+    var redirectTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(redirectTimer);
+    },1000);
+</script>
+<div class = "redirektimi">
+<p> Do te ridirektoheni ne kryefaqe per <span id="countdowntimer">5 </span> Sekonda</p>
+</div>
+
+
+<script type="text/javascript">
+function redirect(){
+ window.location.href = "http://amici.byethost8.com/index.php";
+  }
+</script>
+</body>
+</html>
