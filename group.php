@@ -437,7 +437,7 @@ if (($_SESSION['username']) == $row['username']){
                         }
                         
                         //Paraqit komentin si tekst e jo si kod te html
-                        echo htmlspecialchars($row['Comments']);
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row['Comments'])."</pre>";
 
                           //Ndrysho komentin
                          if (($_SESSION['username']) == $row['username']){
@@ -537,7 +537,7 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         
                         echo '<div class = "pershkrimi" style = "text-align:left; margin-left:85px; margin-right:120px;">';
                         //Paraqit komentin si tekst e jo si kod te html
-                        echo htmlspecialchars($row1['Comments']);
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row1['Comments'])."</pre>";
                         
                           //Ndrysho komentin
                          if (($_SESSION['username']) == $row1['username']){
@@ -733,7 +733,7 @@ echo'<div class="dropdown-divider"></div>';
                         }
                         
                         //Paraqit komentin si tekst e jo si kod te html
-                        echo htmlspecialchars($row3['Comments']);
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row3['Comments'])."</pre>";
 
                         //Ndrysho komentin
                          if (($_SESSION['username']) == $row3['username']){
@@ -831,8 +831,8 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '</div>';
                         
                         echo '<div class = "pershkrimi" style = "text-align:left; margin-left:85px; margin-right:120px;">';
-                        //Paraqit komentin si tekst e jo si kod te html
-                        echo htmlspecialchars($row['Comments']);
+                      //Paraqit komentin si tekst e jo si kod te html
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row['Comments'])."</pre>";
 
                         //Ndrysho komentin
                          if (($_SESSION['username']) == $row['username']){
