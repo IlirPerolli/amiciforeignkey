@@ -73,7 +73,10 @@
         margin-left: 0px !important;
     }
     .amici-teksti{
-      display: none!important;
+      width:100% !important;
+      word-break: break-all !important;
+      font-size:100px !important;
+      text-align: center;
     }
     #create-account{
       margin-bottom:20px !important;
