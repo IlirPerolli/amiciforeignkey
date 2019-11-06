@@ -436,8 +436,10 @@ if (($_SESSION['username']) == $row['username']){
                          echo '<br>';
                         }
                         
-                        //Paraqit komentin si tekst e jo si kod te html
-                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row['Comments'])."</pre>";
+                         $row['Comments'] = preg_replace( '/(http|ftp)+(s)?:(\/\/)((\w|\.)+)(\/)?(\S+)?/i', '<a href="\0" target="_blank">\0</a>', htmlspecialchars($row['Comments']) ); 
+                        // ne vend te \0 mund t'a bejme \4 per te shfaqur vetem pjesen kryesore te linkut
+                        //(htmlspecialchars) Paraqit komentin si tekst e jo si kod te html
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". $row['Comments']."</pre>";
 
                           //Ndrysho komentin
                          if (($_SESSION['username']) == $row['username']){
@@ -536,8 +538,10 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         echo '</div>';
                         
                         echo '<div class = "pershkrimi" style = "text-align:left; margin-left:85px; margin-right:120px;">';
-                        //Paraqit komentin si tekst e jo si kod te html
-                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row1['Comments'])."</pre>";
+                         $row1['Comments'] = preg_replace( '/(http|ftp)+(s)?:(\/\/)((\w|\.)+)(\/)?(\S+)?/i', '<a href="\0" target="_blank">\0</a>', htmlspecialchars($row1['Comments']) ); 
+                        // ne vend te \0 mund t'a bejme \4 per te shfaqur vetem pjesen kryesore te linkut
+                        //(htmlspecialchars) Paraqit komentin si tekst e jo si kod te html
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". $row1['Comments']."</pre>";
                         
                           //Ndrysho komentin
                          if (($_SESSION['username']) == $row1['username']){
@@ -732,8 +736,10 @@ echo'<div class="dropdown-divider"></div>';
                          echo '<br>';
                         }
                         
-                        //Paraqit komentin si tekst e jo si kod te html
-                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row3['Comments'])."</pre>";
+                        $row3['Comments'] = preg_replace( '/(http|ftp)+(s)?:(\/\/)((\w|\.)+)(\/)?(\S+)?/i', '<a href="\0" target="_blank">\0</a>', htmlspecialchars($row3['Comments']) ); 
+                        // ne vend te \0 mund t'a bejme \4 per te shfaqur vetem pjesen kryesore te linkut
+                        //(htmlspecialchars) Paraqit komentin si tekst e jo si kod te html
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". $row3['Comments']."</pre>";
 
                         //Ndrysho komentin
                          if (($_SESSION['username']) == $row3['username']){
@@ -831,8 +837,10 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '</div>';
                         
                         echo '<div class = "pershkrimi" style = "text-align:left; margin-left:85px; margin-right:120px;">';
-                      //Paraqit komentin si tekst e jo si kod te html
-                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". htmlspecialchars($row['Comments'])."</pre>";
+                       $row['Comments'] = preg_replace( '/(http|ftp)+(s)?:(\/\/)((\w|\.)+)(\/)?(\S+)?/i', '<a href="\0" target="_blank">\0</a>', htmlspecialchars($row['Comments']) ); 
+                        // ne vend te \0 mund t'a bejme \4 per te shfaqur vetem pjesen kryesore te linkut
+                        //(htmlspecialchars) Paraqit komentin si tekst e jo si kod te html
+                        echo "<pre style = 'white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word; font-family:SamsungSharpSans-Bold; font-size:20px; display:inline'>". $row['Comments']."</pre>";
 
                         //Ndrysho komentin
                          if (($_SESSION['username']) == $row['username']){
