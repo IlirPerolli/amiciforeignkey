@@ -26,7 +26,6 @@ if (count($errors) == 0) {
 
 }
 
-
 function getYouTubeVideoId($pageVideUrl) {
     $link = $pageVideUrl;
     $video_id = explode("?v=", $link);

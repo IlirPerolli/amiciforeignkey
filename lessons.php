@@ -107,12 +107,17 @@ else{
   margin-top:30px !important;
   border-radius: 10px !important;
   border: 1px solid black !important;
+  height: 350px !important;
+}
+.folder-photo{
+   height: 200px !important;
 }
 .folder img{
   width:70% !important;
 }
 #kursori-img{
   width:100% !important;
+
 }
 #video-img{
   width:100% !important;
@@ -146,7 +151,12 @@ width: 98% !important;
 margin-left: 0px !important;
 margin-right: 0px !important;
 border: 1px solid black !important;
-  }}
+ height: 410px !important;
+  }
+.folder-photo{
+   height: 260px !important;
+}
+}
 .bubble{
     margin-top: 150px;
   text-align: center;
@@ -492,9 +502,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Videos</h5>';
 </div>';
 }
 else {
-  if (/*(($_SESSION['username']) == "ilirperolli") ||*/ (($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "nitaqerkezi") || (($_SESSION['username']) == "Bujan")) {
-        
-    }
+  if (/*(($_SESSION['username']) == "ilirperolli") || */(($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "nitaqerkezi") || (($_SESSION['username']) == "Bujan") ) {
         
     
   echo ' <div class = "folder">
