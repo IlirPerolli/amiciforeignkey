@@ -49,7 +49,14 @@ unlink($myFile);
       //$query1= "UPDATE users SET notification = notification - 1 WHERE academicyear = '$vitiakademik'";
       //mysqli_query($db, $query1);
       //endprove
-            header("Location:posts_controller.php");
+        if (isset($_GET['keyword'])){
+        $keyword = $_GET['keyword'];
+       header('Location:posts_controller.php?keyword='.$keyword);
+      
+    }
+    else{
+       header("Location:posts_controller.php");
+    }
   }
 else{
    header("Location:posts_controller.php");
@@ -369,7 +376,13 @@ if (($_SESSION['username']) == "ilirperolli"){
            
             
             if ($_SESSION['username'] == "ilirperolli"){
-                                header('Location:posts_controller.php?remove-comment='. $value);
+                              if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:posts_controller.php?keyword='.$keyword.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:posts_controller.php?remove-comment='. $value);
+              }
 
                               }
                               else {
@@ -448,8 +461,14 @@ if (($_SESSION['username']) == "ilirperolli"){
                                 
            
             
-            if ($_SESSION['username'] == "ilirperolli"){
-                                header('Location:posts_controller.php?remove-comment='. $value);
+             if ($_SESSION['username'] == "ilirperolli"){
+                              if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:posts_controller.php?keyword='.$keyword.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:posts_controller.php?remove-comment='. $value);
+              }
 
                               }
                               else {

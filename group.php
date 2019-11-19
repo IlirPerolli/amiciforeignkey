@@ -25,6 +25,7 @@ $query1= "UPDATE users SET notification = '0' WHERE username = '$username'";
 
 
    if (isset($_GET['remove-comment'])){
+
 $number=$_GET['remove-comment'];
  $query100 = " SELECT users.username, userposts.uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE userposts.id ='$number'";
                                     $results100 = mysqli_query($db, $query100);
@@ -43,7 +44,20 @@ unlink($myFile);
       //$query1= "UPDATE users SET notification = notification - 1 WHERE academicyear = '$vitiakademik'";
       //mysqli_query($db, $query1);
       //endprove
-            header("Location:group.php");
+      if (isset($_GET['limit'])){
+        $number = $_GET['limit'];
+       header('Location:group.php?limit='.$number);
+      
+    }
+    else if (isset($_GET['keyword'])){
+        $keyword = $_GET['keyword'];
+       header('Location:group.php?keyword='.$keyword);
+      
+    }
+    else{
+       header("Location:group.php");
+    }
+           
   }
 else{
    header("Location:group.php");
@@ -413,7 +427,14 @@ if (($_SESSION['username']) == $row['username']){
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?remove-comment='. $value);
+              if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:group.php?keyword='.$keyword.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:group.php?remove-comment='. $value);
+              }
+                                
 
                               }
                               else {
@@ -519,7 +540,13 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?remove-comment='. $value);
+                       if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:group.php?keyword='.$keyword.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:group.php?remove-comment='. $value);
+              }
 
                               }
                               else {
@@ -620,7 +647,7 @@ die();
       $query1= "UPDATE users SET notification = notification + 1 WHERE academicyear = '$vitiakademik'";
       mysqli_query($db, $query1);
     
-      header("Location: group.php");
+      header('Location: #');
       die ();
                         }      
 
@@ -712,7 +739,13 @@ echo'<div class="dropdown-divider"></div>';
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?remove-comment='. $value);
+                                 if(isset($_GET['limit'])){
+                $number = $_GET['limit'];
+                header('Location:group.php?limit='.$number.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:group.php?remove-comment='. $value);
+              }
 
                               }
                               else {
@@ -818,7 +851,13 @@ while(($row = $results->fetch_assoc()) !== null){
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?remove-comment='. $value);
+                               if(isset($_GET['limit'])){
+                $number = $_GET['limit'];
+                header('Location:group.php?limit='.$number.'&remove-comment='. $value);
+              }
+              else{
+                header('Location:group.php?remove-comment='. $value);
+              }
 
                               }
                               else {
@@ -924,7 +963,7 @@ die();
       $query1= "UPDATE users SET notification = notification + 1 WHERE academicyear = '$vitiakademik'";
       mysqli_query($db, $query1);
     
-      header("Location: group.php");
+      header('Location: #');
       die ();
                         }   
                        
