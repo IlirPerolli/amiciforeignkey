@@ -1,12 +1,15 @@
 <?php
 // lidhu me databaze
 include("config.php");
-     $username = $_SESSION['username'];
-$query= "SELECT * FROM users WHERE username = '$username'";
-      $results = mysqli_query($db, $query);
-          $row = $results->fetch_assoc();
-          $_SESSION['notification'] = $row['notification'];
-          $_SESSION['notification_uploads'] = $row['notification_uploads'];
+    $username = $_SESSION['username'];
+    $query= "SELECT * FROM users WHERE username = '$username'";
+    $results = mysqli_query($db, $query);
+    $row = $results->fetch_assoc();
+    $_SESSION['notification'] = $row['notification'];
+    $_SESSION['notification_uploads'] = $row['notification_uploads'];
+    
+    $query1 = "UPDATE users SET online = 1 where username = '$username'";
+    mysqli_query($db, $query1);
 
           
 		if ( $_SESSION['vitiakademik'] == "1") {

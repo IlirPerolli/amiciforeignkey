@@ -151,6 +151,9 @@ if ( window.history.replaceState ) {
   <script src="navi.js"></script>
   <style>
     @media screen and (max-width:500px){
+ #studentet-menu{
+  border-radius: 0px;
+ }
 .speech{
  
     right: 0 !important;
@@ -178,6 +181,16 @@ if ( window.history.replaceState ) {
   .btn-light{
     background: transparent;
     border-color: transparent;
+  }
+  #studentet-menu{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+  }
+  .administrator-icon{
+    width:28px;
+    margin-left: 5px;
+    margin-bottom: 3px;
   }
 
 </style>
@@ -448,6 +461,9 @@ if (($_SESSION['username']) == $row['username']){
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row['Name']. " " . $row['Surname'];
+                         if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -561,6 +577,9 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row1['Name']. " " . $row1['Surname'];
+                            if ((($row1['username']) == "ilirperolli") || (($row1['username']) == "arianitjaka") || (($row1['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -760,6 +779,9 @@ echo'<div class="dropdown-divider"></div>';
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row3['Name']. " " . $row3['Surname'];
+                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($_SESSION['username']) == "JetaMacula")) {
+         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -872,6 +894,9 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row['Name']. " " . $row['Surname'];
+                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($_SESSION['username']) == "JetaMacula")) {
+         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -1082,6 +1107,99 @@ document.getElementById("success-photo").style.display="none";
 });
 </script>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
+Studentet
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span style = "color:green; font-size:20px" >Online</span>
+        <br><br>
+
+        <!-- ONLINE -->
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+       while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'</h5>';
+      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo 'Administrator <img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-left:0px; margin-bottom:0px; "/>';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>
+';
+       }
+
+        ?>
+</ul>
+<!-- END OF ONLINE -->
+
+<!-- OFFLINE -->
+  <span style = "color:grey; font-size:20px" >Offline</span>
+        <br><br>
+
+        
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+       while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'</h5>';
+     if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo 'Administrator <img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px;margin-left:0px; margin-bottom:0px; "/>';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>
+';
+       }
+
+        ?>
+</ul>
+<!-- END OF OFFLINE -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</ul>
 </body>
 </html>
