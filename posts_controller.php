@@ -131,6 +131,9 @@ opacity: 0.8;
 z-index: 999;
 }
  @media screen and (max-width: 640px){
+ #studentet-menu{
+  border-radius: 0px;
+ }
 
       #password_control{
         width: 95% !important;
@@ -161,6 +164,16 @@ z-index: 999;
       text-align: center;
       margin-top: 20px;
     }
+  #studentet-menu{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+  }
+  .administrator-icon{
+    width:28px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+  }
 </style>
 
 
@@ -396,6 +409,9 @@ if (($_SESSION['username']) == "ilirperolli"){
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row['Name']. " " . $row['Surname'];
+                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($row3['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -483,6 +499,9 @@ if (($_SESSION['username']) == "ilirperolli"){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row1['Name']. " " . $row1['Surname'];
+                            if ((($row1['username']) == "ilirperolli") || (($row1['username']) == "arianitjaka") || (($row1['username']) == "K") || (($row1['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -568,6 +587,9 @@ echo'<div class="dropdown-divider"></div>';
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row3['Name']. " " . $row3['Surname'];
+                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($row3['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -640,6 +662,9 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row['Name']. " " . $row['Surname'];
+                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+    }
                         echo '</div>';
                         echo '</div>';
                         
@@ -681,6 +706,115 @@ while(($row = $results->fetch_assoc()) !== null){
 </div>
 
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
 
+<?php    $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='1'";
+        $results = mysqli_query($db, $query);
+
+      echo "Studentet Online (".mysqli_num_rows($results).")"; 
+       ?>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span style = "color:green; font-size:20px" >Online</span>
+        <br><br>
+
+        <!-- ONLINE -->
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='1' ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+       while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
+    }
+
+  echo' </h5>';
+
+      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo 'Administrator';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>';
+       }
+
+        ?>
+</ul>
+<!-- END OF ONLINE -->
+
+<!-- OFFLINE -->
+  <span style = "color:grey; font-size:20px" >Offline</span>
+        <br><br>
+
+        
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='0' ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+          while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
+    }
+
+  echo' </h5>';
+
+      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo 'Administrator';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>';
+       }
+
+        ?>
+</ul>
+<!-- END OF OFFLINE -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</ul>
 </body>
 </html>
