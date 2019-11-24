@@ -409,7 +409,7 @@ if (($_SESSION['username']) == "ilirperolli"){
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row['Name']. " " . $row['Surname'];
-                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($row3['username']) == "JetaMacula")) {
+                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
