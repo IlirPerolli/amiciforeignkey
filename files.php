@@ -442,8 +442,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
 
 <br><br>
 <!-- Numri i faqeve -->
-<nav aria-label="...">
-  <ul class="pagination pagination-md justify-content-center">
+<div class = "pagination-wrapper">
+<nav aria-label="..." class="pagination">
+  <ul class="pagination pagination-md justify-content-center" style=" margin: 0 auto !important;">
     
 
        <?php 
@@ -496,6 +497,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
     </li>
   </ul>
 </nav>
+</div><br>
 <!-- Perfundimi i numrit te faqeve -->
 
 </div>
