@@ -44,9 +44,9 @@ unlink($myFile);
       //$query1= "UPDATE users SET notification = notification - 1 WHERE academicyear = '$vitiakademik'";
       //mysqli_query($db, $query1);
       //endprove
-      if (isset($_GET['limit'])){
-        $number = $_GET['limit'];
-       header('Location:group.php?limit='.$number);
+      if (isset($_GET['page'])){
+        $number = $_GET['page'];
+       header('Location:group.php?page='.$number);
       
     }
     else if (isset($_GET['keyword'])){
@@ -71,48 +71,41 @@ else{
 
            //user discussion
             $vitiakademik = $_SESSION['vitiakademik'];
-            if(isset($_GET['limit'])){
-            $number=$_GET['limit'];
-            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC LIMIT $number";
+            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC";
 
 
             $results3 = mysqli_query($db, $query3);
+
+            $number_of_results = mysqli_num_rows($results3);
+           //Defino se sa rezultate shfaqen
+            $results_per_page=5;
+            //Defino numrin e faqeve
+            $number_of_pages=ceil($number_of_results/$results_per_page);
+            if (!isset($_GET['page'])){
+              $page=1;
+            }
+            else{
+              $page=$_GET['page'];
+              if (($page > $number_of_pages) || ($page < 1) ){
+                header("Location:group.php");
+              }
+            }
+
+
+            // page1, 12 results per page, limit 0,12
+            // page2, 10 results per page, limit 10,12
+            // page3, 10 results per page, limit 20,12
+            $this_page_first_result = ($page-1)*$results_per_page;
+
+            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC LIMIT ". $this_page_first_result.','.$results_per_page;
+    $results3 = mysqli_query($db, $query3);
+
  if (mysqli_num_rows($results3) == 0) {
                  echo '<style>#postimet { display:block!important;}</style>';
 
              }
-             if (mysqli_num_rows($results3) <= 3) {
-               echo '<style>#expand { display:none!important;}</style>';
-
-             }
-             if (mysqli_num_rows($results3) >= 3) {
- echo '<style>#expand { display:inline-block!important;}</style>';
-
-             }
-             
-            }
-            else {
-
-            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC LIMIT 3";
-            $results3 = mysqli_query($db, $query3);
-
-             if (mysqli_num_rows($results3) == 0) {
-                 echo '<style>#postimet { display:block!important;}</style>';
-
-             }
-             if (mysqli_num_rows($results3) <= 3) {
-               echo '<style>#expand { display:none!important;}</style>';
-
-             }
-             if (mysqli_num_rows($results3) >= 3) {
- echo '<style>#expand { display:inline-block!important;}</style>';
-
-             }
-             
-             
-              
-
-           }
+          
+        
           
            
 ?>
@@ -151,7 +144,7 @@ if ( window.history.replaceState ) {
   <script src="navi.js"></script>
   <style>
     @media screen and (max-width:500px){
- #studentet-menu{
+   #studentet-menu{
   border-radius: 0px;
  }
 .speech{
@@ -193,6 +186,13 @@ if ( window.history.replaceState ) {
     margin-bottom: 3px;
   }
 
+ .pagination-wrapper{
+margin: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width:90%;
+ }
 </style>
 
 
@@ -462,7 +462,7 @@ if (($_SESSION['username']) == $row['username']){
                         echo '<div class = "emri">';
                         echo $row['Name']. " " . $row['Surname'];
                          if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
-         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
                         echo '</div>';
@@ -577,8 +577,8 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row1['Name']. " " . $row1['Surname'];
-                            if ((($row1['username']) == "ilirperolli") || (($row1['username']) == "arianitjaka") || (($row1['username']) == "K") || (($row['username']) == "JetaMacula")) {
-         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+                            if ((($row1['username']) == "ilirperolli") || (($row1['username']) == "arianitjaka") || (($row1['username']) == "K") || (($row1['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
                         echo '</div>';
@@ -758,9 +758,9 @@ echo'<div class="dropdown-divider"></div>';
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                 if(isset($_GET['limit'])){
-                $number = $_GET['limit'];
-                header('Location:group.php?limit='.$number.'&remove-comment='. $value);
+                                 if(isset($_GET['page'])){
+                $number = $_GET['page'];
+                header('Location:group.php?page='.$number.'&remove-comment='. $value);
               }
               else{
                 header('Location:group.php?remove-comment='. $value);
@@ -779,8 +779,8 @@ echo'<div class="dropdown-divider"></div>';
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row3['Name']. " " . $row3['Surname'];
-                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($_SESSION['username']) == "JetaMacula")) {
-         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($row3['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
                         echo '</div>';
@@ -873,9 +873,9 @@ while(($row = $results->fetch_assoc()) !== null){
            
             
             if ($_SESSION['username'] == $row100['username']){
-                               if(isset($_GET['limit'])){
-                $number = $_GET['limit'];
-                header('Location:group.php?limit='.$number.'&remove-comment='. $value);
+                               if(isset($_GET['page'])){
+                $number = $_GET['page'];
+                header('Location:group.php?page='.$number.'&remove-comment='. $value);
               }
               else{
                 header('Location:group.php?remove-comment='. $value);
@@ -894,8 +894,8 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row['Name']. " " . $row['Surname'];
-                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($_SESSION['username']) == "JetaMacula")) {
-         echo '<img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
+                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
                         echo '</div>';
@@ -1002,22 +1002,76 @@ die();
                         Asnje postim nuk u gjet <br>
                         <img src = "img/flat-person-sleeping-bed_23-2148146864-removebg-preview.png"/>
                         </div>';
-echo'<button type="button" class = "expand" id = "expand" onClick="tregoteparat()">Trego 3 te parat</button>';
-echo'<button type="button" class = "expand" id = "expand" onClick="tregotegjitha()">Trego te gjitha</button>';
-echo'<br><br>';
                       }
                       
                      
                          
 ?>
 
-
-
-
-
 </div>
 
 </div>
+<?php if (!isset($_GET['keyword'])) {?>
+<!-- Numri i faqeve -->
+<div class = "pagination-wrapper">
+<nav aria-label="..." class="pagination">
+  <ul class="pagination pagination-md justify-content-center" style=" margin: 0 auto !important;">
+    
+
+       <?php 
+       if ($page>1){
+         $para = $page-1;
+          echo'<li class="page-item">';
+          echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+       }
+       else{
+         $para = $page;
+         echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+       }
+      
+      ?>
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Para</span>
+      </a>
+    </li>
+<?php
+
+// vendos faqet
+    for($pages=1; $pages<=$number_of_pages; $pages++){
+      if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+    
+    }
+?>
+ 
+       <?php 
+       if ($page<$number_of_pages){
+         $pas = $page+1;
+          echo'<li class="page-item">';
+           echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+       }
+       else{
+         $pas = $page;
+          echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+       }
+      
+       ?>
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Pas</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+<br><br>
+<!-- Perfundimi i numrit te faqeve -->
+<?php } ?>
 <script type="text/javascript">
   $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -1052,13 +1106,6 @@ echo'<br><br>';
 </script>
 <script>
   function tregoteparat()
-{
-window.location='group.php?limit=3';
-}
-function tregotegjitha()
-{
-window.location='group.php?limit=999';
-}
 var myText = document.getElementById("abc");
 var wordCount = document.getElementById("wordCount");
 
@@ -1109,7 +1156,13 @@ document.getElementById("success-photo").style.display="none";
 </div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
-Studentet
+
+<?php    $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
+        $results = mysqli_query($db, $query);
+
+      echo "Studentet Online (".mysqli_num_rows($results).")"; 
+       ?>
 </button>
 
 <!-- Modal -->
@@ -1136,10 +1189,16 @@ Studentet
 echo '
   <li class="media">
     <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'</h5>';
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
+    }
+
+  echo' </h5>';
+
       if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
-         echo 'Administrator <img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-left:0px; margin-bottom:0px; "/>';
+         echo 'Administrator';
     }
      
       else{
@@ -1149,8 +1208,7 @@ echo '
       echo'
     </div>
   </li>
-  <br>
-';
+  <br>';
        }
 
         ?>
@@ -1167,14 +1225,20 @@ echo '
             $vitiakademik = $_SESSION['vitiakademik'];
          $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
     $results = mysqli_query($db, $query);
-       while(($row = $results->fetch_assoc()) !== null){   
+          while(($row = $results->fetch_assoc()) !== null){   
 echo '
   <li class="media">
     <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'</h5>';
-     if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
-         echo 'Administrator <img src = "https://huntpng.com/images250/instagram-verified-badge-png-1.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px;margin-left:0px; margin-bottom:0px; "/>';
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
+    }
+
+  echo' </h5>';
+
+      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+         echo 'Administrator';
     }
      
       else{
@@ -1184,13 +1248,13 @@ echo '
       echo'
     </div>
   </li>
-  <br>
-';
+  <br>';
        }
 
         ?>
 </ul>
 <!-- END OF OFFLINE -->
+
 
       </div>
       <div class="modal-footer">
@@ -1201,5 +1265,6 @@ echo '
 </div>
 
 </ul>
+
 </body>
 </html>
