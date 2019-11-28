@@ -227,10 +227,31 @@ $(".custom-file-input").on("change", function() {
  $vitiakademik = $_SESSION['vitiakademik'];
 
 
-    $query = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' ORDER BY id DESC ";
+    $query = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' ORDER BY id DESC";
             $results = mysqli_query($db, $query);
+           $number_of_results = mysqli_num_rows($results);
+           //Defino se sa rezultate shfaqen
+            $results_per_page=12;
+            //Defino numrin e faqeve
+            $number_of_pages=ceil($number_of_results/$results_per_page);
+            if (!isset($_GET['page'])){
+              $page=1;
+            }
+            else{
+              $page=$_GET['page'];
+              if (($page > $number_of_pages) || ($page < 1) ){
+                header("Location:files.php");
+              }
+            }
 
            
+            // page1, 12 results per page, limit 0,12
+            // page2, 10 results per page, limit 10,12
+            // page3, 10 results per page, limit 20,12
+            $this_page_first_result = ($page-1)*$results_per_page;
+
+            $query = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' ORDER BY id DESC LIMIT ". $this_page_first_result.','.$results_per_page;
+ $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 0 ){
               echo "<br>";
               echo "<p style = 'color:#343a40;'> Nuk u gjet asnje dokument </p>";
@@ -419,16 +440,64 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
 </div>
 -->
 
-
-
-
-
-
-
-
-
-
 <br><br>
+<!-- Numri i faqeve -->
+<nav aria-label="...">
+  <ul class="pagination pagination-md justify-content-center">
+    
+
+       <?php 
+       if ($page>1){
+         $para = $page-1;
+          echo'<li class="page-item">';
+          echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+       }
+       else{
+         $para = $page;
+         echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+       }
+      
+      ?>
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Para</span>
+      </a>
+    </li>
+<?php
+
+// vendos faqet
+    for($pages=1; $pages<=$number_of_pages; $pages++){
+      if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+    
+    }
+?>
+ 
+       <?php 
+       if ($page<$number_of_pages){
+         $pas = $page+1;
+          echo'<li class="page-item">';
+           echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+       }
+       else{
+         $pas = $page;
+          echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+       }
+      
+       ?>
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Pas</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- Perfundimi i numrit te faqeve -->
+
 </div>
 
      <script type="text/javascript">
