@@ -18,7 +18,9 @@
 <link rel = "stylesheet" type = "text/css" href="account-stili.css">
 <meta name="apple-mobile-web-app-status-bar-style" content="#2f476d">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
    <title>Regjistrohu - amici llogaria</title>
 <style type="text/css">progress[value]
 {
@@ -51,9 +53,16 @@
     <p id = "mbiemri">Mbiemri</p>
     <input name="mbiemri" value ="<?php if(isset($_POST['mbiemri'])){echo $_POST['mbiemri'];}?>" type="text" placeholder = "Shkruani Mbiemrin" oninvalid="this.setCustomValidity('Ju lutem shkruani mbiemrin'); document.getElementById('mbiemri').style.color='#FA3B4B'"
     oninput="this.setCustomValidity(''); document.getElementById('mbiemri').style.color='black'" required />
-  <p id = "mosha">Mosha</p>
-  <input name="mosha" value ="<?php if(isset($_POST['mosha'])){echo $_POST['mosha'];}?>" type="number" placeholder = "Shkruani moshen" min = "17" max="65" oninvalid="this.setCustomValidity('Ju lutem shkruani moshen'); document.getElementById('mosha').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" required/>
+  <p id = "mosha">Data e lindjes</p>
+
+     <input id="datepicker" name="mosha" value ="<?php if(isset($_POST['mosha'])){echo $_POST['mosha'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
+    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" readonly/>
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap'
+        });
+    </script>
+    <br>
       <p>Gjinia: </p>
   <select name="gender">
     <option value="-1">Zgjedh</option>

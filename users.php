@@ -655,7 +655,7 @@ if($count == 0) {
                         echo '<div class = "pershkrimi" style = "text-align:left; ">';
                         echo "Username: ".$row['username']."<br>";
                         echo "Emaili: ".$row['email']."<br>";
-                        echo "Mosha: ".$row['age']."<br>";
+                        echo "Data e lindjes: ".$row['age']."<br>";
                         echo "Viti Akademik: ".$row['academicyear']."<br>";
                         echo "Hera e &Ccedil;asjes: ".$row['activity']."<br>";
                         
@@ -703,7 +703,7 @@ echo'<br>';
                         echo '<div class = "pershkrimi" style = "text-align:left; ">';
                         echo "Username: ".$row['username']."<br>";
                         echo "Emaili: ".$row['email']."<br>";
-                        echo "Mosha: ".$row['age']."<br>";
+                        echo "Data e lindjes: ".$row['age']."<br>";
                         echo "Viti Akademik: ".$row['academicyear']."<br>";
                        
                         
@@ -748,7 +748,7 @@ echo'<br>';
       <th scope="col">Emri</th>
       <th scope="col">Mbiemri</th>
       <th scope="col">Emaili</th>
-      <th scope="col">Mosha</th>
+      <th scope="col">Data e lindjes</th>
       <th scope="col">Viti Akademik</th>
       <th scope="col">Hera e Çasjes</th>
 
