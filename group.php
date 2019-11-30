@@ -1105,7 +1105,6 @@ die();
   }
 </script>
 <script>
-  function tregoteparat()
 var myText = document.getElementById("abc");
 var wordCount = document.getElementById("wordCount");
 
