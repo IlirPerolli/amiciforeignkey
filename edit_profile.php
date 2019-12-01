@@ -64,6 +64,9 @@ if ( window.history.replaceState ) {
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <script src="navi.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 <style>
 
@@ -175,7 +178,7 @@ margin: 0 auto;
 
 }
 .contact-form input[type="text"],
-.contact-form input[type="password"],.contact-form input[type="email"],.contact-form input[type="number"],#datepicker
+.contact-form input[type="password"],.contact-form input[type="email"],.contact-form input[type="number"]
 {
   border: 1px solid grey;
     padding-left: 8px; 
@@ -314,6 +317,9 @@ font-size: 35px;
  
   margin-top: 0px;
 } 
+.input-group-addon{
+  display: none;
+}
 
 
 </style>
@@ -421,15 +427,24 @@ $date = new DateTime($bithdayDate);
  $interval = $now->diff($date);
  $mosha = $interval->y;
 ?>
-   <p id = "mosha">Data e lindjes (<?php echo($mosha)."vjeq" ?>)</p>
-  <input id="datepicker" name="age" value ="<?php if(isset($_POST['age'])){echo $_POST['age'];} else{ echo $row['age'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" readonly/>
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap'
-        });
-    </script>
-    <br>
+
+   <p id = "mosha">Data e lindjes  <span style="color:#9E9E9E;" title="<?php echo($mosha)?> vjeç">(<?php echo($mosha)?>) </span> </p>
+  <input class="datepicker" type="text" name="age" value ="<?php if(isset($_POST['age'])){echo $_POST['age'];} else{ echo $row['age'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
+    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" style=" font-family: 'SamsungSharpSans-Bold';" readonly/>
+
+
+        <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+
+  });
+          </script>
+    
    <p id = "emaili">Emaili</p>
   <input name="email" value ="<?php if (isset($_POST['email'])){echo $_POST['email'];} else{ echo $row['email'];}?>" type="email" placeholder="Shenoni Emailin" oninvalid="this.setCustomValidity('Ju lutem shenoni emailin') ; document.getElementById('emaili').style.color='#FA3B4B'"
     oninput="this.setCustomValidity('') ; document.getElementById('emaili').style.color='black'" required/>
