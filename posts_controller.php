@@ -814,7 +814,5 @@ echo '
     </div>
   </div>
 </div>
-
-</ul>
 </body>
 </html>

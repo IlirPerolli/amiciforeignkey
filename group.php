@@ -1263,7 +1263,5 @@ echo '
   </div>
 </div>
 
-</ul>
-
 </body>
 </html>
