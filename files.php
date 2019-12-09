@@ -60,7 +60,15 @@ if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 } //Mos u submit nese bohet refresh faqja
 </script>
-  <title> Dosjet </title>
+  <?php 
+  if (isset($_GET['keyword'])){
+echo "<title>".$_GET['keyword']. " - Kerkimi ne amici". " </title>";
+  }
+  else {
+    echo "<title>amici dosjet</title>";
+  }
+
+  ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -123,7 +131,10 @@ if ( window.history.replaceState ) {
      <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id = "notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
     </ul>
-
+ <form class="form-inline my-2 my-lg-0" method="get" action="#">
+    <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
+    </form>
      <ul class="navbar-nav mx-3">
     <li class="nav-item dropdown">
        <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">
@@ -257,6 +268,214 @@ $(".custom-file-input").on("change", function() {
               echo "<p style = 'color:#343a40;'> Nuk u gjet asnje dokument </p>";
               
             }
+  //Kerkimi me search
+    if(isset($_GET['keyword'])){
+    $vitiakademik = $_SESSION['vitiakademik'];
+$search_term = $_GET['keyword'];
+$search_term = trim($search_term);
+  $sql = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' and file LIKE '%$search_term%' ORDER BY id DESC";
+
+
+ $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo "<div class='search-term-display'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+    echo'<div class="dropdown-divider"></div>'; 
+   // if((preg_match('/^\s+$/', $search_term)) == 1){
+ //header("Location:group.php");
+//}
+
+    if (ltrim($search_term, ' ') === '') {
+header("Location:files.php");
+    }
+if($count == 0) {
+  echo '<br>';
+  echo '<style>#rezultatet { display:none;}</style>';
+        echo '<div class = "rezultatet-error">';
+        echo '<img src = "img/1f914.png" style = "width:40px"/>'; 
+        echo '<br>';
+        echo "Asnje postim i gjetur";
+         echo '</div>'; 
+    }
+    else if(empty($search_term)){
+      header("Location:files.php");
+    }
+    
+
+
+    else{
+
+ while(($row = $results->fetch_assoc()) !== null){ 
+               echo '<div class = "download-container">';
+
+               echo '<div class = "download-name" title = "'.$row['file'] .' " data-toggle="modal" data-target="#modal_'.$row['id'].'">';
+               if (strlen($row['file']) > 46){
+                
+                $file_name = $row['file'];
+                $file_name = substr($file_name, 0, 44);
+                $file_name = $file_name . " ...";
+                echo $file_name;
+               }
+               else {
+                echo $row['file'];
+               }
+               echo "</div>";
+              if (strpos($row['file'],'.jpg') !== false || strpos($row['file'],'.JPG') !== false || strpos($row['file'],'.JPEG') !== false || strpos($row['file'],'.jpeg') !== false || strpos($row['file'],'.png') !== false || strpos($row['file'],'.PNG') !== false ) {
+
+                echo '<img src = "user-files-logos/576bf2589ce70.png" class = "download-photo"/>';
+
+               }
+
+               else if (strpos($row['file'],'.docx') !== false){
+                echo '<img src = "user-files-logos/word.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.pdf') !== false){
+                echo '<img src = "user-files-logos/pdf.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.pptx') !== false){
+                echo '<img src = "user-files-logos/powerpoint.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.apk') !== false){
+                echo '<img src = "user-files-logos/apk.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.xlsx') !== false){
+                echo '<img src = "user-files-logos/excel.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.txt') !== false){
+                echo '<img src = "user-files-logos/txt.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.html') !== false){
+                echo '<img src = "user-files-logos/html.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.php') !== false){
+                echo '<img src = "user-files-logos/php.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.ipa') !== false){
+                echo '<img src = "user-files-logos/ipa.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.py') !== false){
+                echo '<img src = "user-files-logos/py.png" class = "download-photo"/>';
+               }
+                else if (strpos($row['file'],'.css') !== false){
+                echo '<img src = "user-files-logos/css.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.gif') !== false){
+                echo '<img src = "user-files-logos/gif.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.rar') !== false){
+                echo '<img src = "user-files-logos/rar.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.zip') !== false){
+                echo '<img src = "user-files-logos/zip.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.mp3') !== false){
+                echo '<img src = "https://image.flaticon.com/icons/svg/148/148724.svg" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.mp4') !== false){
+                echo '<img src = "user-files-logos/mp4.png" class = "download-photo"/>';
+               }
+               else if (strpos($row['file'],'.to') !== false){
+                echo '<img src = "user-files-logos/UTorrent_(logo).png" class = "download-photo"/>';
+               }
+
+
+               else {
+                echo '<img src = "https://image.flaticon.com/icons/svg/148/148947.svg?fbclid=IwAR1qMT-iyh6nQNlIyVNu4VaFEiLQoRa4FUZD5iv8xM5ZjL3h_nYbFTi-y_k" class = "download-photo"/>';
+               }
+
+
+
+              
+               echo "<div class = 'download-content'>";
+               echo '<div class = "date-time">';
+               echo $row['date'];
+               echo '</div>';
+              
+                
+               echo '<button type="button" title = "Info" class="btn btn-light" data-toggle="modal" data-target="#modal_'.$row['id'].'" style = "display:inline-block">
+  <img src= "user-files-logos/more.png" style = "width:20px;"/>
+</button>';
+              
+               echo '</div>';
+                
+               echo '</div>';
+
+               //Modal Fade
+               echo '<div class="modal fade" id="modal_'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">';
+              echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+echo '<div class="modal-content">';
+      echo '<div class="modal-header">';
+echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>';
+        echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+          echo '<span aria-hidden="true">&times;</span>';
+        echo '</button>';
+      echo '</div>';
+      echo '<div class="modal-body">';
+        echo 'Emri i dokumentit: ' . $row['file'];
+        echo '<br>';
+        echo 'Ngarkuesi: ' . $row['Name']. " " . $row['Surname'];
+         echo '<br>';
+        echo 'Data: ' . $row['date'];
+        echo '<br>';
+        echo 'Ora: ' . $row['time'];
+      echo '</div>';
+      
+      echo '<div class="modal-footer">';
+      echo '<form action="#" method="post" id = "download-form">';
+       echo ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll </button>';
+
+       if (strpos($row['file'],'.jpg') !== false || strpos($row['file'],'.JPG') !== false || strpos($row['file'],'.JPEG') !== false || strpos($row['file'],'.jpeg') !== false || strpos($row['file'],'.png') !== false || strpos($row['file'],'.PNG') !== false || strpos($row['file'],'.pdf') !== false || strpos($row['file'],'.txt') !== false || strpos($row['file'],'.mp3') !== false || strpos($row['file'],'.mp4') !== false ) {
+        if (strpos($row['file'],'.mp3') !== false || strpos($row['file'],'.mp4') !== false){
+           echo '<a href="user-files/'.$row['file'].'" target="_blank" class="btn btn-warning" title="Luaje pa e shkarkuar" id = "view-button">Luaje</a>';
+        }
+        else{
+          echo '<a href="user-files/'.$row['file'].'" target="_blank" class="btn btn-warning" title="Shiko pa e shkarkuar" id = "view-button">Shiko</a>';
+        }
+       
+      }
+        echo '<a class="btn btn-light" id = "download" role="button" href="user-files/'.$row['file'].'"
+         download>
+        Shkarko
+        </a>';
+        
+
+        if (($_SESSION['username']) == $row['username']){
+
+        echo '<button type="submit" name="delete-file" class="btn btn-danger" id = "delete-button" value="'. $row['id'].'">Fshij</button>';
+       
+      }
+         echo '</form>';
+              echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    //
+     if (isset($_POST['delete-file'])){
+                                  $value = $_POST['delete-file'];
+ $query100 = "SELECT users.username from userfiles inner join users on userfiles.id_user = users.id WHERE userfiles.id ='$value'";
+                                    $results100 = mysqli_query($db, $query100);
+                                       while(($row100 = $results100->fetch_assoc()) !== null){    
+                                
+           
+            
+            if ($_SESSION['username'] == $row100['username']){
+                                header('Location:files.php?remove-file='. $value);
+
+                              }
+                              else {
+                                header('Location:files.php');
+                              }}
+
+                              }
+               } // End of while
+
+echo "<br><br>";
+                  echo '<div class = "rezultatet" id="rezultatet">'; 
+echo "Fundi i rezultateve";
+ echo '</div>';  
+    }//End of else
+}//End of keyword
+//Shfaqja e postimeve pa search
+else{
                while(($row = $results->fetch_assoc()) !== null){ 
                echo '<div class = "download-container">';
 
@@ -419,9 +638,12 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
                               }}
 
                               }
-               }
+               } // End of while
+             
+
+             }//End of else
 ?>
-<br>
+
 
 <!--
 <div class = "download-container">
@@ -440,6 +662,15 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
 </div>
 -->
 
+
+
+<?php 
+//Shiko se a eshte jashte kerkimit...
+if (!isset($_GET['keyword'])){
+
+
+?> 
+<br>
 <br><br>
 <!-- Numri i faqeve -->
 <div class = "pagination-wrapper">
@@ -501,7 +732,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
 <!-- Perfundimi i numrit te faqeve -->
 
 </div>
-
+<?php 
+//Mbarimi i Shiko se a eshte jashte kerkimit...
+}?>
      <script type="text/javascript">
   var cw = $('.download-photo').width();
 $('.download-photo').css({
@@ -530,6 +763,15 @@ $('.download-photo').css({
     });
 });
 </script>
-
+<script type="text/javascript">
+  function searchfunction(){
+var i=document.getElementById("search");
+if(i.value=="")
+    {
+    document.getElementById("search-submit").disabled=true;
+    }
+else
+    document.getElementById("search-submit").disabled=false;}
+</script>
 </body>
 </html>
