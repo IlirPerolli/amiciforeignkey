@@ -7,9 +7,13 @@
     include ("verify_user.php");
 
 
-      if ((($_SESSION['username']) == "ilirperolli") || (($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "nitaqerkezi") || (($_SESSION['username']) == "Bujan")) {
-        
-    }
+      $username = $_SESSION['username'];
+  $sql = "SELECT * from kursori_members where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
+
+
+  }
     else {
       header("Location: index.php");
       die();

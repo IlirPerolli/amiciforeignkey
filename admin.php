@@ -234,7 +234,13 @@ else
   <div class = "categories">
   <a href = "kursori.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "categories-photo"/></a>
   <div class = "category-name">
-  <a href="books.php" > Kursori </a>
+  <a href="kursori.php" > Kursori </a>
+  </div>
+  </div>
+    <div class = "categories">
+  <a href = "kursori_members.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "categories-photo"/></a>
+  <div class = "category-name">
+  <a href="kursori_members.php" >Anetaret e Kursorit </a>
   </div>
   </div>
 

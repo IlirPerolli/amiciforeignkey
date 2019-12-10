@@ -502,9 +502,10 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Videos</h5>';
 </div>';
 }
 else {
-  if (/*(($_SESSION['username']) == "ilirperolli") || */(($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "nitaqerkezi") || (($_SESSION['username']) == "Bujan") ) {
-        
-    
+  $username = $_SESSION['username'];
+  $sql = "SELECT * from kursori_members where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
   echo ' <div class = "folder">
   <a href = "kursori_selection.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "folder-photo" style = "width:300px;" id = "kursori-img"/></a>
   <div class = "folder-name">

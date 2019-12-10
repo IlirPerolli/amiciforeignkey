@@ -8,10 +8,14 @@
     if (!isset($_SESSION['vitiakademik']) || $_SESSION['vitiakademik'] == "1") {
         header("Location: index.php");
     }
+    
+   $username = $_SESSION['username'];
+  $sql = "SELECT * from kursori_members where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
 
-         if ((($_SESSION['username']) == "ilirperolli") || (($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "nitaqerkezi") || (($_SESSION['username']) == "Bujan")) {
-        
-    }
+
+  }
     else {
       header("Location: index.php");
       die();
