@@ -421,11 +421,18 @@ $('.avatar').css({
   <input name="mbiemri" value ="<?php if (isset($_POST['mbiemri'])){echo $_POST['mbiemri'];} else{ echo $row['Surname'];}?>" type="text" placeholder="Shenoni Mbiemrin" oninvalid="this.setCustomValidity('Ju lutem shenoni mbiemrin') ; document.getElementById('mbiemri').style.color='#FA3B4B'"
     oninput="this.setCustomValidity('') ; document.getElementById('mbiemri').style.color='black'" required/>
     <?php 
- $bithdayDate = $row['age'];
-$date = new DateTime($bithdayDate);
- $now = new DateTime();
- $interval = $now->diff($date);
- $mosha = $interval->y;
+     date_default_timezone_set("Europe/Tirane");
+ $birthdayDate = $row['age'];
+function age($birthday){
+ list($day, $month, $year) = explode("/", $birthday);
+ $year_diff  = date("Y") - $year;
+ $month_diff = date("m") - $month;
+ $day_diff   = date("d") - $day;
+ if ($day_diff < 0 && $month_diff==0) $year_diff--;
+ if ($day_diff < 0 && $month_diff < 0) $year_diff--;
+ return $year_diff;
+}
+$mosha = age($birthdayDate);
 ?>
 
    <p id = "mosha">Data e lindjes  <span style="color:#9E9E9E;" title="<?php echo($mosha)?> vjeç">(<?php echo($mosha)?>) </span> </p>
@@ -434,13 +441,11 @@ $date = new DateTime($bithdayDate);
 
 
         <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
-
   $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+
+      format: 'dd/mm/yyyy'
+    });
 
   });
           </script>

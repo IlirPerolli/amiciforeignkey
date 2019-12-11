@@ -58,13 +58,13 @@
      <input class="datepicker" name="mosha" type="text" value ="<?php if(isset($_POST['mosha'])){echo $_POST['mosha'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
     oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'"  style=" font-family: 'SamsungSharpSans-Bold';" readonly/>
          <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
 
   $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+
+      format: 'dd/mm/yyyy'
+    });
+
   });
           </script>
       <p>Gjinia: </p>
