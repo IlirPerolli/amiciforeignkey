@@ -153,9 +153,18 @@ cursor: pointer;
      <?php         $username = $_SESSION['username'];
   $sql = "SELECT * from admins where username='$username'";
   $results = mysqli_query($db, $sql);
+
+  $sql1 = "SELECT * from users where verification=0";
+  $results1 = mysqli_query($db, $sql1);
+  $number_of_new_users = mysqli_num_rows($results1);
   if (mysqli_num_rows($results)==1){
         
-       echo' <a class="nav-link" href="admin.php" style = "font-family:SamsungSharpSans-Bold; font-size:20px;"> Admin </a>';
+       echo' <a class="nav-link" href="admin.php" style = "font-family:SamsungSharpSans-Bold; font-size:20px;"> Admin '; 
+       if ($number_of_new_users != 0){
+        echo ' <span id = "notification-new-users">
+'.$number_of_new_users.'</span>';
+       }
+      echo'</a>';
     }?>
 
     </ul>

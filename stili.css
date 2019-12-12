@@ -189,7 +189,7 @@ max-width: 1300px;
 #logout{
   text-align: center;
 }
-#notification-counter, #notification-counter-uploads{
+#notification-counter, #notification-counter-uploads, #notification-new-users{
   display: inline-block;
   color: black;
   width:28px;
