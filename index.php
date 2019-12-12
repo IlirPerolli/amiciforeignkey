@@ -150,7 +150,10 @@ cursor: pointer;
       <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
       
       
-     <?php  if ((($_SESSION['username']) == "ilirperolli") || (($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "JetaMacula")) {
+     <?php         $username = $_SESSION['username'];
+  $sql = "SELECT * from admins where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
         
        echo' <a class="nav-link" href="admin.php" style = "font-family:SamsungSharpSans-Bold; font-size:20px;"> Admin </a>';
     }?>

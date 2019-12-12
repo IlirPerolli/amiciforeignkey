@@ -6,9 +6,13 @@
     // Shiko nese useri eshte i kyqur. Nese jo, ridirekto ne login
   include("check-vitiakademik.php");
  include ("verify_user.php");
-      if ((($_SESSION['username']) == "ilirperolli") || (($_SESSION['username']) == "arianitjaka") || (($_SESSION['username']) == "K") || (($_SESSION['username']) == "JetaMacula") ) {
-        
-    }
+          $username = $_SESSION['username'];
+  $sql = "SELECT * from admins where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
+
+
+  }
     else {
       header("Location: index.php");
       die();
