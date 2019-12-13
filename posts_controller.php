@@ -413,7 +413,10 @@ if (($_SESSION['username']) == "ilirperolli"){
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row['Name']. " " . $row['Surname'];
-                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+                        $username = $row['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
@@ -503,7 +506,10 @@ if (($_SESSION['username']) == "ilirperolli"){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row1['Name']. " " . $row1['Surname'];
-                            if ((($row1['username']) == "ilirperolli") || (($row1['username']) == "arianitjaka") || (($row1['username']) == "K") || (($row1['username']) == "JetaMacula")) {
+                        $username = $row1['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
@@ -591,7 +597,10 @@ echo'<div class="dropdown-divider"></div>';
                         echo '<br>';
                         echo '<div class = "emri">';
                         echo $row3['Name']. " " . $row3['Surname'];
-                            if ((($row3['username']) == "ilirperolli") || (($row3['username']) == "arianitjaka") || (($row3['username']) == "K") || (($row3['username']) == "JetaMacula")) {
+                        $username = $row3['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
@@ -666,7 +675,10 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
                         echo $row['Name']. " " . $row['Surname'];
-                            if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+                        $username = $row['username'];
+                        $sql1 = "SELECT * from admins where username='$username'";
+                        $results1 = mysqli_query($db, $sql1);
+                        if (mysqli_num_rows($results1)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" />';
     }
                         echo '</div>';
@@ -747,13 +759,16 @@ echo '
     <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
     <div class="media-body">';
       echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
-  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+$username = $row['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results1 = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results1)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
     }
 
   echo' </h5>';
 
-      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+      if (mysqli_num_rows($results1)==1){
          echo 'Administrator';
     }
      
@@ -787,13 +802,16 @@ echo '
     <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
     <div class="media-body">';
       echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
-  if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+ $username = $row['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results1 = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results1)==1){
          echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
     }
 
   echo' </h5>';
 
-      if ((($row['username']) == "ilirperolli") || (($row['username']) == "arianitjaka") || (($row['username']) == "K") || (($row['username']) == "JetaMacula")) {
+     if (mysqli_num_rows($results1)==1){
          echo 'Administrator';
     }
      
