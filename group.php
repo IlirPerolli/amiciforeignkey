@@ -634,7 +634,11 @@ $query1 = "SELECT * FROM users WHERE username='$username'";
     $results1 = mysqli_query($db, $query1);
           $row1 = $results1->fetch_assoc();
  echo '<form action="#" method="post">';
-                         echo '<img src = "user-photos/'. $row1['userphotos'].'" class = "foto" id ="foto-reply" style = "margin-left:260px;height:50px; width:50px; margin-top:15px; ">';
+ $loggedin_username =$_SESSION['username'];
+          $querycheck2 = "SELECT * FROM users WHERE username='$loggedin_username'";
+      $results2 = mysqli_query($db, $querycheck2);
+          $row2 = $results2->fetch_assoc();
+                         echo '<img src = "user-photos/'. $row2['userphotos'].'" class = "foto" id ="foto-reply" style = "margin-left:260px;height:50px; width:50px; margin-top:15px; ">';
                         echo '<input type = "text" name="reply" placeholder="Shkruaj nje pergjigje..." oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" style="margin-right:130px;"/>';
                   
                        echo' <button name="reply-submit" title = "Dergo" class = "reply" type="submit" value="'. $row['id'].'"/>';
@@ -956,10 +960,14 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
 $query1 = "SELECT * FROM users WHERE username='$username'";
     $results1 = mysqli_query($db, $query1);
           $row1 = $results1->fetch_assoc();
-
+          
+           $loggedin_username =$_SESSION['username'];
+          $querycheck2 = "SELECT * FROM users WHERE username='$loggedin_username'";
+      $results2 = mysqli_query($db, $querycheck2);
+          $row2 = $results2->fetch_assoc();
                      
                         echo '<form action="#" method="post">';
-                         echo '<img src = "user-photos/'. $row1['userphotos'].'" class = "foto" id ="foto-reply" style = "margin-left:260px;height:50px; width:50px; margin-top:15px; ">';
+                         echo '<img src = "user-photos/'. $row2['userphotos'].'" class = "foto" id ="foto-reply" style = "margin-left:260px;height:50px; width:50px; margin-top:15px; ">';
                         echo '<input type = "text" name="reply" placeholder="Shkruaj nje pergjigje..." oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" style="margin-right:130px;"/>';
                   
                        echo' <button name="reply-submit" title = "Dergo" class = "reply" type="submit" value="'. $row3['id'].'"/>';
