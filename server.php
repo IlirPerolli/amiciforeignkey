@@ -37,22 +37,23 @@ include("config.php");
 
 		// validimi i formes: sigurohu qe forma eshte plotesuar korrektesisht
 		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
+		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
 		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
-		if (empty($mosha)) { array_push($errors, "Ju lutem plotesoni moshen"); }
+		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
+		if (empty($mosha)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
+		if (($gender) == -1){array_push($errors, "Ju lutem zgjedhni gjinine"); }
 		if (($viti) == -1) { array_push($errors, "Ju lutem zgjedhni vitin akademik"); }
-		if (empty($username)) { array_push($errors, "Ju lutem plotesoni perdoruesin"); }
 		if (empty($email)) { array_push($errors, "Ju lutem plotesoni emailin"); }
+		if (strlen($email) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek emaili"); }
+		if (empty($username)) { array_push($errors, "Ju lutem plotesoni perdoruesin"); }
+		if (strlen($username) > 255){ array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek perdoruesi"); }
+		if (preg_match('/\s/',$username)) { array_push($errors, "Username permban hapesire");}
 		if (empty($password_1)) { array_push($errors, "Ju lutem plotesoni fjalekalimin"); }
 	    if (strlen($password_1) < 8){array_push($errors, "Ju lutem shenoni me shume se 8 karaktere te fjalekalimit"); }
-	    if (($gender) == -1){array_push($errors, "Ju lutem zgjedhni gjinine"); }
+		if (strlen($password_1) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi"); }
 		if ($password_1 != $password_2) {
 			array_push($errors, "Fjalekalimet nuk pershtaten");
 		}
-		if (preg_match('/\s/',$username)) {
-    array_push($errors, "Username permban hapesire");
-}
-
-
 			$querycheck = "SELECT * FROM users WHERE username='$username'";
 			$results1 = mysqli_query($db, $querycheck);
 
@@ -214,11 +215,20 @@ $results1 = mysqli_query($db, $query1);
 		$mbiemri = strtolower($mbiemri);
 		$mbiemri = ucfirst($mbiemri);
 	
+	
+
+
+		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
+		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
+		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
+		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
+		if (empty($age)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
+		if (empty($email)) { array_push($errors, "Ju lutem plotesoni emailin"); }
+		if (strlen($email) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek emaili"); }
 		if ($password != 1){
 			array_push($errors, "Keni shënuar Fjalekalimin e tanishem gabim!");
 			echo '<style>#fjalekalimi { color:#FA3B4B;}</style>';
 		}
-
 
 		if (count($errors) == 0) {
 			$password = password_verify($_POST['password_1'], $row['password']);

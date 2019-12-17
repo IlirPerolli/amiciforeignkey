@@ -49,10 +49,10 @@
 
          <p id = "emri">Emri</p>
     <input name="emri" autofocus value ="<?php if(isset($_POST['emri'])){echo $_POST['emri'];}?>" type="text" placeholder = "Shkruani Emrin" oninvalid="this.setCustomValidity('Ju lutem shkruani emrin'); document.getElementById('emri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('emri').style.color='black'" required />
+    oninput="this.setCustomValidity(''); document.getElementById('emri').style.color='black'" maxlength="50" required />
     <p id = "mbiemri">Mbiemri</p>
     <input name="mbiemri" value ="<?php if(isset($_POST['mbiemri'])){echo $_POST['mbiemri'];}?>" type="text" placeholder = "Shkruani Mbiemrin" oninvalid="this.setCustomValidity('Ju lutem shkruani mbiemrin'); document.getElementById('mbiemri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('mbiemri').style.color='black'" required />
+    oninput="this.setCustomValidity(''); document.getElementById('mbiemri').style.color='black'" maxlength="50" required />
   <p id = "mosha">Data e lindjes</p>
 
      <input class="datepicker" name="mosha" type="text" value ="<?php if(isset($_POST['mosha'])){echo $_POST['mosha'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
@@ -92,17 +92,17 @@
   </select>
     <p id = "emaili">Emaili </p> 
   <input name="email" value ="<?php if(isset($_POST['email'])){echo $_POST['email'];}?>" type="email" placeholder = "Shkruani emailin" oninvalid="this.setCustomValidity('Ju lutem shkruani emailin'); document.getElementById('emaili').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('emaili').style.color='black'" required/>
+    oninput="this.setCustomValidity(''); document.getElementById('emaili').style.color='black'" maxlength="255" required/>
 <span style = "font-size: 12px; color:#575757; margin-top: -20px !important; margin-bottom: 5px; display: inline-block;"> *Emaili duhet te jete i sakte qe t'iu vie verifikimi perndryshe nuk aktivizohet llogaria </span>
        <p id = "perdoruesi">Perdoruesi</p>
   <input name="username" value ="<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" type="text" placeholder = "Shkruani Usernamin" oninvalid="this.setCustomValidity('Ju lutem shkruani perdoruesin'); document.getElementById('perdoruesi').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('perdoruesi').style.color='black'" required/>
+    oninput="this.setCustomValidity(''); document.getElementById('perdoruesi').style.color='black'" maxlength="255" required/>
   <p id = "fjalekalimi">Fjalekalimi</p>
   <input name="password_1" id = "password"  value ="<?php if(isset($_POST['password_1'])){echo $_POST['password_1'];}?>" type="password" placeholder = "Shkruani Fjalekalimin" oninvalid="this.setCustomValidity('Ju lutem shkruani fjalekalimin'); document.getElementById('fjalekalimi').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi').style.color='black'" required  />
+    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi').style.color='black'" maxlength="255" required  />
   <p id = "fjalekalimi1">Rishkruaj Fjalekalimin</p>
   <input name="password_2" id = "password"  value ="<?php if(isset($_POST['password_2'])){echo $_POST['password_2'];}?>" type="password" placeholder = "Shkruani Fjalekalimin"  oninvalid="this.setCustomValidity('Ju lutem rishkruani fjalekalimin'); document.getElementById('fjalekalimi1').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi1').style.color='black'" required/>
+    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi1').style.color='black'" maxlength="255" required/>
   
 <div class="progress" style="height: 2px;">
   <div class="progress-bar" role="progressbar" id = "progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
