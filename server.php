@@ -225,6 +225,13 @@ $results1 = mysqli_query($db, $query1);
 		if (empty($age)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
 		if (empty($email)) { array_push($errors, "Ju lutem plotesoni emailin"); }
 		if (strlen($email) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek emaili"); }
+		
+		$emailcheck = "SELECT * FROM users WHERE email='$email' and username != '$username1'";
+			$results_email_check = mysqli_query($db, $emailcheck);
+
+			if (mysqli_num_rows($results_email_check) >= 1) {
+				array_push($errors, "Ky email shfrytezohet nga nje perdorues tjeter");
+		}
 		if ($password != 1){
 			array_push($errors, "Keni shënuar Fjalekalimin e tanishem gabim!");
 			echo '<style>#fjalekalimi { color:#FA3B4B;}</style>';
