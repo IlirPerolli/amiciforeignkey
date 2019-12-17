@@ -264,6 +264,9 @@ $results1 = mysqli_query($db, $query1);
 		if (strlen($_POST['password']) <8 && strlen($_POST['password'])!=0 ){
 	array_push($errors, "Ju lutem shenoni 8 e me shume karaktere te fjalekalimit!");
 }
+if (strlen($_POST['password']) >255 ){
+	array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi i ri!");
+}
 	if (($_POST['password']) != ($_POST['password_2'])) {
 			array_push($errors, "Fjalekalimet nuk pershtaten");
 		}
@@ -497,3 +500,7 @@ function compressImage($source, $destination, $quality) {
 }
 
 ?>
+
+
+
+

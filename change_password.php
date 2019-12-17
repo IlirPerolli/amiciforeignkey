@@ -325,10 +325,10 @@ $('.avatar').css({
     oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi1').style.color='black'" required  />
    <p id = "fjalekalimi2">Fjalekalimi i Ri</p>
   <input name="password" type="password" placeholder="Shkruani Fjalekalimin e Ri" value ="<?php if(isset($_POST['password'])){echo $_POST['password'];}?>" oninvalid="this.setCustomValidity('Ju lutem shkruani fjalekalimin e ri'); document.getElementById('fjalekalimi2').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi2').style.color='black'" required />
+    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi2').style.color='black'" maxlength="255" required />
      <p id = "fjalekalimi3">Rishkruaj Fjalekalimin</p>
   <input name="password_2" type="password" placeholder="Rishkruani Fjalekalimin e Ri" value ="<?php if(isset($_POST['password_2'])){echo $_POST['password_2'];}?>" oninvalid="this.setCustomValidity('Ju lutem rishkruani fjalekalimin e ri'); document.getElementById('fjalekalimi3').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi3').style.color='black'" required  />
+    oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi3').style.color='black'" maxlength="255" required  />
  <input type="submit" name="update_password" value="Ndrysho">
   <?php include('errors.php'); ?>
      </form>
