@@ -38,8 +38,10 @@ include("config.php");
 		// validimi i formes: sigurohu qe forma eshte plotesuar korrektesisht
 		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
 		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
+		if (preg_match('~[0-9]+~', $emri)) {array_push($errors, "Emri nuk duhet te permbaje numra"); }
 		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
 		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
+		if (preg_match('~[0-9]+~', $mbiemri)) {array_push($errors, "Mbiemri nuk duhet te permbaje numra"); }
 		if (empty($mosha)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
 		if (($gender) == -1){array_push($errors, "Ju lutem zgjedhni gjinine"); }
 		if (($viti) == -1) { array_push($errors, "Ju lutem zgjedhni vitin akademik"); }
@@ -220,8 +222,10 @@ $results1 = mysqli_query($db, $query1);
 
 		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
 		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
+		if (preg_match('~[0-9]+~', $emri)) {array_push($errors, "Emri nuk duhet te permbaje numra"); }
 		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
 		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
+		if (preg_match('~[0-9]+~', $mbiemri)) {array_push($errors, "Mbiemri nuk duhet te permbaje numra"); }
 		if (empty($age)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
 		if (empty($email)) { array_push($errors, "Ju lutem plotesoni emailin"); }
 		if (strlen($email) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek emaili"); }
