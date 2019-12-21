@@ -79,9 +79,8 @@ $_SESSION['loading'] = false;
     display: none;
   }
   @media screen and (max-width:640px){
-    .user{
+   .user{
       font-size: 25px !important;
-      margin-top: 80px !important;
     }
 .preload-mob{
   display: block;
@@ -156,19 +155,6 @@ $_SESSION['loading'] = false;
 
 </head>
 <body>
-   <script type="text/javascript">
-      const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000
-})
-
-Toast.fire({
-  type: 'success',
-  title: 'Jeni kyçur me sukses'
-})
-    </script>
   <div class = "user">
 
    <?php
