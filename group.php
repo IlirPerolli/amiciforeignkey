@@ -66,9 +66,6 @@ else{
 
    }
 
-
-
-
            //user discussion
             $vitiakademik = $_SESSION['vitiakademik'];
             $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC";
@@ -104,10 +101,127 @@ else{
                  echo '<style>#postimet { display:block!important;}</style>';
 
              }
-          
-        
-          
-           
+                
+?>
+<?php 
+//Shiko a ka theme te zgjedhur perdoruesi
+
+ $query = "SELECT * FROM group_themes WHERE username='$username'";
+
+$results = mysqli_query($db, $query);
+$row = $results->fetch_assoc();  
+
+          if (mysqli_num_rows($results) == 1) {
+            $theme = $row['theme'];
+            $opacity = $row['opacity'];
+
+            echo '<style>
+            body {
+  background:url("themes/'.$theme.'.jpg") no-repeat center center fixed !important;
+  background-size: cover !important;
+ -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  background-size: cover !important;
+}
+.postimet-container{
+  background:url("themes/'.$theme.'.jpg") no-repeat center center fixed !important;
+    background-size: cover !important;
+ -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  background-size: cover !important;
+    min-height: 100% !important;
+opacity:'.$opacity.'!important;
+}
+  /* **** Per ios **** */
+@media screen and (max-width:640px){
+   body {
+  background:url("themes/'.$theme.'.jpg") no-repeat center center !important;
+  background-size: cover !important;
+ -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  background-size: cover !important;
+}
+
+.postimet-container{
+    background:url("themes/'.$theme.'.jpg") no-repeat center center !important;
+    background-size: cover !important;
+ -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  background-size: cover !important;
+    min-height: 100% !important;
+  opacity:'.$opacity.'!important;
+}
+}
+    
+  /* ******** */
+
+
+#counter{
+  color: white;
+}
+.search-term-display{
+  color:white;
+}
+.dropdown-divider{
+  display: none;
+}
+
+
+
+            </style>';
+          }
+
+
+?>
+
+<?php 
+//Zgjedhja e themes
+if (isset($_GET['theme'])){
+  $theme = $_GET['theme'];
+  $opacity = $_GET['opacity'];
+
+  if (($theme == 'cave' ) || ($theme == 'mountain') || ($theme == 'bridge') || ($theme == 'forest') || ($theme == 'helicopter')  || ($theme == 'pelican')){
+    if ($opacity >= 0.5 && $opacity <=1){
+      $username = $_SESSION['username'];
+      $query = "SELECT * FROM group_themes WHERE username='$username'";
+
+$results = mysqli_query($db, $query);
+
+          if (mysqli_num_rows($results) == 0) {
+            $query1 = "INSERT INTO group_themes(username, theme, opacity) 
+            VALUES('$username','$theme', '$opacity')";
+      mysqli_query($db, $query1);
+         header("Location:group.php");
+
+          }
+else{
+    $sql = "UPDATE group_themes SET theme='$theme', opacity='$opacity' WHERE username='$username'";
+    
+      mysqli_query($db, $sql);
+        header("Location:group.php");
+}
+  
+    
+  }}
+
+
+  else{
+    header("Location:group.php");
+  }
+}
+
+?>
+<?php 
+//Fshirja e themes
+
+if (isset($_GET['theme_remove'])){
+  $username = $_SESSION['username'];
+ $sql = "DELETE FROM group_themes WHERE username='$username'";
+    
+      mysqli_query($db, $sql);
+        header("Location:group.php");
+
+}
 ?>
 
 <html>
@@ -144,9 +258,7 @@ if ( window.history.replaceState ) {
   <script src="navi.js"></script>
   <style>
     @media screen and (max-width:500px){
-   #studentet-menu{
-  border-radius: 0px;
- }
+
 .speech{
  
     right: 0 !important;
@@ -175,11 +287,7 @@ if ( window.history.replaceState ) {
     background: transparent;
     border-color: transparent;
   }
-  #studentet-menu{
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-  }
+
   .administrator-icon{
     width:28px;
     margin-left: 5px;
@@ -193,6 +301,32 @@ margin: auto;
   white-space: nowrap;
   width:90%;
  }
+ .theme{
+  width: 150px;
+  margin-top: 20px;
+  display: inline-block;
+ }
+ .theme-photo{
+   height:140px;
+   width:140px;
+   border-radius: 20px; 
+ }
+ .theme-choice:hover {
+  text-decoration: none;  
+ }
+
+  #studentet-menu, #studentet-menu:hover, #studentet-menu:active, #studentet-menu:visited {
+   background:none !important;
+   border: none !important;
+   margin-right: 10px;
+   box-shadow: none;
+}
+#theme_settings, #theme_settings:hover, #theme_settings:active, #theme_settings:visited{
+  background:none !important;
+   border: none !important;
+   box-shadow: none;
+}
+
 </style>
 
 
@@ -225,6 +359,15 @@ margin: auto;
        <a class="nav-link active" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
     </ul>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-light" id="theme_settings" title="Ndrysho Sfondin" data-toggle="modal" data-target="#theme_modal">
+  <img src= "img/settings.png" style = "width:30px;"/>
+</button>
+
+<button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
+<img src="img/multiple-users-silhouette.png" width="30px;" />
+</button>
   <form class="form-inline my-2 my-lg-0" method="get" action="#">
     <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
@@ -263,6 +406,95 @@ margin: auto;
 
   
   <div style = "text-align:center; margin-top: 78px;">
+
+<!-- Modal -->
+<div class="modal fade" id="theme_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Zgjedh Sfondin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <a href="#" onclick="theme_selector('cave')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/cave.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+
+     <a href="#" onclick="theme_selector('mountain')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/mountain.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+    <a href="#" onclick="theme_selector('bridge')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/bridge.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+    <a href="#" onclick="theme_selector('forest')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/forest.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+    <a href="#" onclick="theme_selector('helicopter')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/helicopter.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+    <a href="#" onclick="theme_selector('pelican')" class="theme-choice">
+       <div class="theme">
+      <img src="themes/pelican.jpg" class="theme-photo"/>
+
+     </div>
+   </a>
+   <br><br>
+
+      <script type="text/javascript">
+        //Funksioni per opacity
+     function theme_selector(theme){
+      var opacityvalue = document.getElementById("customRange1").value;
+      window.location.href='?theme='+ theme+'&opacity='+opacityvalue;
+     }
+   </script>
+<label for="customRange1">Zgjedh tejukshmerine</label>
+<input type="range" min="0.5" max="1" step="0.01" class="custom-range" id="customRange1" onchange='document.getElementById("opacityvalue").innerText = document.getElementById("customRange1").value;'>
+
+<span id= "opacity">Tejdukshmeria </span><span id="opacityvalue">0.75</span>
+
+
+
+
+   <br><br>
+   <span style="font-size: 13px;">*Se pari zgjedhni tejdukshmerine e pastaj foton </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+        <?php
+        $username = $_SESSION['username'];
+        $query = "SELECT * FROM group_themes WHERE username='$username'";
+
+$results = mysqli_query($db, $query);
+ 
+
+          if (mysqli_num_rows($results) == 1) {
+
+         ?>
+          <button type="button" class="btn btn-danger" onclick="window.location.href='?theme_remove'">Hiq sfondin</button>
+<?php }
+          ?>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class = "postimet-container">
 <!--
 <div class = "postimet-title">
@@ -1173,16 +1405,7 @@ document.getElementById("success-photo").style.display="none";
 });
 </script>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
 
-<?php    $vitiakademik = $_SESSION['vitiakademik'];
-         $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
-        $results = mysqli_query($db, $query);
-
-      echo "Studentet Online (".mysqli_num_rows($results).")"; 
-       ?>
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
