@@ -259,6 +259,14 @@ if ( window.history.replaceState ) {
   <style>
     @media screen and (max-width:500px){
 
+    .modal-theme-buttons{
+  width: 100%;
+}
+.modal-footer .btn{
+  margin-left: 0px !important;
+  width:100% !important;
+  margin-top: 5px !important;
+}
 .speech{
  
     right: 0 !important;
@@ -315,16 +323,25 @@ margin: auto;
   text-decoration: none;  
  }
 
-  #studentet-menu, #studentet-menu:hover, #studentet-menu:active, #studentet-menu:visited {
-   background:none !important;
-   border: none !important;
-   margin-right: 10px;
-   box-shadow: none;
-}
 #theme_settings, #theme_settings:hover, #theme_settings:active, #theme_settings:visited{
   background:none !important;
    border: none !important;
    box-shadow: none;
+}
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 1px 3px #57A9DC;
+}
+
+input[type=radio] + label>img {
+
+  transition: 500ms all;
+
 }
 
 </style>
@@ -418,65 +435,65 @@ margin: auto;
         </button>
       </div>
       <div class="modal-body">
-     <a href="#" onclick="theme_selector('cave')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/cave.jpg" class="theme-photo"/>
+<form action="#" method="post" id="theme-form">
+  <div class="theme">
+   <input type="radio" name="theme" id="cave" class="input-hidden" value="cave" checked />
+<label for="cave">
+  <img src="themes/cave.jpg" class="theme-photo" />
+</label>
+</div>
 
-     </div>
-   </a>
+  <div class="theme">
+  <input type="radio" name="theme" id="mountain" class="input-hidden" value="mountain"  />
+<label for="mountain">
+  <img src="themes/mountain.jpg" class="theme-photo" />
+</label>
+</div>
 
-     <a href="#" onclick="theme_selector('mountain')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/mountain.jpg" class="theme-photo"/>
+  <div class="theme">
+  <input type="radio" name="theme" id="bridge" class="input-hidden" value="bridge"  />
+<label for="bridge">
+  <img src="themes/bridge.jpg" class="theme-photo" />
+</label>
+</div>
 
-     </div>
-   </a>
-    <a href="#" onclick="theme_selector('bridge')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/bridge.jpg" class="theme-photo"/>
+  <div class="theme">
+<input type="radio" name="theme" id="forest" class="input-hidden" value="forest"/>
+<label for="forest">
+     <img src="themes/forest.jpg" class="theme-photo" />
+</label>
+</div>
 
-     </div>
-   </a>
-    <a href="#" onclick="theme_selector('forest')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/forest.jpg" class="theme-photo"/>
+  <div class="theme">
+<input type="radio" name="theme" id="helicopter" class="input-hidden" value="helicopter"/>
+<label for="helicopter">
+     <img src="themes/helicopter.jpg" class="theme-photo" />
+</label>
+</div>
 
-     </div>
-   </a>
-    <a href="#" onclick="theme_selector('helicopter')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/helicopter.jpg" class="theme-photo"/>
-
-     </div>
-   </a>
-    <a href="#" onclick="theme_selector('pelican')" class="theme-choice">
-       <div class="theme">
-      <img src="themes/pelican.jpg" class="theme-photo"/>
-
-     </div>
-   </a>
-   <br><br>
-
-      <script type="text/javascript">
-        //Funksioni per opacity
-     function theme_selector(theme){
-      var opacityvalue = document.getElementById("customRange1").value;
-      window.location.href='?theme='+ theme+'&opacity='+opacityvalue;
-     }
-   </script>
-<label for="customRange1">Zgjedh tejukshmerine</label>
-<input type="range" min="0.5" max="1" step="0.01" class="custom-range" id="customRange1" onchange='document.getElementById("opacityvalue").innerText = document.getElementById("customRange1").value;'>
-
-<span id= "opacity">Tejdukshmeria </span><span id="opacityvalue">0.75</span>
-
-
-
+  <div class="theme">
+<input type="radio" name="theme" id="pelican" class="input-hidden" value="pelican"/>
+<label for="pelican">
+     <img src="themes/pelican.jpg" class="theme-photo" />
+</label>
+</div>
 
    <br><br>
-   <span style="font-size: 13px;">*Se pari zgjedhni tejdukshmerine e pastaj foton </span>
+
+<label for="customRange1">Zgjedh dukshmerine</label>
+<input type="range" min="0.5" max="1" name="opacity" step="0.01" class="custom-range" id="customRange1" onchange='document.getElementById("opacityvalue").innerText = document.getElementById("customRange1").value;'>
+
+<span id= "opacity">Dukshmeria </span><span id="opacityvalue">0.75</span>
+
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+        <div class="modal-theme-buttons">
+        <button type="button" class="btn btn-secondary" id="theme_dismiss" data-dismiss="modal">Mbyll</button>
+  <button type="submit" class="btn btn-success" id="theme_apply" name="theme_apply"> Ruaj Ndryshimet</button>
+      
+
+       
         <?php
         $username = $_SESSION['username'];
         $query = "SELECT * FROM group_themes WHERE username='$username'";
@@ -487,9 +504,31 @@ $results = mysqli_query($db, $query);
           if (mysqli_num_rows($results) == 1) {
 
          ?>
-          <button type="button" class="btn btn-danger" onclick="window.location.href='?theme_remove'">Hiq sfondin</button>
+          <button type="button" class="btn btn-danger" id="theme_remove" onclick="window.location.href='?theme_remove'">Hiq sfondin</button>
 <?php }
           ?>
+              </form>
+        </div>
+        
+             <?php 
+if(isset($_POST['theme_apply'])){
+  $theme = $_POST['theme'];
+    $opacity = $_POST['opacity'];
+  if (empty($theme)){
+    header("Location:group.php");
+    die();
+  }
+   if ($opacity >= 0.5 && $opacity <=1){
+  header("Location:?theme=".$theme."&opacity=".$opacity);
+   }
+   else{
+    header("Location: group.php");
+   }
+
+
+}
+?>
+
       </div>
     </div>
   </div>
