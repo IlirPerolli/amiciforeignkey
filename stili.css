@@ -507,4 +507,9 @@ overflow: auto;
   margin-top: 20px;
   width: 46%;
 }
+  #studentet-menu, #studentet-menu:hover, #studentet-menu:active, #studentet-menu:visited {
+   background:none !important;
+   border: none !important;
+   margin-right: 10px;
+   box-shadow: none;
 }

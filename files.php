@@ -131,6 +131,9 @@ echo "<title>".$_GET['keyword']. " - Kerkimi ne amici". " </title>";
      <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id = "notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
     </ul>
+    <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
+<img src="img/multiple-users-silhouette.png" width="30px;" />
+</button>
  <form class="form-inline my-2 my-lg-0" method="get" action="#">
     <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
@@ -773,5 +776,113 @@ if(i.value=="")
 else
     document.getElementById("search-submit").disabled=false;}
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span style = "color:green; font-size:20px" >Online</span>
+        <br><br>
+
+        <!-- ONLINE -->
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+       while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+$username = $row['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results1 = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results1)==1){
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
+    }
+
+  echo' </h5>';
+
+     
+                        if (mysqli_num_rows($results1)==1){
+         echo 'Administrator';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>';
+       }
+
+        ?>
+</ul>
+<!-- END OF ONLINE -->
+
+<!-- OFFLINE -->
+  <span style = "color:grey; font-size:20px" >Offline</span>
+        <br><br>
+
+        
+        <ul class="list-unstyled">
+        <?php 
+            $vitiakademik = $_SESSION['vitiakademik'];
+         $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
+    $results = mysqli_query($db, $query);
+          while(($row = $results->fetch_assoc()) !== null){   
+echo '
+  <li class="media">
+    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+    <div class="media-body">';
+      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+  $username = $row['username'];
+                        $sql = "SELECT * from admins where username='$username'";
+                        $results1 = mysqli_query($db, $sql);
+                        if (mysqli_num_rows($results1)==1){
+         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
+    }
+
+  echo' </h5>';
+
+     
+                        if (mysqli_num_rows($results1)==1){
+         echo 'Administrator';
+    }
+     
+      else{
+        echo 'Student';
+      }
+     
+      echo'
+    </div>
+  </li>
+  <br>';
+       }
+
+        ?>
+</ul>
+<!-- END OF OFFLINE -->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
