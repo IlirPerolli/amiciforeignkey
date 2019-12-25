@@ -162,9 +162,10 @@ opacity:'.$opacity.'!important;
 .search-term-display{
   color:white;
 }
-.dropdown-divider{
-  display: none;
+#dropdown-divider{
+  display:none;
 }
+
 
 
 
@@ -653,7 +654,7 @@ ORDER BY id DESC";
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
     echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
-    echo'<div class="dropdown-divider"></div>'; 
+    echo'<div class="dropdown-divider" id="dropdown-divider"></div>'; 
    // if((preg_match('/^\s+$/', $search_term)) == 1){
  //header("Location:group.php");
 //}
@@ -1000,7 +1001,7 @@ echo'<span id="wordCount">0</span><span id= "wordCount1">/255 Karaktere </span>'
 echo'</div>';
 include('errors.php');
 echo'</form>';
-echo'<div class="dropdown-divider"></div>'; 
+echo'<div class="dropdown-divider" id="dropdown-divider"></div>'; 
                          while(($row3 = $results3->fetch_assoc()) !== null){
                          
 
