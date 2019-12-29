@@ -168,11 +168,7 @@ z-index: 999;
       text-align: center;
       margin-top: 20px;
     }
-  #studentet-menu{
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-  }
+
   .administrator-icon{
     width:28px;
     margin-left: 5px;
@@ -211,6 +207,10 @@ z-index: 999;
         <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
          <a class="nav-link active" href="admin.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Admin <span class="sr-only">(current)</span></a>
     </ul>
+
+<button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
+<img src="img/multiple-users-silhouette.png" width="30px;" />
+</button>
   <form class="form-inline my-2 my-lg-0" method="get" action="#">
     <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>

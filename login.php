@@ -50,6 +50,14 @@ if ( window.history.replaceState ) {
 .contact-form input[type="password"]:focus{
    border: 1px solid rgb(0, 132, 137);
 }
+.avatar{
+  margin-right: 45px;
+}
+@media screen and (max-width: 640px){
+  .avatar{
+  margin-right: 0px !important;
+}
+}
 </style>
 </head>
 
@@ -116,13 +124,13 @@ var characters = textbox.value.split('');
           echo' <img src = "user-photos/'.$row['userphotos'].'" class = "avatar-user"/><br>';
         }
         else {
-          echo '<img src = "img/logo.jpg" class = "avatar"/><br><br>';
+          echo '<img src = "img/IMG-d49f8bdc873cb884f40f245c35c9ab38-V.png" class = "avatar"/><br><br>';
         }
       
 
       }
       else{
-        echo '<img src = "img/logo.jpg" class = "avatar"/><br><br>';
+        echo '<img src = "img/IMG-d49f8bdc873cb884f40f245c35c9ab38-V.png" class = "avatar"/><br><br>';
       }
       ?>
 <!-- <img src = "img/avatar.jpg" class = "avatar"/><br><br> -->

@@ -28,7 +28,16 @@
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
     position: relative;
-}</style>
+}
+.avatar{
+  margin-right: 45px;
+}
+@media screen and (max-width: 640px){
+  .avatar{
+  margin-right: 0px !important;
+}
+}
+</style>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -42,7 +51,7 @@
    
      
      <!-- <img src = "img/avatar.jpg" class = "avatar"/><br><br> -->
-<img src = "img/logo.jpg" class = "avatar"/><br><br>
+<img src = "img/IMG-d49f8bdc873cb884f40f245c35c9ab38-V.png" class = "avatar"/><br><br>
     <h2>Krijo Llogarine</h2>
 
 
@@ -103,7 +112,6 @@
   <p id = "fjalekalimi1">Rishkruaj Fjalekalimin</p>
   <input name="password_2" id = "password"  value ="<?php if(isset($_POST['password_2'])){echo $_POST['password_2'];}?>" type="password" placeholder = "Shkruani Fjalekalimin"  oninvalid="this.setCustomValidity('Ju lutem rishkruani fjalekalimin'); document.getElementById('fjalekalimi1').style.color='#FA3B4B'"
     oninput="this.setCustomValidity(''); document.getElementById('fjalekalimi1').style.color='black'" maxlength="255" required/>
-  
 <div class="progress" style="height: 2px;">
   <div class="progress-bar" role="progressbar" id = "progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
