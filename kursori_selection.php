@@ -200,19 +200,19 @@ margin-top: 20px;
   <div class = "folder">
   <a href = "kursori_kursi1.php"> <img src = "https://kursori.org/assets/img/course1.png" class = "folder-photo"/></a>
   <div class = "folder-name">
-  <a href="users.php" > Kursi 1 </a>
+  <a href="kursori_kursi1.php" > Kursi 1 </a>
   </div>
   </div>
    <div class = "folder">
   <a href = "kursori_kursi2.php"> <img src = "https://kursori.org/assets/img/course2.png" class = "folder-photo"/></a>
   <div class = "folder-name">
-  <a href="users.php" > Kursi 2 </a>
+  <a href="kursori_kursi2.php" > Kursi 2 </a>
   </div>
   </div>
  <div class = "folder">
   <a href = "kursori_kursi3.php"> <img src = "https://kursori.org/assets/img/course3.png" class = "folder-photo"/></a>
   <div class = "folder-name">
-  <a href="users.php" > Kursi 3 </a>
+  <a href="kursori_kursi3.php" > Kursi 3 </a>
   </div>
   </div>
 
