@@ -306,10 +306,10 @@ if($count == 0) {
 
 
     else{
-
+  echo '<div class= "entire-download-container">';
  while(($row = $results->fetch_assoc()) !== null){ 
-               echo '<div class = "download-container">';
 
+               echo '<div class = "download-container">';
                echo '<div class = "download-name" title = "'.$row['file'] .' " data-toggle="modal" data-target="#modal_'.$row['id'].'">';
                if (strlen($row['file']) > 46){
                 
@@ -469,7 +469,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
                               }}
 
                               }
+
                } // End of while
+           echo'</div>';
 
 echo "<br><br>";
                   echo '<div class = "rezultatet" id="rezultatet">'; 
@@ -478,8 +480,11 @@ echo "Fundi i rezultateve";
     }//End of else
 }//End of keyword
 //Shfaqja e postimeve pa search
+
 else{
+                 echo '<div class= "entire-download-container">';
                while(($row = $results->fetch_assoc()) !== null){ 
+     
                echo '<div class = "download-container">';
 
                echo '<div class = "download-name" title = "'.$row['file'] .' " data-toggle="modal" data-target="#modal_'.$row['id'].'">';
@@ -641,7 +646,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Dokumentit</h5>
                               }}
 
                               }
+                            
                } // End of while
+  echo '</div>';
              
 
              }//End of else
