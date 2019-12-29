@@ -99,15 +99,17 @@ else{
 
 
   @media screen and (max-width:640px){
-
+  .folder-container{
+                justify-content: space-between !important;
+            }
   .folder{
-  width:48% !important;
-  margin-left:1 !important;
-  margin-right:1px !important;
-  margin-top:30px !important;
-  border-radius: 10px !important;
-  border: 1px solid black !important;
+    margin-left: 0px !important;
+margin-right: 0px !important;
+border-radius:5px !important;
+width:49.5% !important;
+  margin-top:5px !important;
   height: 350px !important;
+
 }
 .folder-photo{
    height: 200px !important;
@@ -146,11 +148,13 @@ input[type="text"]
 
 }}
 @media screen and (max-width:330px){
+    .folder-container{
+                justify-content: center !important;
+            }
 .folder{
 width: 98% !important;
 margin-left: 0px !important;
 margin-right: 0px !important;
-border: 1px solid black !important;
  height: 410px !important;
   }
 .folder-photo{
@@ -166,24 +170,24 @@ border: 1px solid black !important;
 .folder{
 width:300px;
 height:420px;
-display:inline-block;
 background:white;
-margin-left:10px;
-margin-right:10px;
 margin-top:20px;
-border: 1.5px solid black;
+border: 1px solid #CECECE;
 /*transition:transform.3s;*/
 transition: all .2s ease-in-out; 
 overflow: hidden;
-border-radius: 30px;
 word-break: break-word;
+margin-left: 2px;
+margin-right: 2px;
+border-radius: 20px;
 }
 .folder:hover{
   
   
--webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+
 
 }
 .folder a{
@@ -208,11 +212,7 @@ max-width: 1300px;
 margin-top: 20px;
  }
  .add-folder{
-  position:absolute;
-    top:50%;
-    left:50%;
-    margin-right: -50%;
-    transform:translate(-50%, -50%);
+
     width:150px;
     height: 150px; 
  }
@@ -245,6 +245,14 @@ margin-top: 20px;
   width: 100%;
   text-align: right;
 }
+.folder-container{
+      display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:100%;
+    padding: 0px !important;
+  }
 </style>
 <body>
 
@@ -371,7 +379,7 @@ var characters = textbox.value.split('');
 <br><br><br><br>
    <div style = "text-align:center; margin:auto;">
   <div class = "max-width">
-
+    <div class = "folder-container">
 <?php
   if (isset($_GET['folder'])){
     
@@ -471,7 +479,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Videos</h5>';
                                 echo '</div>';
   echo '</div>';   
   }
- echo '<div class = "folder" style = "position: relative;border: none; background: none; cursor:pointer" data-toggle="modal" data-target="#exampleModalCenter">
+ echo '<div class = "folder" style = "display:flex; align-items: center; justify-content: center; border: none; background: none; cursor:pointer" data-toggle="modal" data-target="#exampleModalCenter">
   <img src = "img/plus.png" class = "add-folder"/>
   </div>';
   echo '
@@ -600,7 +608,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Folderit</h5>';
   echo '</div>';
   echo '</div>';  
  }
- echo '    <div class = "folder" style = "position: relative;border: none; background: none; cursor:pointer" data-toggle="modal" data-target="#exampleModalCenter">
+ echo '    <div class = "folder" style = "display:flex; align-items: center; justify-content: center; border: none; background: none; cursor:pointer" data-toggle="modal" data-target="#exampleModalCenter">
   <img src = "img/plus.png" class = "add-folder"/>
   </div>';
   echo '
@@ -638,6 +646,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Folderit</h5>';
 
 
  
+</div>
 </div>
 </div>
 <br><br>
