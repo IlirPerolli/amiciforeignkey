@@ -722,16 +722,7 @@ while(($row = $results->fetch_assoc()) !== null){
 </div>
 
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
 
-<?php    $vitiakademik = $_SESSION['vitiakademik'];
-         $query = "SELECT * FROM users WHERE online='1'";
-        $results = mysqli_query($db, $query);
-
-      echo "Studentet Online (".mysqli_num_rows($results).")"; 
-       ?>
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
