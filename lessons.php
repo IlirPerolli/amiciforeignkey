@@ -106,8 +106,8 @@ else{
     margin-left: 0px !important;
 margin-right: 0px !important;
 border-radius:5px !important;
-width:49.5% !important;
-  margin-top:5px !important;
+width:49% !important;
+  margin-top:8px !important;
   height: 350px !important;
 
 }
