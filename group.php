@@ -608,17 +608,17 @@ echo'
   </form>
   </div>';
    if (isset($_POST['submit-edited-comment'])){
-   $edited_comment = $_POST['edited-comment'];
+    $edited_comment = mysqli_real_escape_string($db, $_POST['edited-comment']);
    $edited_comment = trim($edited_comment);  
      if (ltrim($edited_comment, ' ') === '') {
 header("Location:group.php");
     }
+    
     else if (strpos($edited_comment, ' ') === 0) { //Nese fillon me hapesire (Alt 255)
     header("Location:group.php");
 }
     
     else {
-       $edited_comment = $_POST['edited-comment'];
      $query = "UPDATE userposts SET Comments = '$edited_comment', edited=1 WHERE id='$number'";
                     mysqli_query($db, $query);
                     header("Location:group.php");
