@@ -393,10 +393,10 @@ array_push($errors, "Komenti permban hapesira!");
 if (strpos($biseda, ' ') === 0) { //Nese fillon me hapesire (Alt 255)
     array_push($errors, "Komenti permban hapesira!");
 }
-
+/*
 if (strpos($biseda,'qija') !== false || strpos($biseda,'nonen') !== false || strpos($biseda,'kar') !== false || strpos($biseda,'mut') !== false || strpos($biseda,'pis') !== false || strpos($biseda,'qi') !== false || strpos($biseda,'q*') !== false || strpos($biseda,'m*t') !== false || strpos($biseda,'nanen') !== false ) {
   array_push($errors, "Pse bre pe shan!");
-}
+}*/
 
 
 
@@ -446,10 +446,10 @@ array_push($errors, "Komenti permban hapesira!");
 if (strpos($biseda, ' ') === 0) { //Nese fillon me hapesire (Alt 255)
     array_push($errors, "Komenti permban hapesira!");
 }
-
+/*
 if (strpos($biseda,'qija') !== false || strpos($biseda,'nonen') !== false || strpos($biseda,'kar') !== false || strpos($biseda,'mut') !== false || strpos($biseda,'pis') !== false || strpos($biseda,'qi') !== false || strpos($biseda,'q*') !== false || strpos($biseda,'m*t') !== false || strpos($biseda,'nanen') !== false ) {
   array_push($errors, "Pse bre pe shan!");
-}
+}*/
 		if (count($errors) == 0) {
 				
 			$query = "INSERT INTO userposts (Comments,date, time, id_user) 
