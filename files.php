@@ -86,7 +86,9 @@ echo "<title>".$_GET['keyword']. " - Kerkimi ne amici". " </title>";
   <link rel = "stylesheet" type = "text/css" href = "files-stili.css">
   <script src="navi.js"></script>
 
+<style>
 
+</style>
 
 </head>
 <body>
@@ -172,7 +174,6 @@ echo "<title>".$_GET['keyword']. " - Kerkimi ne amici". " </title>";
 
    <br><br><br><br><br><span class = "br-mob"><br></span>
   <div style = "text-align:center">
-
 
 <div class = "container">
 <br>
