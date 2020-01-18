@@ -181,7 +181,7 @@ if (isset($_GET['theme'])){
   $theme = $_GET['theme'];
   $opacity = $_GET['opacity'];
 
-  if (($theme == 'cave' ) || ($theme == 'mountain') || ($theme == 'bridge') || ($theme == 'forest') || ($theme == 'helicopter')  || ($theme == 'pelican')){
+  if (($theme == 'amsterdam' ) || ($theme == 'antartica') || ($theme == 'aurora') || ($theme == 'forest') || ($theme == 'bird')  || ($theme == 'meteor') || ($theme == 'pier') || ($theme == 'sunset')){
     if ($opacity >= 0.5 && $opacity <=1){
       $username = $_SESSION['username'];
       $query = "SELECT * FROM group_themes WHERE username='$username'";
@@ -438,23 +438,23 @@ input[type=radio] + label>img {
       <div class="modal-body">
 <form action="#" method="post" id="theme-form">
   <div class="theme">
-   <input type="radio" name="theme" id="cave" class="input-hidden" value="cave" checked />
-<label for="cave">
-  <img src="themes/cave.jpg" class="theme-photo" />
+   <input type="radio" name="theme" id="amsterdam" class="input-hidden" value="amsterdam" checked />
+<label for="amsterdam">
+  <img src="themes/amsterdam.jpg" class="theme-photo" />
 </label>
 </div>
 
   <div class="theme">
-  <input type="radio" name="theme" id="mountain" class="input-hidden" value="mountain"  />
-<label for="mountain">
-  <img src="themes/mountain.jpg" class="theme-photo" />
+  <input type="radio" name="theme" id="antartica" class="input-hidden" value="antartica"  />
+<label for="antartica">
+  <img src="themes/antartica.jpg" class="theme-photo" />
 </label>
 </div>
 
   <div class="theme">
-  <input type="radio" name="theme" id="bridge" class="input-hidden" value="bridge"  />
-<label for="bridge">
-  <img src="themes/bridge.jpg" class="theme-photo" />
+  <input type="radio" name="theme" id="aurora" class="input-hidden" value="aurora"  />
+<label for="aurora">
+  <img src="themes/aurora.jpg" class="theme-photo" />
 </label>
 </div>
 
@@ -466,16 +466,28 @@ input[type=radio] + label>img {
 </div>
 
   <div class="theme">
-<input type="radio" name="theme" id="helicopter" class="input-hidden" value="helicopter"/>
-<label for="helicopter">
-     <img src="themes/helicopter.jpg" class="theme-photo" />
+<input type="radio" name="theme" id="bird" class="input-hidden" value="bird"/>
+<label for="bird">
+     <img src="themes/bird.jpg" class="theme-photo" />
 </label>
 </div>
 
   <div class="theme">
-<input type="radio" name="theme" id="pelican" class="input-hidden" value="pelican"/>
-<label for="pelican">
-     <img src="themes/pelican.jpg" class="theme-photo" />
+<input type="radio" name="theme" id="meteor" class="input-hidden" value="meteor"/>
+<label for="meteor">
+     <img src="themes/meteor.jpg" class="theme-photo" />
+</label>
+</div>
+  <div class="theme">
+<input type="radio" name="theme" id="pier" class="input-hidden" value="pier"/>
+<label for="pier">
+     <img src="themes/pier.jpg" class="theme-photo" />
+</label>
+</div>
+  <div class="theme">
+<input type="radio" name="theme" id="sunset" class="input-hidden" value="sunset"/>
+<label for="sunset">
+     <img src="themes/sunset.jpg" class="theme-photo" />
 </label>
 </div>
 
