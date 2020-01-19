@@ -654,12 +654,53 @@ die();
 $search_term = $_GET['keyword'];
 $search_term = trim($search_term);
 //$search_term = preg_replace("#[^0-9a-z]#i", "", $search_term);
+/*
+
+  --------------- Searchi i meparshem ---------------
     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null AND Comments  LIKE '%$search_term%'
 ORDER BY id DESC";
+*/
 
-//$sql = "SELECT * FROM userposts
-//WHERE academicyear='$vitiakademik' AND Name LIKE '%$search_term%' OR Surname LIKE '%$search_term%' OR Comments LIKE '%$search_term%'
-//ORDER BY id";
+    $sql_check_for_replies = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND Comments  LIKE '%$search_term%'
+ORDER BY id DESC"; // Shiko per komente dhe replya
+    $query = mysqli_query($db, $sql_check_for_replies);
+       $replyingtoarray=array(); // Krijo varg per replyat
+    while(($row_check = $query->fetch_assoc()) !== null){ 
+   
+      if ($row_check['replyingto'] != null){ //Nese ka reply
+        $replyingto = $row_check['replyingto']; // Merr replyn
+            array_push($replyingtoarray,$replyingto); // Fute ate reply ne varg
+      }
+        }
+  /*
+   foreach ($replyingtoarray as $replies) {
+     echo $replies."<br>";
+   }
+
+   Trego se reply-a cilit koment i perket
+*/ 
+/*
+$sql = "SELECT * FROM userposts
+WHERE academicyear='$vitiakademik' AND Name LIKE '%$search_term%' OR Surname LIKE '%$search_term%' OR Comments LIKE '%$search_term%'
+ORDER BY id";
+*/
+   if (count($replyingtoarray)==0){ // Nese nuk ka replya
+     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null AND Comments  LIKE '%$search_term%'
+ORDER BY id DESC";
+   }
+   else{ //Nese ka replya
+    //Trego se pari komentet qe nuk i perkasin reply
+     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null AND Comments  LIKE '%$search_term%' union 
+";
+foreach ($replyingtoarray as $replies) { // Itero rreth replyave
+
+$sql .= "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND userposts.id='$replies' union ";
+}//Shto ato id ne stringun e sql
+
+$sql = mb_substr($sql, 0, -6); // Fshirja e unionit te fundit ne foreach
+$sql .= " ORDER BY id DESC"; // Radhiti prej komentit te fundit
+
+   }
 
 
 
