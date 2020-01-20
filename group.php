@@ -692,14 +692,18 @@ ORDER BY id DESC";
     //Trego se pari komentet qe nuk i perkasin reply
      $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null AND Comments  LIKE '%$search_term%' union 
 ";
+
+
+$sql .= "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND (";
 foreach ($replyingtoarray as $replies) { // Itero rreth replyave
+$sql .= "userposts.id='$replies' or ";
 
-$sql .= "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND userposts.id='$replies' union ";
-}//Shto ato id ne stringun e sql
+}
+//Shto ato id ne stringun e sql
 
-$sql = mb_substr($sql, 0, -6); // Fshirja e unionit te fundit ne foreach
-$sql .= " ORDER BY id DESC"; // Radhiti prej komentit te fundit
-
+$sql = mb_substr($sql, 0, -4); // Fshirja e or-it te fundit ne foreach
+$sql .= ") ORDER BY id DESC"; // Radhiti prej komentit te fundit
+//echo $sql;
    }
 
 
