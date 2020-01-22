@@ -367,6 +367,10 @@ margin-bottom: 20px;
 }
 .search-term-display{
   font-size: 20px;
+word-break: break-all;
+word-break: break-word;
+width: 90%;
+margin:auto; 
 }
   #search-submit{
     border: 1px solid white;
