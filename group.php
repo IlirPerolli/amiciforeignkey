@@ -65,10 +65,16 @@ else{
           
 
    }
-
+    //Shiko se a ka sortim dhe nese po atehere vendose me nje variabel
+             if (isset($_GET['orderby'])){
+      $orderby = $_GET['orderby'];
+    }
+    else {
+      $orderby="DESC";
+    }
            //user discussion
             $vitiakademik = $_SESSION['vitiakademik'];
-            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC";
+            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id $orderby";
 
 
             $results3 = mysqli_query($db, $query3);
@@ -94,7 +100,7 @@ else{
             // page3, 10 results per page, limit 20,12
             $this_page_first_result = ($page-1)*$results_per_page;
 
-            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id DESC LIMIT ". $this_page_first_result.','.$results_per_page;
+            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null ORDER BY id $orderby LIMIT ". $this_page_first_result.','.$results_per_page;
     $results3 = mysqli_query($db, $query3);
 
  if (mysqli_num_rows($results3) == 0) {
@@ -650,6 +656,14 @@ die();
  //Shfaqja e postimeve me search
 
   if(isset($_GET['keyword'])){
+    //Shiko nese ka sortim dhe nese po fute ne nje variabel
+    if (isset($_GET['orderby'])){
+      $orderby = $_GET['orderby'];
+    }
+    else {
+      $orderby="DESC";
+    }
+    
     $vitiakademik = $_SESSION['vitiakademik'];
 $search_term = $_GET['keyword'];
 $search_term = trim($search_term);
@@ -686,7 +700,7 @@ ORDER BY id";
 */
    if (count($replyingtoarray)==0){ // Nese nuk ka replya
      $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto is null AND Comments  LIKE '%$search_term%'
-ORDER BY id DESC";
+ORDER BY id $orderby";
    }
    else{ //Nese ka replya
     //Trego se pari komentet qe nuk i perkasin reply
@@ -702,7 +716,7 @@ $sql .= "userposts.id='$replies' or ";
 //Shto ato id ne stringun e sql
 
 $sql = mb_substr($sql, 0, -4); // Fshirja e or-it te fundit ne foreach
-$sql .= ") ORDER BY id DESC"; // Radhiti prej komentit te fundit
+$sql .= ") ORDER BY id $orderby"; // Radhiti prej komentit te fundit
 //echo $sql;
    }
 
@@ -710,8 +724,19 @@ $sql .= ") ORDER BY id DESC"; // Radhiti prej komentit te fundit
 
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
+    echo "<div class = 'results_container'>";
     echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+    echo ' <select name="order" style="float:none; margin-bottom:17px;" onchange="location = this.value;">
+    <option value="#" >Zgjedh renditjen</option>';
+     if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                 echo "<option value='group.php?keyword=".$keyword."&orderby=desc'>Postimet e reja</option>";
+                 echo "<option value='group.php?keyword=".$keyword."&orderby=asc'>Postimet e vjetra</option>";
+              }
+              echo '
+   </select>';
     echo'<div class="dropdown-divider" id="dropdown-divider"></div>'; 
+    echo "</div>";
    // if((preg_match('/^\s+$/', $search_term)) == 1){
  //header("Location:group.php");
 //}
@@ -1053,9 +1078,29 @@ echo'<div class = "spinner">';
     echo'<span class="sr-only">Loading...</span>';
   echo'</div>';
   echo'</div>';
+echo'<br>';
+echo '<div class = "sort_container">';
 echo'<div class = "counter" id = "counter">';
 echo'<span id="wordCount">0</span><span id= "wordCount1">/255 Karaktere </span>';
 echo'</div>';
+
+echo ' <select name="order" onchange="location = this.value;">
+    <option value="#" >Zgjedh renditjen</option>';
+
+ if(isset($_GET['page'])){
+                $page = $_GET['page'];
+                 echo "<option value='group.php?page=".$page."&orderby=desc'>Postimet e reja</option>";
+                 echo "<option value='group.php?page=".$page."&orderby=asc'>Postimet e vjetra</option>";
+              }
+              else{
+ echo '
+  <option value="?orderby=desc">Postimet e reja</option>
+  <option value="?orderby=asc">Postimet e vjetra</option>';
+              }
+    echo '
+  </select>';
+echo '</div>';
+
 include('errors.php');
 echo'</form>';
 echo'<div class="dropdown-divider" id="dropdown-divider"></div>'; 
@@ -1369,14 +1414,32 @@ die();
 
        <?php 
        if ($page>1){
-         $para = $page-1;
+        if(isset($_GET['orderby'])){
+            $orderby = $_GET['orderby'];
+  $para = $page-1;
+          echo'<li class="page-item">';
+          echo '<a class="page-link" href="?page='.$para.'&orderby='.$orderby.'" aria-label="Para">';
+          }
+          else{
+            $para = $page-1;
           echo'<li class="page-item">';
           echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+          }
+         
        }
        else{
-         $para = $page;
+        if(isset($_GET['orderby'])){
+            $orderby = $_GET['orderby'];
+  $para = $page;
+         echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$para.'&orderby='.$orderby.'" aria-label="Para">';
+          }
+          else{
+             $para = $page;
          echo'<li class="page-item disabled">';
           echo '<a class="page-link" href="?page='.$para.'" aria-label="Para">';
+          }
+        
        }
       
       ?>
@@ -1388,26 +1451,58 @@ die();
 
 // vendos faqet
     for($pages=1; $pages<=$number_of_pages; $pages++){
-      if ($page==$pages){
+      //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
          echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
       }
       else{
          echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
       }
+              }
+      
     
     }
 ?>
  
        <?php 
        if ($page<$number_of_pages){
-         $pas = $page+1;
+          if(isset($_GET['orderby'])){
+            $orderby = $_GET['orderby'];
+ $pas = $page+1;
+          echo'<li class="page-item">';
+           echo '<a class="page-link" href="?page='.$pas.'&orderby='.$orderby.'" aria-label="Pas">';
+          }
+          else{
+             $pas = $page+1;
           echo'<li class="page-item">';
            echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+          }
+        
        }
        else{
-         $pas = $page;
+         if(isset($_GET['orderby'])){
+            $orderby = $_GET['orderby'];
+
+$pas = $page;
+          echo'<li class="page-item disabled">';
+          echo '<a class="page-link" href="?page='.$pas.'&orderby='.$orderby.'" aria-label="Pas">';
+          }
+          else{
+            $pas = $page;
           echo'<li class="page-item disabled">';
           echo '<a class="page-link" href="?page='.$pas.'" aria-label="Pas">';
+          }
+         
        }
       
        ?>
