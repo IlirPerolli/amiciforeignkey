@@ -494,9 +494,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Videos</h5>';
       </div>
        <form method="post" action="#">
       <div class="modal-body">
-          <input type = "text" name = "emri" id = "name"  autofocus placeholder = "Shkruani emrin e videos" oninvalid="Invalidfolder(this);" oninput="Invalidname(this);" required>
+          <input type = "text" name = "emri" id = "name"  autofocus placeholder = "Shkruani emrin e videos" autocomplete="off" oninvalid="Invalidfolder(this);" oninput="Invalidname(this);" required>
           <br><br>
-          <input type = "text" name = "linku" id = "link"  autofocus placeholder = "Shkruani linkun e youtubes" oninvalid="Invalidfolder(this);" oninput="Invalidlink(this);" required>
+          <input type = "text" name = "linku" id = "link"  autofocus placeholder = "Shkruani linkun e youtubes" autocomplete="off" oninvalid="Invalidfolder(this);" oninput="Invalidlink(this);" required>
       </div>
       <div class="modal-footer">
      
@@ -624,7 +624,7 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Folderit</h5>';
        <form method="post" action="#">
       <div class="modal-body">
          
-          <input type = "text" name = "folder" id = "folder"  autofocus placeholder = "Shkruani emrin e folderit" oninvalid="Invalidfolder(this);" oninput="Invalidfolder(this);" required>
+          <input type = "text" name = "folder" id = "folder"  autofocus placeholder = "Shkruani emrin e folderit" autocomplete="off" oninvalid="Invalidfolder(this);" oninput="Invalidfolder(this);" required>
       </div>
       <div class="modal-footer">
      
