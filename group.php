@@ -1605,12 +1605,22 @@ document.getElementById("success-photo").style.display="none";
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+              <?php 
+
+ $username = $_SESSION['username'];
+  $sql = "SELECT * from admins where username='$username'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results)==1){
+          ?>
         <form action="#" method="post" style="height:10px;">
+    
            <!-- Button trigger modal -->
     <button type="submit" class="btn btn-light" id="reset_online" name="reset_online" title="Rifresko" >
   <img src= "img/reset-icon.png" style = "width:30px; margin-top: -6px; margin-left: 5px;"/>
 </button>
+
         </form>
+        <?php }?>
         <?php 
           if (isset($_POST['reset_online'])){
             $sql = "UPDATE users set online=0";
