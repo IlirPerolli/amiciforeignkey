@@ -783,6 +783,20 @@ while(($row = $results->fetch_assoc()) !== null){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+          <form action="#" method="post" style="height:10px;">
+           <!-- Button trigger modal -->
+    <button type="submit" class="btn btn-light" id="reset_online" name="reset_online" title="Rifresko" >
+  <img src= "img/reset-icon.png" style = "width:30px; margin-top: -6px; margin-left: 5px;"/>
+</button>
+        </form>
+        <?php 
+          if (isset($_POST['reset_online'])){
+            $sql = "UPDATE users set online=0";
+            mysqli_query($db,$sql);
+            header("Location:posts_controller.php");
+          }
+        ?>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

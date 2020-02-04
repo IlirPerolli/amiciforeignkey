@@ -513,3 +513,8 @@ overflow: auto;
    margin-right: 10px;
    box-shadow: none;
 }
+#reset_online, #reset_online:hover, #reset_online:active, #reset_online:visited{
+  background:none !important;
+   border: none !important;
+   box-shadow: none;
+}
