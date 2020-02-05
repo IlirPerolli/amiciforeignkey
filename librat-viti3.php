@@ -120,7 +120,7 @@
   <div class = "max-width">
  <!-- Fillimi i shfaqjes se librave -->
 <?php 
-$querycheck = "SELECT * FROM books WHERE academicyear=3 ";
+$querycheck = "SELECT * FROM books WHERE academicyear=3 order by id asc ";
       $results = mysqli_query($db, $querycheck);
       while(($row = $results->fetch_assoc()) !== null){ 
         echo '<div class = "download-container">';

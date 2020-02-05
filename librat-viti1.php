@@ -120,7 +120,7 @@
 
 <!-- Fillimi i shfaqjes se librave -->
 <?php 
-$querycheck = "SELECT * FROM books WHERE academicyear=1 ";
+$querycheck = "SELECT * FROM books WHERE academicyear=1 order by id asc ";
       $results = mysqli_query($db, $querycheck);
       while(($row = $results->fetch_assoc()) !== null){ 
         echo '<div class = "download-container">';
