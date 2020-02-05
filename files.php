@@ -295,7 +295,7 @@ header("Location:files.php");
           echo '<div class = "rezultatet-error">';
             echo '<img src = "img/1f914.png" style = "width:40px"/>';
             echo '<br>';
-            echo "Asnje postim i gjetur";
+            echo "Asnje dokument i gjetur";
           echo '</div>';
           }
           else if(empty($search_term)){
