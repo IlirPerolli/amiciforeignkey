@@ -38,6 +38,7 @@ body{
 }
 .contact-form{
 width:95% !important;
+  padding: 20px 30px !important;
 
 }
 .titulli{
@@ -147,10 +148,10 @@ margin: 0 auto;
     font-weight: 100;
     cursor: pointer;
     border-radius: 5px;
-    border:2px solid #333333;
+    border:1.5px solid #333333;
     outline: none;
     background: white;
-    margin-top: 7%;
+    margin-top: 5%;
     -webkit-appearance: none;
 -moz-appearance: none;
 appearance: none;

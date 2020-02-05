@@ -114,6 +114,7 @@ body,html{
  width:95% !important;
  margin-top:100px !important; 
 padding-top:15px !important; 
+  padding: 20px 30px !important;
  }
  .info{
  width:100% !important;
@@ -416,11 +417,11 @@ $('.avatar').css({
        <p id="emri">Emri</p>
 
   <input name="emri" value ="<?php if (isset($_POST['emri'])){echo $_POST['emri'];} else{ echo $row['Name'];}?>" type="text" placeholder="Shenoni Emrin" oninvalid="this.setCustomValidity('Ju lutem shenoni emrin'); document.getElementById('emri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('emri').style.color='black'" maxlength="50" required/>
+    oninput="this.setCustomValidity(''); document.getElementById('emri').style.color='black'" maxlength="50" autocomplete="off" required/>
   
   <p id = "mbiemri">Mbiemri</p>
   <input name="mbiemri" value ="<?php if (isset($_POST['mbiemri'])){echo $_POST['mbiemri'];} else{ echo $row['Surname'];}?>" type="text" placeholder="Shenoni Mbiemrin" oninvalid="this.setCustomValidity('Ju lutem shenoni mbiemrin') ; document.getElementById('mbiemri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('mbiemri').style.color='black'" maxlength="50" required/>
+    oninput="this.setCustomValidity('') ; document.getElementById('mbiemri').style.color='black'" maxlength="50" autocomplete="off" required/>
     <?php 
      date_default_timezone_set("Europe/Tirane");
  $birthdayDate = $row['age'];
@@ -438,7 +439,7 @@ $mosha = age($birthdayDate);
 
    <p id = "mosha">Data e lindjes  <span style="color:#9E9E9E;" title="<?php echo($mosha)?> vjeç">(<?php echo($mosha)?>) </span> </p>
   <input class="datepicker" type="text" name="age" value ="<?php if(isset($_POST['age'])){echo $_POST['age'];} else{ echo $row['age'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" style=" font-family: 'SamsungSharpSans-Bold';" readonly/>
+    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" style=" font-family: 'SamsungSharpSans-Bold'; cursor: default" readonly/>
 
 
         <script type="text/javascript">
@@ -453,12 +454,12 @@ $mosha = age($birthdayDate);
     
    <p id = "emaili">Emaili</p>
   <input name="email" value ="<?php if (isset($_POST['email'])){echo $_POST['email'];} else{ echo $row['email'];}?>" type="email" placeholder="Shenoni Emailin" oninvalid="this.setCustomValidity('Ju lutem shenoni emailin') ; document.getElementById('emaili').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('emaili').style.color='black'" maxlength="255" required/>
+    oninput="this.setCustomValidity('') ; document.getElementById('emaili').style.color='black'" maxlength="255" autocomplete="off" required/>
     </div>
     <div class = "info" style = "padding-top: 28px; padding-right: 5px;">
        <p id = "fjalekalimi">Fjalekalimi i Tanishem</p>
   <input name="password_1" type="password" placeholder="Shenoni Fjalekalimin e Tanishem" value ="<?php if(isset($_POST['password_1'])){echo $_POST['password_1'];}?>" oninvalid="this.setCustomValidity('Ju lutem shenoni fjalekalimin') ; document.getElementById('fjalekalimi').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('fjalekalimi').style.color='black'" maxlength="255" required/>
+    oninput="this.setCustomValidity('') ; document.getElementById('fjalekalimi').style.color='black'" maxlength="255" autocomplete="off" required/>
   <a href = "change_password.php"> Ndrysho Fjalekalimin </a>
 <input type="submit" name="preferences" id = "submitbtn"value="Ndrysho">
   <a href = "delete-account.php" class = "deleteacc" title = "Fshij Llogarine"> Fshij llogarine </a>

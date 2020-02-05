@@ -114,6 +114,7 @@ body,html{
  @media screen and (max-width:959px){
  .contact-form{
  width:95% !important;
+   padding: 20px 30px !important;
 
  }
 }.contact-form h2 {

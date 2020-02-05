@@ -124,13 +124,13 @@ var characters = textbox.value.split('');
           echo' <img src = "user-photos/'.$row['userphotos'].'" class = "avatar-user"/><br>';
         }
         else {
-          echo '<img src = "img/IMG-d49f8bdc873cb884f40f245c35c9ab38-V.png" class = "avatar"/><br><br>';
+          echo '<img src = "img/avatar.jpg" class = "avatar"/><br><br>';
         }
       
 
       }
       else{
-        echo '<img src = "img/IMG-d49f8bdc873cb884f40f245c35c9ab38-V.png" class = "avatar"/><br><br>';
+        echo '<img src = "img/avatar.jpg" class = "avatar"/><br><br>';
       }
       ?>
 <!-- <img src = "img/avatar.jpg" class = "avatar"/><br><br> -->
@@ -139,11 +139,11 @@ var characters = textbox.value.split('');
   
           <p id = "perdoruesi">Perdoruesi:</p>
           <input type = "text" autofocus value ="<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" class = "emri" name = "username" id = "username"  placeholder = "Shkruani P&euml;rdoruesin" onkeydown = "if (event.keyCode == 13)
-                                  document.getElementById('btnLogin').click()" oninvalid="InvalidUsername(this);" oninput="InvalidUsername(this);" required>
+                                  document.getElementById('btnLogin').click()" oninvalid="InvalidUsername(this);" oninput="InvalidUsername(this);" autocomplete="off" required>
           <p id = "fjalekalimi">Fjalekalimi:</p>
           <input type = "password" name = "password" id = "password" placeholder = "Shkruani Fjal&euml;kalimin" onkeydown = "if (event.keyCode == 13)
-          document.getElementById('btnLogin').click()" oninvalid="InvalidPassword(this);" oninput="InvalidPassword(this);" required />
-          <input type = "submit" id = "btnLogin" name="login_user" value = "&Ccedil;asja">
+          document.getElementById('btnLogin').click()" oninvalid="InvalidPassword(this);" oninput="InvalidPassword(this);" autocomplete="off" required />
+          <input type = "submit" id = "btnLogin" name="login_user" value = "Qasja">
        
 <div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" id="defaultUnchecked" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'">
