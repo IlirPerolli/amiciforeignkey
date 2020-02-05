@@ -53,6 +53,11 @@ include("config.php");
 		if (empty($password_1)) { array_push($errors, "Ju lutem plotesoni fjalekalimin"); }
 	    if (strlen($password_1) < 8){array_push($errors, "Ju lutem shenoni me shume se 8 karaktere te fjalekalimit"); }
 		if (strlen($password_1) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi"); }
+		if (strpos($username,'>') !== false){array_push($errors, "Username nuk mund te permbaje '>'"); }
+		if (strpos($username,'&') !== false){array_push($errors, "Username nuk mund te permbaje '&'"); }
+		if (strpos($username,'=') !== false){array_push($errors, "Username nuk mund te permbaje '='"); }
+		if (strpos($username,"'") !== false){array_push($errors, "Username nuk mund te permbaje '"); }
+		if (strpos($username,'`') !== false){array_push($errors, "Username nuk mund te permbaje '`'"); }
 		if ($password_1 != $password_2) {
 			array_push($errors, "Fjalekalimet nuk pershtaten");
 		}
