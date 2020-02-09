@@ -5,32 +5,20 @@
       include("server.php");
 
 
-    // Shiko nese eshte i kyqur. Nese jo ridirekto ne login
-    include ("verify_user.php");
+include ("verify_user.php");
      include("check-vitiakademik.php");
-
-?>
-<?php 
-
-
-  // lidhu me databaze
+       // lidhu me databaze
 include("config.php");
-$emri = $_SESSION['emri'];
-$username = $_SESSION['username'];
-$query = "SELECT * FROM users WHERE Name='$emri' AND username='$username'";
-$results = mysqli_query($db, $query);
-          $row = $results->fetch_assoc(); 
-        
+include("submit_bug.php");
+?>
 
-     
 
- ?>
- 
 
 
 <html>
 <head>
-  <?php 
+
+    <?php 
 
 $emri = $_SESSION['emri'];
 $mbiemri = $_SESSION['mbiemri'];
@@ -38,35 +26,26 @@ $emri = strtolower($emri);
 $mbiemri = strtolower($mbiemri);
 $emri = ucfirst($emri);
 $mbiemri = ucfirst($mbiemri);
-echo "<title>".$emri. " ". $mbiemri. " - Preferencat". " </title>";
+echo "<title>".$emri. " ". $mbiemri. " - Raporto Bug". " </title>";
   
   ?>
-  <script>
+    <script>
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 } //Mos u submit nese bohet refresh faqja
 </script>
-     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <link rel="icon" type="image/png" href="people.png" />
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
   
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Refresh" content="600">
 <link rel = "stylesheet" type = "text/css" href = "stili.css"/>
-<link rel = "stylesheet" type = "text/css" href = "nav-stili.css"/>
-<link rel = "stylesheet" type = "text/css" href = "subscribe-stili.css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 <meta name="theme-color" content="#2f476d">
 <meta name="msapplication-navbutton-color" content="#2f476d">
 <meta name="apple-mobile-web-app-status-bar-style" content="#2f476d">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-<script src="navi.js"></script>
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 <style>
 
@@ -83,20 +62,17 @@ body,html{
 .contact-form
  {
      margin:auto;
-    padding-left: 0px; 
+     width: 400px;
      height:auto;
-    padding-top:45px !important;    
      padding: 20px 40px;
      box-sizing: border-box;
      background: white;
      -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 8px 25px 10px rgba(0,0,0,0.25);
      box-shadow: 0px 10px 13px -7px #000000, 0px 8px 25px 10px rgba(0,0,0,0.25);
      border-radius: 20px;
-     margin-top:110px;
-
+     margin-top:100px;
 
  }
-
   @media screen and (max-width:640px){
 .avatar{
   width: 250px !important;
@@ -107,37 +83,14 @@ body,html{
   width: 100% !important;
 }
   }
- 
 
- @media screen and (max-width:1250px){
-   .contact-form{
+ @media screen and (max-width:959px){
+ .contact-form{
  width:95% !important;
- margin-top:100px !important; 
-padding-top:15px !important; 
-  padding: 20px 30px !important;
- }
- .info{
- width:100% !important;
- margin-left: 0px !important;
-height: auto !important;
-padding-top: 0px !important;
-padding-right: 0px !important;
- }
- #info{
-padding-top: 20px !important;
- }
- .contact-form h2 {
-  margin-top: 10px !important;
-   width:100% !important;
-   text-align: center !important; 
- }
- .info-user{
-  margin-top: 0px !important;
- }
-}
+   padding: 20px 30px !important;
 
-
-.contact-form h2 {
+ }
+}.contact-form h2 {
     margin: 0;
     padding: 0 0 20px;
     color: black;
@@ -145,12 +98,8 @@ padding-top: 20px !important;
       font-weight: 200;
       font-size: 35px;
       margin:0;
-    text-align: right;
+    text-align: center;
     text-transform: uppercase;
-    
-    width:60%;
-    margin:auto;
-    
 
 }
 .contact-form p
@@ -167,7 +116,7 @@ padding-top: 20px !important;
 }
 .avatar{
   width:250px;
- /* height:250px;*/
+  /* height:250px;*/
   border-radius: 50%;
 display: block;
 margin: 0 auto;
@@ -255,10 +204,9 @@ h1{
   text-align: left;
   font-size: 13px;
   margin-top: 5px;
-  margin-bottom: 5px;
-
 }
-.contact-form .deleteacc {
+
+.contact-form a {
    
     font-size: 25px;
     color: #333333;
@@ -273,57 +221,44 @@ h1{
     margin-top: 7%;
     padding:5px;
 }
-.contact-form .deleteacc:hover {
+.contact-form a:hover {
 background: #e9e9e9;
 text-decoration: none;
 }
-.max-width{
-  margin:auto;
-      text-align: center;
-      max-width: 1300px;
-      margin-top:50px;
+#raporti_submit{
+   height: 50px;
+    font-size: 25px;
+    color: #333333;
+    display: block;
+  font-family: 'SamsungSharpSans-Bold';
+    font-weight: 100;
+    cursor: pointer;
+    border-radius: 5px;
+    border:2px solid #333333;
+    outline: none;
+    background: white;
+    margin-top: 7%;
 }
-.info{
-  width: 380px;
-  height:450px;
-  overflow: auto;
-  display: inline-block;
-  margin-left:15px;
-
- 
-
+#raporti_submit:hover{
+  background: #e9e9e9;
 }
-.info::-webkit-scrollbar {
-    width: 0.7em;
-    
-   
+#inlineRadio1, #inlineRadio2{
+  width:auto !important;
+-moz-appearance: radio;
+-webkit-appearance: radio;
+  -o-appearance: radio;
+  border: 1px solid red;
+  margin-bottom: 0px !important;
 }
-.info::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-     border-radius: 10px;
+.alert-success{
+font-family: SamsungSharpSans-Medium;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  text-align:center;
+  border-radius: 0px !important;
 }
- 
-.info::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-  border-radius: 10px;
-}
-
-.name{
-padding: 20px;
-font-size: 35px;
-  font-family:SamsungSharpSans-Bold;
-  word-break: break-all;
-}
-.info-user{
- 
-  margin-top: 0px;
-} 
-.input-group-addon{
-  display: none;
-}
-
-
 </style>
 </head>
 <body>
@@ -353,14 +288,14 @@ font-size: 35px;
         </div>
       </li>
       <a class="nav-link" href="files.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Dosjet  <span id = "notification-counter-uploads"> <?php echo $_SESSION['notification_uploads'] ?> </span> <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id="notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
-       <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
+       <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id="notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
     </ul>
 
      <ul class="navbar-nav mx-3">
     <li class="nav-item dropdown">
         <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">
-         <?php
+        <?php
           $username =$_SESSION['username'];
           $querycheck1 = "SELECT * FROM users WHERE username='$username'";
       $results1 = mysqli_query($db, $querycheck1);
@@ -369,7 +304,7 @@ font-size: 35px;
         echo '<img src="user-photos/'.$row['userphotos'].'" width="30" height="30" style = "margin-top:-3px; border-radius:50%" class="d-inline-block align-top" alt="">';
     }
 
-          ?> 
+          ?>  
     <?php echo($_SESSION['emri']. " " . $_SESSION['mbiemri']);?>
   </a>
 
@@ -377,103 +312,58 @@ font-size: 35px;
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
          <a class="dropdown-item" href="edit_profile.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Edito Profilin</a>  
           <div class="dropdown-divider"></div>            
-        <a class="dropdown-item" href="logout.php" id = "logout" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Shkyqu</a>
+         <a class="dropdown-item" href="logout.php" id = "logout" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Shkyqu</a>
         </div></div>
       </li>
     </ul>
   </div>
 </nav>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+  <?php include('success_alert.php'); ?>
 <div style="text-align:center"/>
-<div class = "max-width">
-   <form action="#" method="POST">
   <div class = "contact-form">
- <h2>Ndrysho te dhenat</h2>
-    <div class = "info" style = "margin-left: 0px;">
-      <div class=  "info-user">
-<?php
+    <form action="#" method="POST">
+      <?php
                         echo '<img src = "user-photos/'. $row['userphotos'] . '" class = "avatar"/>';
-                         ?>
-                   
-     <a href = "edit-photo.php"> Ndrysho Foton </a>
-     <script type="text/javascript">
+                         ?><br>
+                         <script type="text/javascript">
   var cw = $('.avatar').width();
 $('.avatar').css({
     'height': cw + 'px'
 });
 </script>
-          <div class = "name">
-<span style = "color:black"><?php echo $row['Name'] ?> </span><span style = "  color:#9E9E9E;" ><?php echo $row['Surname'] ?></span>
+    <h2>Raporto problem</h2>
+<div class="form-check form-check-inline" >
+  <input class="form-check-input" type="radio" name="report_radio" id="inlineRadio1"  value="show" checked>
+  <label class="form-check-label" for="inlineRadio1">Shfaq te dhenat</label>
 </div>
- <i style ="font-size:13px;"> Anetare qe nga: <?php echo $row['joined'];?> </i>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="report_radio" id="inlineRadio2"  value="hide">
+  <label class="form-check-label" for="inlineRadio2">Anonim</label>
 </div>
-    </div>
-    <div class = "info" style = "padding-top: 28px;" id = "info">
-     
-       <p id="emri">Emri</p>
 
-  <input name="emri" value ="<?php if (isset($_POST['emri'])){echo $_POST['emri'];} else{ echo $row['Name'];}?>" type="text" placeholder="Shenoni Emrin" oninvalid="this.setCustomValidity('Ju lutem shenoni emrin'); document.getElementById('emri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('emri').style.color='black'" maxlength="50" autocomplete="off" required/>
-  
-  <p id = "mbiemri">Mbiemri</p>
-  <input name="mbiemri" value ="<?php if (isset($_POST['mbiemri'])){echo $_POST['mbiemri'];} else{ echo $row['Surname'];}?>" type="text" placeholder="Shenoni Mbiemrin" oninvalid="this.setCustomValidity('Ju lutem shenoni mbiemrin') ; document.getElementById('mbiemri').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('mbiemri').style.color='black'" maxlength="50" autocomplete="off" required/>
-    <?php 
-     date_default_timezone_set("Europe/Tirane");
- $birthdayDate = $row['age'];
-function age($birthday){
- list($day, $month, $year) = explode("/", $birthday);
- $year_diff  = date("Y") - $year;
- $month_diff = date("m") - $month;
- $day_diff   = date("d") - $day;
- if ($day_diff < 0 && $month_diff==0) $year_diff--;
- if ($day_diff < 0 && $month_diff < 0) $year_diff--;
- return $year_diff;
-}
-$mosha = age($birthdayDate);
-?>
+    <p style = "font-size: 17px; margin-top: 20px;">Pershkrimi i problemit (bug)</p>
+    <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
 
-   <p id = "mosha">Data e lindjes  <span style="color:#9E9E9E;" title="<?php echo($mosha)?> vjeç">(<?php echo($mosha)?>) </span> </p>
-  <input class="datepicker" type="text" name="age" value ="<?php if(isset($_POST['age'])){echo $_POST['age'];} else{ echo $row['age'];}?>" placeholder = "Shkruani daten e lindjes" oninvalid="this.setCustomValidity('Ju lutem zgjedhni daten e lindjes'); document.getElementById('mosha').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity(''); document.getElementById('mosha').style.color='black'" style=" font-family: 'SamsungSharpSans-Bold'; cursor: default" readonly/>
+    <input type="submit" value="Dergo raportin" data-toggle="modal" name="raporti_submit" id = "raporti_submit">
 
 
-        <script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker({
 
-      format: 'dd/mm/yyyy'
-    });
-
-  });
-          </script>
-    
-   <p id = "emaili">Emaili</p>
-  <input name="email" value ="<?php if (isset($_POST['email'])){echo $_POST['email'];} else{ echo $row['email'];}?>" type="email" placeholder="Shenoni Emailin" oninvalid="this.setCustomValidity('Ju lutem shenoni emailin') ; document.getElementById('emaili').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('emaili').style.color='black'" maxlength="255" autocomplete="off" required/>
-    </div>
-    <div class = "info" style = "padding-top: 28px; padding-right: 5px;">
-       <p id = "fjalekalimi">Fjalekalimi i Tanishem</p>
-  <input name="password_1" type="password" placeholder="Shenoni Fjalekalimin e Tanishem" value ="<?php if(isset($_POST['password_1'])){echo $_POST['password_1'];}?>" oninvalid="this.setCustomValidity('Ju lutem shenoni fjalekalimin') ; document.getElementById('fjalekalimi').style.color='#FA3B4B'"
-    oninput="this.setCustomValidity('') ; document.getElementById('fjalekalimi').style.color='black'" maxlength="255" autocomplete="off" required/>
-  <a href = "change_password.php"> Ndrysho Fjalekalimin </a>
-<input type="submit" name="preferences" id = "submitbtn"value="Ndrysho">
-  <a href = "delete-account.php" class = "deleteacc" title = "Fshij Llogarine"> Fshij llogarine </a>
-  <br>
- <a href="report_bug.php">Keni gjetur nje problem? Raporto tani! </a>
   <?php include('errors.php'); ?>
-    </div>
-   
-       
- 
      </form>
+
 </div>
-</div>
+
 </div>
 <br>
+
+
+<script type="text/javascript">$('.alert').alert()</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
