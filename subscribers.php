@@ -1,15 +1,15 @@
 <?php
     // Starto sesionin
     ob_start();
-  
+  $success = array(); 
        include("server.php");
     // Shiko nese useri eshte i kyqur. Nese jo, ridirekto ne login
   include("check-vitiakademik.php");
-    include ("verify_user.php");
+  include ("verify_user.php");
    // if (($_SESSION['username']) != "ilirperolli") {
      //   header("Location: index.php");
     //}
-        $username = $_SESSION['username'];
+         $username = $_SESSION['username'];
   $sql = "SELECT * from admins where username='$username'";
   $results = mysqli_query($db, $sql);
   if (mysqli_num_rows($results)==1){
@@ -24,16 +24,34 @@
 ?>
 <?php
    // lidhu me databaze
-include("config.php");  
+include("config.php");
+?>
+<?php 
+if (isset($_GET['remove'])){
+
+  $id = $_GET['remove'];
+   $sql = "DELETE FROM subscribers WHERE id= '$id'";
+    mysqli_query($db, $sql);
+    
+    array_push($success, "Abonuesi u fshi me sukses");
+  
+}
 
 ?>
 
+
 <html>
+
 <head>
+
   <title> amici admin </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+} //Mos u submit nese bohet refresh faqja
+</script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
@@ -59,74 +77,28 @@ include("config.php");
     font-style: normal;
   }
 
-  body,html{
-    margin:0;
-    padding: 0;
-    font-family: 'SamsungSharpSans-Medium';
-  }
-
-body {
-  background: rgb(243, 243, 243);
-}
-
-  @media screen and (max-width:640px){
-  .categories{
-  width:90% !important;
-  margin-left:0 !important;
-  margin-right:0px !important;
-}
-.categories img{
-  width:100% !important;
-}
   .max-width{
-
-margin-top: 40px !important;
- }
-
+    overflow: auto;
   }
-
-.categories{
-width:350px;
-height:400px;
-display:inline-block;
-background:white;
-margin-left:10px;
-margin-right:10px;
-margin-top:20px;
-border: 1.5px solid black;
-/*transition:transform.3s;*/
-transition: all .2s ease-in-out; 
-overflow: hidden;
-border-radius: 30px;
+  .table-row{
+cursor:pointer;
 }
-.categories:hover{
-  
-  
--webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+h3{
+  font-family: SamsungSharpSans-Medium;
+}
+.table-striped{
+  font-family: SamsungSharpSans-Medium;
+}
+.alert-success{
+font-family: SamsungSharpSans-Medium;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  text-align:center;
+  border-radius: 0px !important;
 
 }
-.categories a{
-  text-decoration:none;
-  color:black;
-}
-.categories a:hover{
-  text-decoration:underline;
-}
-.category-name{
-  padding:20px;
-}
-.categories-photo{
-  width:350px;
-  height:320px;
-}
-  .max-width{
-margin:auto;
-text-align: center;
-max-width: 1300px;
-margin-top: 20px;
- }
 
   </style>
 </head>
@@ -157,8 +129,15 @@ margin-top: 20px;
       <a class="nav-link" href="files.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Dosjet  <span id = "notification-counter-uploads"> <?php echo $_SESSION['notification_uploads'] ?> </span> <span class="sr-only">(current)</span></a>
        <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id = "notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
-       <a class="nav-link active" href="admin.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Admin <span class="sr-only">(current)</span></a>
+       <a class="nav-link" href="admin.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Admin </a>
+       <a class="nav-link active" href="reported_bugs.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Raportimet <span class="sr-only">(current)</span></a>
     </ul>
+    <?php
+    $anetaret = "SELECT * FROM users WHERE verification='1'";
+    $anetaret_results = mysqli_query($db, $anetaret);
+    $anetaret_count = mysqli_num_rows($anetaret_results);
+    ?>
+
      <ul class="navbar-nav mx-3">
     <li class="nav-item dropdown">
       <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">
@@ -184,7 +163,7 @@ margin-top: 20px;
     </ul>
   </div>
 </nav>
-
+  <?php include('success_alert.php'); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -207,67 +186,42 @@ else
 
 </script>
   <div style = "text-align:center">
-    <div class = "max-width">
 
+<br><br>
+<h3> Abonimet </h3>
+<div class = "max-width">
+  <form action="#" method="post">
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Opsionet</th>
 
-  <div class = "categories">
-  <a href = "users.php"> <img src = "img/people-avatars-community-group_24908-29265.jpg" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="users.php" > Perdoruesit </a>
-  </div>
-  </div>
+      
 
-  <div class = "categories">
-   <a href = "suspended-users.php"><img src = "img/boss-confuses-choose-check-mark-cross-mark-approval-rejection_8073-282.jpg" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="suspended-users.php" > Suspendimet </a>
-  </div>
-  </div>
-  <div class = "categories">
-  <a href = "books.php"> <img src = "img/books-stack-realistic_1284-4735.jpg" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="books.php" > Librat </a>
-  </div>
-  </div>
-   <div class = "categories">
-  <a href = "posts_controller.php"> <img src = "img/photo-discuss.jpg" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="posts_controller.php" > Postimet </a>
-  </div>
-  </div>
-  <div class = "categories">
-  <a href = "kursori.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="kursori.php" > Kursori </a>
-  </div>
-  </div>
-    <div class = "categories">
-  <a href = "kursori_members.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="kursori_members.php" >Anetaret e Kursorit </a>
-  </div>
-  </div>
-    <div class = "categories">
-  <a href = "subscribers.php"> <img src = "https://pngimage.net/wp-content/uploads/2018/05/comunity-png-4.png" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="subscribers.php" >Abonimet </a>
-  </div>
-  </div>  
-  <div class = "categories">
-  <a href = "reported_bugs.php"> <img src = "https://www.techbooky.com/wp-content/uploads/2017/07/computer-bug-850x479.jpg" class = "categories-photo"/></a>
-  <div class = "category-name">
-  <a href="reported_bugs.php" >Raportimet e Problemeve </a>
-  </div>
-  </div>
-
-
-
-
-
+    </tr>
+  </thead>
+  <tbody>
+    <?php 
+    $querycheck = "SELECT * from subscribers order by id DESC";
+    $results = mysqli_query($db, $querycheck);
+    while(($row = $results->fetch_assoc()) !== null){
+      echo'<tr class="table-row">
+      <th scope="row">'.$row['id'].'</th>
+      <td>'.$row['username'].'</td>
+      <td>'.$row['email'].'</td>
+      <td><a href=?remove='.$row['id'].'> Fshij </a></td>
+     
+    </tr>
+';
+    }
+    ?>  
+  </tbody>
+</table>
+</form>
 </div>
-</div>
-
-<br>
 
 </body>
 </html>

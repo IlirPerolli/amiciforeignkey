@@ -1,6 +1,8 @@
 <?php
     // Starto Sesionin
     ob_start();
+  $success = array(); 
+  $errors = array();
       include("config.php");
       include("server.php");
 
@@ -16,6 +18,7 @@ $query = "SELECT * FROM users WHERE academicyear='$vitiakademik' AND verificatio
 
 ?>
 <?php
+/* Abonimi paraprak me file 
 $emriifajlit = $_SESSION['username'];
 if (isset($_POST['abonohu'])){
 $abonimi = $_POST['abonohu'];
@@ -26,9 +29,48 @@ fclose($file);
 
 
 } 
+*/
+ ?>
+ <?php 
+ if (isset($_POST['email'])){
+  $username =$_SESSION['username'];
+$email = $_POST['email'];
+
+if (empty($email)) {
+      array_push($errors, "Ju lutem shenoni emailin per t'u abonuar");
+    }
+
+    $querycheck = "SELECT * FROM subscribers WHERE email='$email'";
+      $results = mysqli_query($db, $querycheck);
+
+      if (mysqli_num_rows($results) >= 1) {
+        array_push($errors, "Ky email eshte abonuar me pare");
+    }
+
+
+
+        if (count($errors) == 0) {
+
+      $query = "INSERT INTO subscribers (username, email) 
+            VALUES('$username', '$email')";
+      mysqli_query($db, $query);
+
+array_push($success, " <strong>Urime! </strong> Jeni abonuar me sukses.");
+        }
+
+ }
 
  ?>
+<?php 
+if(isset($_POST['unsubscribe'])){
 
+  $username = $_SESSION['username'];
+   $sql = "DELETE FROM subscribers WHERE username = '$username'";
+   mysqli_query($db, $sql);
+    
+    array_push($success, "<strong>Urime! </strong>Jeni larguar nga abonimet me sukses.");
+}
+?>
 
 
 
@@ -64,6 +106,11 @@ body,html{
   padding: 0;
 
 }
+@media screen and (max-width: 640px){
+  .error p{
+    width: 92% !important;
+  }
+}
 @font-face {
   font-family: 'SamsungSharpSans-Medium';
   src: url('fonti-medium/SamsungSharpSans-Medium.eot');
@@ -75,7 +122,7 @@ body,html{
   font-weight: normal;
   font-style: normal;
 }
-
+/* Error mesazhi paraprak
 .error-message{
       background-color: rgba(200, 231, 111, .8);
       padding:10px;
@@ -95,27 +142,62 @@ float:right;
 line-height: 7px;
 color:#cd1c07;
 cursor: pointer;
-}
+}*/
 .librat, .dosjet{
  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
 }
+.alert-success{
+font-family: SamsungSharpSans-Medium;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  text-align:center;
+  border-radius: 0px !important;
 
-
-
+}
+.error p {
+  width: 300px; 
+  margin: 0px auto; 
+  padding: 10px; 
+  border: 1px solid #a94442; 
+  color: #a94442; 
+  background: #f2dede; 
+  border-radius: 5px; 
+  text-align: left;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.unsubscribe{
+    border: 1px solid #dc3545;
+    padding-left: 8px; 
+    padding-right: 8px;
+    background-color: #dc3545 !important;
+    outline: none;
+    height: 48px;
+    color: white;
+    font-family: SamsungSharpSans-Medium;
+    font-size: 17px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 </style>
 </head>
 <body>
+<!--
+Error mesazhi paraprak
    <div class = "error-message" id = "error-message"> <b>Njoftim:</b> Ju tani jeni t&euml; abonuar
 <div id = "remove-error" onclick="removeError()"> &times; </div>
-  </div>
-  <?php
+  </div>-->
+  <?php /*
   if (isset($_POST['abonohu'])){
   echo "<script type='text/javascript'>document.getElementById('error-message').style.display = 'block'</script>";
-}
+}  */
 ?>
-  
+
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark  bg-dark">
 
   <a class="navbar-brand" href="#" style = "font-family: 'SamsungSharpSans-Bold'; font-size:35px;">amici ballina</a>
@@ -198,7 +280,7 @@ cursor: pointer;
     </ul>
   </div>
 </nav>
-
+  <?php include('success_alert.php'); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -391,15 +473,35 @@ U Lind me 24 Tetor 1998 ne qytetin e Gjakoves. Shkollen fillore e kreu ne shkoll
 </div>
    <form action="#" method="POST"  style = "display: inline-block;">
   <div class=  "subscribe-text">
+    <?php 
+include('errors.php');?>
 <h1 style = "font-size:45px">Behu pjese e komunitetit amici</h1>
 <br>
+<?php 
+$username = $_SESSION['username'];
+$querycheck = "SELECT * FROM subscribers WHERE username='$username'";
+      $results = mysqli_query($db, $querycheck);
+
+      if (mysqli_num_rows($results) >= 1) {
+        echo' <button type="submit" name="unsubscribe" class="unsubscribe">Hiq abonimin</button>';
+    }
+else{
+?>
  <div class="email-box">
       <i class="fas fa-envelope"></i>
-      <input class="tbox" type="email" name="abonohu" value="<?php echo($_SESSION['email'])?> " placeholder="Shkruani emailin tuaj..." required>
+      <input class="tbox" type="email" name="email" value="<?php echo($_SESSION['email'])?> " placeholder="Shkruani emailin tuaj..." oninvalid="this.setCustomValidity('Ju lutem shkruani emailin')"
+    oninput="this.setCustomValidity('')" maxlength="255" autocomplete="off" required>
       <button class="btn" type="submit" name="button">Abonohu</button>
     </div>
+    <?php }?>
+
+   
+
 </div>
 </form>
+
+
+
   <div class=  "subscribe-photo" id = "subscribe-pc">
 <img src = "img/character-illustration-people_53876-59853.jpg"/>
 </div>
