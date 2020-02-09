@@ -34,7 +34,7 @@ if (isset($_POST['report_radio'])){
 
 				if (count($errors) == 0) {
 
-			$query = "INSERT INTO bug_reports (username, Name, Surname, Email, comment, date, time) 
+			$query = "INSERT INTO bug_reports (username, Name, Surname, email, comment, date, time) 
 					  VALUES('$username', '$emri', '$mbiemri', '$email','$komenti' , '$date' , '$time')";
 			mysqli_query($db, $query);
 
@@ -55,7 +55,7 @@ array_push($success, " <strong>Ju Faleminderit per bashkepunimin! </strong> Do m
 
 				if (count($errors) == 0) {
 
-			$query = "INSERT INTO bug_reports (username, Name, Surname, Email, comment, date, time) 
+			$query = "INSERT INTO bug_reports (username, Name, Surname, email, comment, date, time) 
 					  VALUES('$anonim', '$anonim', '$anonim', '$anonim','$komenti' , '$date' , '$time')";
 			mysqli_query($db, $query);
 

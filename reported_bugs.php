@@ -217,7 +217,7 @@ else
       <td>'.$row['username'].'</td>
       <td>'.$row['Name'].'</td>
       <td>'.$row['Surname'].'</td>
-      <td>'.$row['Email'].'</td>
+      <td>'.$row['email'].'</td>
       <td>'.$row['comment'].'</td>
       <td>'.$row['date'].'</td>
       <td>'.$row['time'].'</td>
