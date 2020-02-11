@@ -270,10 +270,7 @@ else
   <a href="books.php" > Librat </a>
     <div class="notification">
     <?php 
-    $sql = "SELECT * from books";
-    $results = mysqli_query($db, $sql);
-    $count = mysqli_num_rows($results);
-    echo $count;
+   echo getUserActivity($db, "books");
     ?>
   </div>
   </div>
@@ -284,10 +281,7 @@ else
   <a href="posts_controller.php" > Postimet </a>
     <div class="notification">
     <?php 
-    $sql = "SELECT * from userposts";
-    $results = mysqli_query($db, $sql);
-    $count = mysqli_num_rows($results);
-    echo $count;
+   echo getUserActivity($db, "userposts");
     ?>
   </div>
   </div>
@@ -303,11 +297,8 @@ else
   <div class = "category-name">
   <a href="kursori_members.php" >Anetaret e Kursorit </a>
   <div class="notification">
-    <?php 
-    $sql = "SELECT * from kursori_members";
-    $results = mysqli_query($db, $sql);
-    $count = mysqli_num_rows($results);
-    echo $count;
+     <?php 
+   echo getUserActivity($db, "kursori_members");
     ?>
   </div>
   </div>
@@ -317,11 +308,8 @@ else
   <div class = "category-name">
   <a href="subscribers.php" >Abonimet </a>
    <div class="notification">
-    <?php 
-    $sql = "SELECT * from subscribers";
-    $results = mysqli_query($db, $sql);
-    $count = mysqli_num_rows($results);
-    echo $count;
+  <?php 
+   echo getUserActivity($db, "subscribers");
     ?>
   </div>
   </div>
@@ -332,10 +320,7 @@ else
   <a href="reported_bugs.php" >Raportimet e Problemeve </a>
   <div class="notification">
     <?php 
-    $sql = "SELECT * from bug_reports";
-    $results = mysqli_query($db, $sql);
-    $count = mysqli_num_rows($results);
-    echo $count;
+   echo getUserActivity($db, "bug_reports");
     ?>
   </div>
   </div>
@@ -349,6 +334,14 @@ else
 </div>
 
 <br>
+    <?php 
+function getUserActivity($db, $table){
+   $sql = "SELECT * from $table";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    return $count;
+}
+    ?>
 
 </body>
 </html>
