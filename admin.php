@@ -148,9 +148,9 @@ font-size: 16px;
   margin-top: -7px;
   margin-right: -8px;
     font-family: 'SamsungSharpSans-Medium';
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
 }
   </style>
 
