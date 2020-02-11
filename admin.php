@@ -96,8 +96,9 @@ margin-top:20px;
 border: 1.5px solid black;
 /*transition:transform.3s;*/
 transition: all .2s ease-in-out; 
-overflow: hidden;
 border-radius: 30px;
+position: relative;
+
 }
 .categories:hover{
   
@@ -106,6 +107,10 @@ border-radius: 30px;
 -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 
+}
+.categories img{
+  width:100%;
+  border-radius: 28px 28px 0px 0px; /* Mos mu pa hapsirat e bardha kur t lakohet foto */
 }
 .categories a{
   text-decoration:none;
@@ -127,8 +132,28 @@ text-align: center;
 max-width: 1300px;
 margin-top: 20px;
  }
+.notification{
+position: absolute;
+width: 30px;
+height: 30px;
+line-height: 30px;
+border-radius: 50%;
+background: white;
+color: black;
 
+font-size: 16px;
+  z-index: 999 !important;
+  top: 0;
+  right: 0;
+  margin-top: -7px;
+  margin-right: -8px;
+    font-family: 'SamsungSharpSans-Medium';
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+}
   </style>
+
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark  bg-dark">
@@ -214,6 +239,14 @@ else
   <a href = "users.php"> <img src = "img/people-avatars-community-group_24908-29265.jpg" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="users.php" > Perdoruesit </a>
+    <div class="notification">
+    <?php 
+    $sql = "SELECT * from users where verification =1 or verification = 0";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
 
@@ -221,18 +254,42 @@ else
    <a href = "suspended-users.php"><img src = "img/boss-confuses-choose-check-mark-cross-mark-approval-rejection_8073-282.jpg" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="suspended-users.php" > Suspendimet </a>
+    <div class="notification">
+    <?php 
+    $sql = "SELECT * from users where verification = 2";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
   <div class = "categories">
   <a href = "books.php"> <img src = "img/books-stack-realistic_1284-4735.jpg" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="books.php" > Librat </a>
+    <div class="notification">
+    <?php 
+    $sql = "SELECT * from books";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
    <div class = "categories">
   <a href = "posts_controller.php"> <img src = "img/photo-discuss.jpg" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="posts_controller.php" > Postimet </a>
+    <div class="notification">
+    <?php 
+    $sql = "SELECT * from userposts";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
   <div class = "categories">
@@ -245,18 +302,42 @@ else
   <a href = "kursori_members.php"> <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx0_KvDyVMJF6nWS3UQvooKtKqyCUj9I50F_Uy5JwWW8px4T7f" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="kursori_members.php" >Anetaret e Kursorit </a>
+  <div class="notification">
+    <?php 
+    $sql = "SELECT * from kursori_members";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
     <div class = "categories">
   <a href = "subscribers.php"> <img src = "https://pngimage.net/wp-content/uploads/2018/05/comunity-png-4.png" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="subscribers.php" >Abonimet </a>
+   <div class="notification">
+    <?php 
+    $sql = "SELECT * from subscribers";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>  
   <div class = "categories">
   <a href = "reported_bugs.php"> <img src = "https://www.techbooky.com/wp-content/uploads/2017/07/computer-bug-850x479.jpg" class = "categories-photo"/></a>
   <div class = "category-name">
   <a href="reported_bugs.php" >Raportimet e Problemeve </a>
+  <div class="notification">
+    <?php 
+    $sql = "SELECT * from bug_reports";
+    $results = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($results);
+    echo $count;
+    ?>
+  </div>
   </div>
   </div>
 
