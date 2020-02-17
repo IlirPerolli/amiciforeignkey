@@ -161,14 +161,13 @@ font-family: SamsungSharpSans-Medium;
   width: 300px; 
   margin: 0px auto; 
   padding: 10px; 
-  border: 1px solid #a94442; 
   color: #a94442; 
-  background: #f2dede; 
   border-radius: 5px; 
   text-align: left;
   font-size: 13px;
   margin-top: 5px;
   margin-bottom: 10px;
+     font-family: SamsungSharpSans-Bold;
 }
 .unsubscribe{
     border: 1px solid #dc3545;
@@ -321,7 +320,7 @@ document.getElementById("error-message").style.display = "none";
       </div>
   </div>
   <div class = "shoket-container" id = "shoket-foto">
-  <img src = "img/characters-people-holding-positive-emoticons-illustration_53876-26818.jpg"/>
+  <img src = "img/group.jpg"/>
   </div>
 </div>
 </div>
@@ -332,7 +331,7 @@ document.getElementById("error-message").style.display = "none";
     Libraria
 
   </div>
-<img src = "img/67541986_338122040458177_8202947752183726080_n.jpg"/>
+<img src = "img/library.jpg"/>
 </div>
 <a href="files.php" title = "amici dosjet" style = "text-decoration: none">
 <div class = "dosjet">
@@ -340,7 +339,7 @@ document.getElementById("error-message").style.display = "none";
     Shperndaj dosje
 
   </div>
-<img src = "img/people-with-selected-folder-icon_53876-28554.jpg"/>
+<img src = "img/files.jpg"/>
 </div>
 </a>
 
@@ -358,7 +357,7 @@ document.getElementById("error-message").style.display = "none";
       </div>
   </div>
    <div class = "profili-container">
-<img src = "img/67274079_440731676515024_5980560389937561600_n.jpg"/>
+<img src = "img/profile.jpg"/>
   </div>
 
 </div>
@@ -469,13 +468,14 @@ U Lind me 24 Tetor 1998 ne qytetin e Gjakoves. Shkollen fillore e kreu ne shkoll
 <div class = "subscribe">
 <div class = "max-width">
    <div class=  "subscribe-photo" id = "subscribe-mob">
-<img src = "img/character-illustration-people_53876-59853.jpg"/>
+<img src = "img/subscribers.jpg"/>
 </div>
    <form action="#" method="POST"  style = "display: inline-block;">
   <div class=  "subscribe-text">
     <?php 
 include('errors.php');?>
-<h1 style = "font-size:45px">Behu pjese e komunitetit amici</h1>
+<h1 style = "font-size:45px">Abonohu edhe ti</h1>
+<h2 style = "font-size:25px">Njoftohu i pari.</h1>
 <br>
 <?php 
 $username = $_SESSION['username'];
@@ -503,7 +503,7 @@ else{
 
 
   <div class=  "subscribe-photo" id = "subscribe-pc">
-<img src = "img/character-illustration-people_53876-59853.jpg"/>
+<img src = "img/subscribers.jpg"/>
 </div>
 
 
@@ -512,8 +512,7 @@ else{
 
   </div>
 <br>
-  
-               
+       
 
 </body>
 </html>

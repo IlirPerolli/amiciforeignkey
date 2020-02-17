@@ -113,7 +113,7 @@ margin-top: 50px !important;
     width:100% !important;
   }
   .profili-container img{
-    width: 80% !important;
+    width: 100% !important;
   }
   .profili-titulli {
     margin-top: 0px !important;
@@ -231,15 +231,7 @@ border-radius: 20px;
 position:relative;
 
 }
-.about-us:hover{
-  
 
--webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-transform: scale(1.02);
-
-}
 .avatar{
 width:100px;
 height: 100px;
@@ -266,7 +258,7 @@ font-size: 35px;
 
 .shoket{
   margin-top: 100px;
-  background:#7FAEF2;
+  background:white;
   text-align: center;
   border-radius: 30px;
   padding:20px; 
@@ -302,7 +294,7 @@ margin-top: 75px;
   display: inline-block;
    height: 400px;
    overflow: auto;
-   background: #9CD8E2;
+   background: white;
    margin-top: 100px;
    border-radius: 30px;
   padding:20px;
@@ -313,7 +305,7 @@ margin-top: 75px;
   display: inline-block;
    height: 400px;
    overflow: auto;
-   background: #4B92B6;
+   background: white;
    margin-top: 100px;
    border-radius: 30px;
   padding:20px;
@@ -321,14 +313,14 @@ margin-top: 75px;
 
 }
 .dosjet img{
-  width:380px;
+  width:340px;
   height: 280px;
   margin-top: 5px;
 }
 .dosjet-titulli{
 font-size: 50px;
   font-family:SamsungSharpSans-Bold;
-  color:white;
+  color:black;
 
 
 }
@@ -340,7 +332,7 @@ font-size: 50px;
 .librat-titulli{
   font-size: 50px;
   font-family:SamsungSharpSans-Bold;
-  color:white;
+  color:black;
 }
 .profili{
   margin-top: 100px;
@@ -357,7 +349,7 @@ font-size: 50px;
    overflow: auto;
 }
 .profili-container img{
- width:300px;
+ width:350px;
   height:100%;
   
 }

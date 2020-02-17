@@ -69,7 +69,7 @@
 
   width:700px;
   height: 300px;
-  padding-top: 90px;
+  padding-top: 65px;
 }
 
 .subscribe-photo{
@@ -79,9 +79,9 @@
     height: 300px;
 }
 .subscribe-photo img{
-  width:100%;
+  width:75%;
   
-  height: 100%;  
+  height: 95%;  
 }
 #subscribe-mob{
   display: none;
