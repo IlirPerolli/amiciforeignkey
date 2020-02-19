@@ -350,7 +350,15 @@ input[type=radio] + label>img {
   transition: 500ms all;
 
 }
-
+.replies-container, .hide_replies{
+  display: none;
+}
+.hide_replies{
+  margin-top: 20px;
+}
+.show_replies{
+  display: block;
+}
 </style>
 
 
@@ -865,8 +873,19 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
 
                         echo '<div class="dropdown-divider"></div>';
                          echo '</div>';
-                         $id = $row['id'];
 
+                         $id = $row['id'];
+                          include("get_replies.php");
+                         $replies_count_check = "SELECT * FROM userposts WHERE replyingto='$id'";
+      $results_replies_count = mysqli_query($db, $replies_count_check);
+
+      $replies_count = mysqli_num_rows($results_replies_count);
+                           if ($replies_count >1 ){
+                          echo '<a href="javascript:;" style="font-size:15px;" onclick="show_replies('.$row['id'].')" class="show_replies" id="show_replies_button_'.$row['id'].'">Shfaq pergjigjet ('.$replies_count.')</a>';
+                         
+                         echo '<a href="javascript:;" style="font-size:15px;" onclick="hide_replies('.$row['id'].')" class="hide_replies" id="hide_replies_button_'.$row['id'].'">Fshih pergjigjet </a>';
+                       }
+                         echo '<div class="replies-container" id= "replies-container_'.$row['id'].'">';
                          //Shfaqja e replysave
 
 
@@ -982,6 +1001,8 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         
 
 }
+echo '</div>';
+
 //Shkruarja e pergjigjes
 
 $query1 = "SELECT * FROM users WHERE username='$username'";
@@ -1212,10 +1233,19 @@ echo'<div class="dropdown-divider" id="dropdown-divider"></div>';
                         //
                         echo '<div class="dropdown-divider"></div>';
                          echo '</div>';
+                          $id = $row3['id'];
+                          include("get_replies.php");
+                         $replies_count_check = "SELECT * FROM userposts WHERE replyingto='$id'";
+      $results_replies_count = mysqli_query($db, $replies_count_check);
 
+      $replies_count = mysqli_num_rows($results_replies_count);
+                          if ($replies_count >1 ){
+                          echo '<a href="javascript:;" style="font-size:15px;" onclick="show_replies('.$row3['id'].')" class="show_replies" id="show_replies_button_'.$row3['id'].'">Shfaq pergjigjet ('.$replies_count.')</a>';
+                          echo '<a href="javascript:;" style="font-size:15px;" onclick="hide_replies('.$row3['id'].')" class="hide_replies" id="hide_replies_button_'.$row3['id'].'">Fshih pergjigjet </a>';
+                        }
+echo '<div class="replies-container" id= "replies-container_'.$row3['id'].'">';
 
 //Shfaqja e Replysave
-               $id = $row3['id'];
                         $query = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND replyingto = '$id' ORDER BY id";
             $results = mysqli_query($db, $query);
 
@@ -1328,6 +1358,7 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         
 
 }                
+echo '</div>';
 
 //Shkruarja e pergjigjes
 
@@ -1596,6 +1627,22 @@ document.getElementById("success-photo").style.display="none";
     });
 });
 </script>
+<script type="text/javascript">
+  function show_replies(id){
+   document.getElementById("replies-container_"+id).style.display="block";
+   document.getElementById("show_replies_button_"+id).style.display="none";
+   document.getElementById("hide_replies_button_"+id).style.display="block";
+   document.getElementById("preview_reply_"+id).style.display="none";
+
+  }
+    function hide_replies(id){
+   document.getElementById("replies-container_"+id).style.display="none";
+   document.getElementById("show_replies_button_"+id).style.display="block";
+    document.getElementById("hide_replies_button_"+id).style.display="none";
+    document.getElementById("preview_reply_"+id).style.display="block";
+  }
+
+</script>
 </div>
 
 
@@ -1730,5 +1777,8 @@ echo '
   </div>
 </div>
 
+
+             
+                      
 </body>
 </html>
