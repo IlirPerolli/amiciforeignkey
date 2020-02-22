@@ -187,7 +187,7 @@ if (isset($_GET['theme'])){
   $theme = $_GET['theme'];
   $opacity = $_GET['opacity'];
 
-  if (($theme == 'amsterdam' ) || ($theme == 'antartica') || ($theme == 'aurora') || ($theme == 'forest') || ($theme == 'bird')  || ($theme == 'meteor') || ($theme == 'pier') || ($theme == 'sunset')){
+  if (($theme == 'forest') || ($theme == 'sunset')  || ($theme == 'mountain') || ($theme == 'pier') || ($theme == 'image1') || ($theme == 'image2') || ($theme == 'image3') || ($theme == 'image4') || ($theme == 'image5') || ($theme == 'image6')){
     if ($opacity >= 0.5 && $opacity <=1){
       $username = $_SESSION['username'];
       $query = "SELECT * FROM group_themes WHERE username='$username'";
@@ -451,24 +451,12 @@ input[type=radio] + label>img {
       </div>
       <div class="modal-body">
 <form action="#" method="post" id="theme-form">
-  <div class="theme">
-   <input type="radio" name="theme" id="amsterdam" class="input-hidden" value="amsterdam" checked />
-<label for="amsterdam">
-  <img src="themes/amsterdam.jpg" class="theme-photo" />
-</label>
-</div>
+
 
   <div class="theme">
-  <input type="radio" name="theme" id="antartica" class="input-hidden" value="antartica"  />
-<label for="antartica">
-  <img src="themes/antartica.jpg" class="theme-photo" />
-</label>
-</div>
-
-  <div class="theme">
-  <input type="radio" name="theme" id="aurora" class="input-hidden" value="aurora"  />
-<label for="aurora">
-  <img src="themes/aurora.jpg" class="theme-photo" />
+  <input type="radio" name="theme" id="mountain" class="input-hidden" value="mountain"  />
+<label for="mountain">
+  <img src="themes/mountain.jpg" class="theme-photo" />
 </label>
 </div>
 
@@ -478,18 +466,10 @@ input[type=radio] + label>img {
      <img src="themes/forest.jpg" class="theme-photo" />
 </label>
 </div>
-
   <div class="theme">
-<input type="radio" name="theme" id="bird" class="input-hidden" value="bird"/>
-<label for="bird">
-     <img src="themes/bird.jpg" class="theme-photo" />
-</label>
-</div>
-
-  <div class="theme">
-<input type="radio" name="theme" id="meteor" class="input-hidden" value="meteor"/>
-<label for="meteor">
-     <img src="themes/meteor.jpg" class="theme-photo" />
+<input type="radio" name="theme" id="sunset" class="input-hidden" value="sunset"/>
+<label for="sunset">
+     <img src="themes/sunset.jpg" class="theme-photo" />
 </label>
 </div>
   <div class="theme">
@@ -499,9 +479,40 @@ input[type=radio] + label>img {
 </label>
 </div>
   <div class="theme">
-<input type="radio" name="theme" id="sunset" class="input-hidden" value="sunset"/>
-<label for="sunset">
-     <img src="themes/sunset.jpg" class="theme-photo" />
+<input type="radio" name="theme" id="image1" class="input-hidden" value="image1"/>
+<label for="image1">
+     <img src="themes/image1.jpg" class="theme-photo" />
+</label>
+</div>
+
+ <div class="theme">
+<input type="radio" name="theme" id="image2" class="input-hidden" value="image2"/>
+<label for="image2">
+     <img src="themes/image2.jpg" class="theme-photo" />
+</label>
+</div>
+ <div class="theme">
+<input type="radio" name="theme" id="image3" class="input-hidden" value="image3"/>
+<label for="image3">
+     <img src="themes/image3.jpg" class="theme-photo" />
+</label>
+</div>
+ <div class="theme">
+<input type="radio" name="theme" id="image4" class="input-hidden" value="image4"/>
+<label for="image4">
+     <img src="themes/image4.jpg" class="theme-photo" />
+</label>
+</div>
+ <div class="theme">
+<input type="radio" name="theme" id="image5" class="input-hidden" value="image5"/>
+<label for="image5">
+     <img src="themes/image5.jpg" class="theme-photo" />
+</label>
+</div>
+ <div class="theme">
+<input type="radio" name="theme" id="image6" class="input-hidden" value="image6"/>
+<label for="image6">
+     <img src="themes/image6.jpg" class="theme-photo" />
 </label>
 </div>
 
