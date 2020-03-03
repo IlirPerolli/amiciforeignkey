@@ -372,6 +372,9 @@ header("Location:files.php");
               else if (strpos($row['file'],'.to') !== false){
               echo '<img src = "user-files-logos/UTorrent_(logo).png" class = "download-photo"/>';
               }
+              else if (strpos($row['file'],'.sql') !== false){
+               echo '<img src = "user-files-logos/sql.png" class = "download-photo"/>';
+              }
               else {
               echo '<img src = "https://image.flaticon.com/icons/svg/148/148947.svg?fbclid=IwAR1qMT-iyh6nQNlIyVNu4VaFEiLQoRa4FUZD5iv8xM5ZjL3h_nYbFTi-y_k" class = "download-photo"/>';
               }
@@ -402,7 +405,7 @@ header("Location:files.php");
                   echo '<div class="modal-body">';
                     echo 'Emri i dokumentit: ' . $row['file'];
                     echo '<br>';
-                    echo 'Ngarkuesi: ' . $row['Name']. " " . $row['Surname'];
+                    echo 'Ngarkuesi: ' . htmlspecialchars($row['Name']). " " . htmlspecialchars($row['Surname']);
                     echo '<br>';
                     echo 'Data: ' . $row['date'];
                     echo '<br>';
@@ -531,6 +534,9 @@ header("Location:files.php");
               else if (strpos($row['file'],'.to') !== false){
               echo '<img src = "user-files-logos/UTorrent_(logo).png" class = "download-photo"/>';
               }
+              else if (strpos($row['file'],'.sql') !== false){
+              echo '<img src = "user-files-logos/sql.png" class = "download-photo"/>';
+              }
               else {
               echo '<img src = "https://image.flaticon.com/icons/svg/148/148947.svg?fbclid=IwAR1qMT-iyh6nQNlIyVNu4VaFEiLQoRa4FUZD5iv8xM5ZjL3h_nYbFTi-y_k" class = "download-photo"/>';
               }
@@ -561,7 +567,7 @@ header("Location:files.php");
                   echo '<div class="modal-body">';
                     echo 'Emri i dokumentit: ' . $row['file'];
                     echo '<br>';
-                    echo 'Ngarkuesi: ' . $row['Name']. " " . $row['Surname'];
+                    echo 'Ngarkuesi: ' . htmlspecialchars($row['Name']). " " . htmlspecialchars($row['Surname']);
                     echo '<br>';
                     echo 'Data: ' . $row['date'];
                     echo '<br>';
