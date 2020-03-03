@@ -143,7 +143,7 @@ line-height: 7px;
 color:#cd1c07;
 cursor: pointer;
 }*/
-.librat, .dosjet{
+.librat, .dosjet, .shoket, .profili, .subscribe{
  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
 }

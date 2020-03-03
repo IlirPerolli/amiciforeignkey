@@ -620,7 +620,7 @@ ORDER BY id DESC";
 
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
-    echo "<div class='search-term-display'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+    echo "<div class='search-term-display'>Rezultatet e kerkimit per: ". htmlspecialchars($search_term). " | ".$count. " rezultate". "</div>";
     echo'<div class="dropdown-divider"></div>'; 
    // if((preg_match('/^\s+$/', $search_term)) == 1){
  //header("Location:group.php");
@@ -653,15 +653,15 @@ if($count == 0) {
                         echo '<img src = "user-photos/'. $row['userphotos'].'" class = "foto">'; 
                         echo '<br>';
                         echo '<div class = "emri">';
-                        echo $row['Name']." ". $row['Surname'];
+                        echo htmlspecialchars($row['Name'])." ". htmlspecialchars($row['Surname']);
                         echo '</div>';
                         echo '</div>';
                         echo '<div class = "pershkrimi" style = "text-align:left; ">';
-                        echo "Username: ".$row['username']."<br>";
-                        echo "Emaili: ".$row['email']."<br>";
-                        echo "Data e lindjes: ".$row['age']."<br>";
-                        echo "Viti Akademik: ".$row['academicyear']."<br>";
-                        echo "Hera e &Ccedil;asjes: ".$row['activity']."<br>";
+                        echo "Username: ".htmlspecialchars($row['username'])."<br>";
+                        echo "Emaili: ".htmlspecialchars($row['email'])."<br>";
+                        echo "Data e lindjes: ".htmlspecialchars($row['age'])."<br>";
+                        echo "Viti Akademik: ".htmlspecialchars($row['academicyear'])."<br>";
+                        echo "Hera e &Ccedil;asjes: ".htmlspecialchars($row['activity'])."<br>";
                         
                         
                         echo '<div class = "opsionet">';
@@ -701,14 +701,14 @@ echo'<br>';
                         echo '<img src = "user-photos/'. $row['userphotos'].'" class = "foto">'; 
                         echo '<br>';
                         echo '<div class = "emri">';
-                        echo $row['Name']." ". $row['Surname'];
+                        echo htmlspecialchars($row['Name'])." ". htmlspecialchars($row['Surname']);
                         echo '</div>';
                         echo '</div>';
                         echo '<div class = "pershkrimi" style = "text-align:left; ">';
-                        echo "Username: ".$row['username']."<br>";
-                        echo "Emaili: ".$row['email']."<br>";
-                        echo "Data e lindjes: ".$row['age']."<br>";
-                        echo "Viti Akademik: ".$row['academicyear']."<br>";
+                        echo "Username: ".htmlspecialchars($row['username'])."<br>";
+                        echo "Emaili: ".htmlspecialchars($row['email'])."<br>";
+                        echo "Data e lindjes: ".htmlspecialchars($row['age'])."<br>";
+                        echo "Viti Akademik: ".htmlspecialchars($row['academicyear'])."<br>";
                        
                         
                         
@@ -765,13 +765,13 @@ echo'<br>';
     while(($row = $results->fetch_assoc()) !== null){
       echo'<tr class="table-row" data-href="?keyword='.$row['Name']."+".$row['Surname'].'">
       <th scope="row">'.$row['id'].'</th>
-      <td>'.$row['username'].'</td>
-      <td>'.$row['Name'].'</td>
-      <td>'.$row['Surname'].'</td>
-      <td>'.$row['email'].'</td>
-      <td>'.$row['age'].'</td>
-      <td>'.$row['academicyear'].'</td>
-      <td>'.$row['activity'].'</td>
+      <td>'.htmlspecialchars($row['username']).'</td>
+      <td>'.htmlspecialchars($row['Name']).'</td>
+      <td>'.htmlspecialchars($row['Surname']).'</td>
+      <td>'.htmlspecialchars($row['email']).'</td>
+      <td>'.htmlspecialchars($row['age']).'</td>
+      <td>'.htmlspecialchars($row['academicyear']).'</td>
+      <td>'.htmlspecialchars($row['activity']).'</td>
     </tr>
 ';
     }
