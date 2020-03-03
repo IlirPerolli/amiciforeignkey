@@ -62,7 +62,7 @@
                         echo '<img src = "user-photos/'. $row1['userphotos'].'" class = "foto" style = "width:50px; height:50px;margin-top:10px">'; 
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
-                        echo $row1['Name']. " " . $row1['Surname'];
+                        echo htmlspecialchars($row1['Name']). " " . htmlspecialchars($row1['Surname']);
                         $username = $row1['username'];
                         $sql = "SELECT * from admins where username='$username'";
                         $results = mysqli_query($db, $sql);

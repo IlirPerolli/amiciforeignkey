@@ -833,7 +833,7 @@ if (($_SESSION['username']) == $row['username']){
                         echo '<img src = "user-photos/'. $row['userphotos'].'" class = "foto">'; 
                         echo '<br>';
                         echo '<div class = "emri">';
-                        echo $row['Name']. " " . $row['Surname'];
+                        echo htmlspecialchars($row['Name']). " " . htmlspecialchars($row['Surname']);
                         $username = $row['username'];
                         $sql = "SELECT * from admins where username='$username'";
                         $results = mysqli_query($db, $sql);
@@ -963,7 +963,7 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                         echo '<img src = "user-photos/'. $row1['userphotos'].'" class = "foto" style = "width:50px; height:50px;margin-top:10px">'; 
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
-                        echo $row1['Name']. " " . $row1['Surname'];
+                        echo htmlspecialchars($row1['Name']). " " . htmlspecialchars($row1['Surname']);
                         $username = $row1['username'];
                         $sql = "SELECT * from admins where username='$username'";
                         $results = mysqli_query($db, $sql);
@@ -1194,7 +1194,7 @@ echo'<div class="dropdown-divider" id="dropdown-divider"></div>';
                         echo '<img src = "user-photos/'. $row3['userphotos'].'" class = "foto">'; 
                         echo '<br>';
                         echo '<div class = "emri">';
-                        echo $row3['Name']. " " . $row3['Surname'];
+                        echo htmlspecialchars($row3['Name']). " " . htmlspecialchars($row3['Surname']);
                         $username = $row3['username'];
                         $sql = "SELECT * from admins where username='$username'";
                         $results = mysqli_query($db, $sql);
@@ -1321,7 +1321,7 @@ while(($row = $results->fetch_assoc()) !== null){
                         echo '<img src = "user-photos/'. $row['userphotos'].'" class = "foto" style = "width:50px; height:50px;margin-top:10px">'; 
                         echo '<br>';
                         echo '<div class = "emri" style = "font-size:23px;">';
-                        echo $row['Name']. " " . $row['Surname'];
+                        echo htmlspecialchars($row['Name']). " " . htmlspecialchars($row['Surname']);
                         $username = $row['username'];
                         $sql1 = "SELECT * from admins where username='$username'";
                         $results1 = mysqli_query($db, $sql1);
