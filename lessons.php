@@ -405,10 +405,10 @@ if (strlen($row['upload_name']) > 37){
                 $name = substr($name, 0, 37);
                 $name = $name . " ...";
               
-               echo' <h5>'.$name.'</h5>';
+               echo' <h5>'.htmlspecialchars($name).'</h5>';
                }
                else {
-                echo '<h5> '.$row['upload_name'].'<h5>';
+                echo '<h5> '.htmlspecialchars($row['upload_name']).'<h5>';
                }
 
 
@@ -427,9 +427,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Videos</h5>';
         echo '</button>';
       echo '</div>';
       echo '<div class="modal-body" style = "text-align:left">';
-        echo 'Emri i videos: ' . $row['upload_name'];
+        echo 'Emri i videos: ' . htmlspecialchars($row['upload_name']);
         echo '<br>';
-        echo 'Ngarkuesi: ' . $row['Name']." ".$row['Surname'];
+        echo 'Ngarkuesi: ' . htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']);
          echo '<br>';
         echo 'Data: ' . $row['date'];
         echo '<br>';
@@ -535,10 +535,10 @@ else {
                 $name = substr($name, 0, 37);
                 $name = $name . " ...";
               
-               echo' <h5>'.$name.'</h5>';
+               echo' <h5>'.htmlspecialchars($name).'</h5>';
                }
                else {
-                echo '<h5> '.$row['folder_name'].'<h5>';
+                echo '<h5> '.htmlspecialchars($row['folder_name']).'<h5>';
                }
 
 
@@ -558,9 +558,9 @@ echo '<h5 class="modal-title" id="exampleModalCenterTitle">Rreth Folderit</h5>';
         echo '</button>';
       echo '</div>';
       echo '<div class="modal-body" style = "text-align:left">';
-        echo 'Emri i folderit: ' . $row['folder_name'];
+        echo 'Emri i folderit: ' . htmlspecialchars($row['folder_name']);
         echo '<br>';
-        echo 'Ngarkuesi: ' . $row['Name']." ". $row['Surname'];
+        echo 'Ngarkuesi: ' . htmlspecialchars($row['Name'])." ". htmlspecialchars($row['Surname']);
          echo '<br>';
         echo 'Data: ' . $row['date'];
         echo '<br>';
