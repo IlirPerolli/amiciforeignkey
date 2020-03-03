@@ -161,7 +161,7 @@ $_SESSION['loading'] = false;
 
 $row['Name'] = strtolower($row['Name']);
 $row['Name'] = ucfirst($row['Name']);
-  echo "Pershendetje ".$row['Name']. " 🖐"; ?>
+  echo "Pershendetje ".htmlspecialchars($row['Name']). " 🖐"; ?>
   </div>
   <div class = "preload">
     <div class="loader"></div>

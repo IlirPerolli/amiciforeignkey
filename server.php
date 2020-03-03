@@ -171,16 +171,17 @@ include("config.php");
 
 					$password = password_verify($password, $row['password']);
 			if ($password == 1 && $row['verification'] == 1 ) {
+				//htmlspecialchars per tu siguruar qe perdoruesi nuk ka shkruar kode html dhe te ekzekutohen
 				$_SESSION['loading'] = true;
 				$_SESSION['loggedIn'] = true;
-			    $_SESSION['vitiakademik'] = $row["academicyear"];
-			    $_SESSION['emri'] = $row["Name"];
-			    $_SESSION['mbiemri'] = $row['Surname'];
- 			    $_SESSION['username'] = $row['username'];
+			    $_SESSION['vitiakademik'] = htmlspecialchars($row["academicyear"]);
+			    $_SESSION['emri'] = htmlspecialchars($row["Name"]);
+			    $_SESSION['mbiemri'] = htmlspecialchars($row['Surname']);
+ 			    $_SESSION['username'] = htmlspecialchars($row['username']);
 			    $_SESSION['emri'] = strtoupper($_SESSION['emri']);
 			    $_SESSION['mbiemri'] = strtoupper($_SESSION['mbiemri']);
 			    $_SESSION['photo'] = $row["userphotos"];
-			    $_SESSION['email'] = $row["email"];
+			    $_SESSION['email'] = htmlspecialchars($row["email"]);
 			    $_SESSION['password'] = $row['password'];
 			    //Mos lejo te shihen komentet nga te tjeret ne posts_controller.php
 			    $_SESSION['authenticated'] = false;
@@ -444,7 +445,7 @@ else if (strpos($target_file,'snapchat') !== false) {
 }
 if ($_FILES["fileToUpload"]["size"] == 0) { //8MB
 
-	array_splice($errors, 0);
+	array_splice($errors, 0); //Hiq elementet nga pozita 0
 		 if(preg_match('/^\s+$/', $biseda) == 1){
 array_push($errors, "Komenti permban hapesira!");
 }
