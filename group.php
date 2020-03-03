@@ -1695,89 +1695,82 @@ document.getElementById("success-photo").style.display="none";
         <span style = "color:green; font-size:20px" >Online</span>
         <br><br>
 
-        <!-- ONLINE -->
-        <ul class="list-unstyled">
-        <?php 
-            $vitiakademik = $_SESSION['vitiakademik'];
-         $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
-    $results = mysqli_query($db, $query);
-       while(($row = $results->fetch_assoc()) !== null){   
-echo '
-  <li class="media">
-    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
-    <div class="media-body">';
-      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
-$username = $row['username'];
-                        $sql = "SELECT * from admins where username='$username'";
-                        $results1 = mysqli_query($db, $sql);
-                        if (mysqli_num_rows($results1)==1){
-         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
-    }
-
-  echo' </h5>';
-
-     
-                        if (mysqli_num_rows($results1)==1){
-         echo 'Administrator';
-    }
-     
-      else{
-        echo 'Student';
-      }
-     
-      echo'
-    </div>
-  </li>
-  <br>';
-       }
-
-        ?>
-</ul>
-<!-- END OF ONLINE -->
+         <!-- ONLINE -->
+                                        <ul class="list-unstyled">
+                                          <?php
+                                          $vitiakademik = $_SESSION['vitiakademik'];
+                                          $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
+                                          $results = mysqli_query($db, $query);
+                                          while(($row = $results->fetch_assoc()) !== null){
+                                          echo '
+                                          <li class="media">
+                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                            <div class="media-body">';
+                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
+                                              $username = $row['username'];
+                                              $sql = "SELECT * from admins where username='$username'";
+                                              $results1 = mysqli_query($db, $sql);
+                                              if (mysqli_num_rows($results1)==1){
+                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
+                                              }
+                                              echo' </h5>';
+                                              
+                                              if (mysqli_num_rows($results1)==1){
+                                              echo 'Administrator';
+                                              }
+                                              
+                                              else{
+                                              echo 'Student';
+                                              }
+                                              
+                                              echo'
+                                            </div>
+                                          </li>
+                                          <br>';
+                                          }
+                                          ?>
+                                        </ul>
+                                        <!-- END OF ONLINE -->
 
 <!-- OFFLINE -->
-  <span style = "color:grey; font-size:20px" >Offline</span>
-        <br><br>
-
-        
-        <ul class="list-unstyled">
-        <?php 
-            $vitiakademik = $_SESSION['vitiakademik'];
-         $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
-    $results = mysqli_query($db, $query);
-          while(($row = $results->fetch_assoc()) !== null){   
-echo '
-  <li class="media">
-    <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
-    <div class="media-body">';
-      echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
-  $username = $row['username'];
-                        $sql = "SELECT * from admins where username='$username'";
-                        $results1 = mysqli_query($db, $sql);
-                        if (mysqli_num_rows($results1)==1){
-         echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
-    }
-
-  echo' </h5>';
-
-     
-                        if (mysqli_num_rows($results1)==1){
-         echo 'Administrator';
-    }
-     
-      else{
-        echo 'Student';
-      }
-     
-      echo'
-    </div>
-  </li>
-  <br>';
-       }
-
-        ?>
-</ul>
-<!-- END OF OFFLINE -->
+                                        <span style = "color:grey; font-size:20px" >Offline</span>
+                                        <br><br>
+                                        
+                                        <ul class="list-unstyled">
+                                          <?php
+                                          $vitiakademik = $_SESSION['vitiakademik'];
+                                          $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
+                                          $results = mysqli_query($db, $query);
+                                          while(($row = $results->fetch_assoc()) !== null){
+                                          echo '
+                                          <li class="media">
+                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                            <div class="media-body">';
+                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
+                                              $username = $row['username'];
+                                              $sql = "SELECT * from admins where username='$username'";
+                                              $results1 = mysqli_query($db, $sql);
+                                              if (mysqli_num_rows($results1)==1){
+                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
+                                              }
+                                              echo' </h5>';
+                                              
+                                              if (mysqli_num_rows($results1)==1){
+                                              echo 'Administrator';
+                                              }
+                                              
+                                              else{
+                                              echo 'Student';
+                                              }
+                                              
+                                              echo'
+                                            </div>
+                                          </li>
+                                          <br>';
+                                          }
+                                          ?>
+                                        </ul>
+                                        <!-- END OF OFFLINE -->
 
 
       </div>

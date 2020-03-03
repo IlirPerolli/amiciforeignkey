@@ -831,9 +831,9 @@ header("Location:files.php");
                                           while(($row = $results->fetch_assoc()) !== null){
                                           echo '
                                           <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
                                             <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
                                               $username = $row['username'];
                                               $sql = "SELECT * from admins where username='$username'";
                                               $results1 = mysqli_query($db, $sql);
@@ -870,9 +870,9 @@ header("Location:files.php");
                                           while(($row = $results->fetch_assoc()) !== null){
                                           echo '
                                           <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.$row['Name']." ".$row['Surname'].'">
+                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
                                             <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.$row['Name']." ".$row['Surname'].'';
+                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
                                               $username = $row['username'];
                                               $sql = "SELECT * from admins where username='$username'";
                                               $results1 = mysqli_query($db, $sql);
