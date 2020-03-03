@@ -744,7 +744,7 @@ $sql .= ") ORDER BY id $orderby"; // Radhiti prej komentit te fundit
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
     echo "<div class = 'results_container'>";
-    echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+    echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". htmlspecialchars($search_term). " | ".$count. " rezultate". "</div>";
     echo ' <select name="order" style="float:none; margin-bottom:17px;" onchange="location = this.value;">
     <option value="#" >Zgjedh renditjen</option>';
      if(isset($_GET['keyword'])){
