@@ -270,7 +270,7 @@ header("Location:files.php");
           $sql = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' and file LIKE '%$search_term%' ORDER BY id $orderby";
           $results = mysqli_query($db, $sql);
           $count = mysqli_num_rows($results);
-          echo "<div class='search-term-display'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+          echo "<div class='search-term-display'>Rezultatet e kerkimit per: ". htmlspecialchars($search_term). " | ".$count. " rezultate". "</div>";
           echo '<div class = "sort_in_results">';
             echo ' <select name="order" onchange="location = this.value;">
               <option value="#" >Zgjedh renditjen</option>';
