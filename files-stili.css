@@ -70,6 +70,15 @@ margin-top:-30px;
 padding: 0px;
 }
 @media screen and (max-width:900px){
+	#search_form_mobile{
+        display: block !important;
+      }
+       #search_form_pc{
+        display: none;
+      }
+	#search-br{
+	display: block !important;
+}
 .sort_container select{
 margin-right: 0px !important;
 }
@@ -148,7 +157,7 @@ padding-right: 10px !important;
 }
 @media screen and (max-width: 550px){
 #search{
-width:70% !important;
+width:70%;
 margin-right: 10px;
 }
 }
@@ -400,4 +409,10 @@ background: white;
 .forma-bootstrap{
 padding-left:15px;
 padding-right:15px;
+}
+#search-br{
+	display: none;
+}
+#search_form_mobile{
+  display: none;
 }

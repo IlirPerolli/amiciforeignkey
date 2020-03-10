@@ -93,6 +93,10 @@ header("Location:files.php");
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
+        <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_mobile" style="width:100%">
+    <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Mesazhe" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled style="display: none">Kerko</button>
+    </form>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" id = "Kryefaqja">
@@ -113,9 +117,9 @@ header("Location:files.php");
           <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
         </ul>
         <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
-        <img src="img/multiple-users-silhouette.png" width="30px;" />
+        <img src="img/multiple-users-silhouette.png" style = "width:30px; margin-bottom: 10px;" />
         </button>
-        <form class="form-inline my-2 my-lg-0" method="get" action="#">
+        <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
           <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
         </form>
@@ -149,6 +153,7 @@ header("Location:files.php");
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <br><br><br><br><br><span class = "br-mob"><br></span>
+     <span id="search-br"><br><br> </span>
       <div style = "text-align:center">
         <div class = "container">
           <br>

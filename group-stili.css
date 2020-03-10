@@ -10,6 +10,15 @@
     font-style: normal;
   }
   @media screen and (max-width: 900px){
+     #search_form_mobile{
+        display: block !important;
+      }
+       #search_form_pc{
+        display: none;
+      }
+      #search-br{
+        display: block !important;
+      }
     .sort_container{
     
       width:100% !important;
@@ -75,6 +84,8 @@ margin-right: 30px !important;
 }
   }
     @media screen and (max-width: 640px){
+     
+     
   .counter{
       margin-left: 0px !important;
       width:100% !important;
@@ -107,7 +118,7 @@ margin-right: 30px !important;
 
 
     #search{
-      width:70% !important;
+      width:70%;
       margin-right: 10px;
     }
     .emri{
@@ -531,5 +542,11 @@ display: inline-block;
 
 #success-photo{
   width: 25px;
+  display: none;
+}
+#search_form_mobile{
+  display: none;
+}
+#search-br{
   display: none;
 }

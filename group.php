@@ -81,7 +81,7 @@ else{
 
             $number_of_results = mysqli_num_rows($results3);
            //Defino se sa rezultate shfaqen
-            $results_per_page=5;
+            $results_per_page=10;
             //Defino numrin e faqeve
             $number_of_pages=ceil($number_of_results/$results_per_page);
             if (!isset($_GET['page'])){
@@ -370,6 +370,10 @@ input[type=radio] + label>img {
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_mobile" style="width:100%">
+    <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Mesazhe" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled style="display: none">Kerko</button>
+    </form>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -394,13 +398,14 @@ input[type=radio] + label>img {
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-light" id="theme_settings" title="Ndrysho Sfondin" data-toggle="modal" data-target="#theme_modal">
-  <img src= "img/settings.png" style = "width:30px;"/>
+  <img src= "img/settings.png" style = "width:30px; margin-bottom: 10px;"/>
 </button>
 
 <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
-<img src="img/multiple-users-silhouette.png" width="30px;" />
+<img src="img/multiple-users-silhouette.png" style = "width:30px; margin-bottom: 10px;" />
 </button>
-  <form class="form-inline my-2 my-lg-0" method="get" action="#">
+
+  <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
     <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
     </form>
@@ -743,6 +748,7 @@ $sql .= ") ORDER BY id $orderby"; // Radhiti prej komentit te fundit
 
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
+   echo '<span id="search-br"><br> </span>';
     echo "<div class = 'results_container'>";
     echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". htmlspecialchars($search_term). " | ".$count. " rezultate". "</div>";
     echo ' <select name="order" style="float:none; margin-bottom:17px;" onchange="location = this.value;">
@@ -1090,7 +1096,7 @@ echo "Fundi i rezultateve";
  //Shfaqja e postimeve pa search
 
 else{
-
+                      echo '<span id="search-br"><br> </span>';
                        echo' <form action="#" method="post" enctype="multipart/form-data">';
                        echo '<div class = "speech">';
                       
