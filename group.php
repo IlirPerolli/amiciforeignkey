@@ -330,11 +330,7 @@ margin: auto;
   text-decoration: none;  
  }
 
-#theme_settings, #theme_settings:hover, #theme_settings:active, #theme_settings:visited{
-  background:none !important;
-   border: none !important;
-   box-shadow: none;
-}
+
 .input-hidden {
   position: absolute;
   left: -9999px;
@@ -398,11 +394,11 @@ input[type=radio] + label>img {
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-light" id="theme_settings" title="Ndrysho Sfondin" data-toggle="modal" data-target="#theme_modal">
-  <img src= "img/settings.png" style = "width:30px; margin-bottom: 10px;"/>
+  <img src= "img/settings.png" style = "width:30px;"/>
 </button>
 
 <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
-<img src="img/multiple-users-silhouette.png" style = "width:30px; margin-bottom: 10px;" />
+<img src="img/multiple-users-silhouette.png" style = "width:30px;" />
 </button>
 
   <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">

@@ -33,6 +33,14 @@ input{
 
 }
 @media screen and (max-width:960px){
+    #studentet-menu, #studentet-menu:hover, #studentet-menu:active, #studentet-menu:visited {
+         margin-bottom: 10px;
+    }
+    #theme_settings, #theme_settings:hover, #theme_settings:active, #theme_settings:visited{
+
+   margin-bottom: 10px;
+
+  }
   .cover{
       /* **** Per ios **** */
       background: url("img/image.jpg")  no-repeat center center !important;
@@ -504,9 +512,16 @@ overflow: auto;
    border: none !important;
    margin-right: 10px;
    box-shadow: none;
+
+}
+#theme_settings, #theme_settings:hover, #theme_settings:active, #theme_settings:visited{
+  background:none !important;
+   border: none !important;
+   box-shadow: none;
 }
 #reset_online, #reset_online:hover, #reset_online:active, #reset_online:visited{
   background:none !important;
    border: none !important;
    box-shadow: none;
 }
+ 

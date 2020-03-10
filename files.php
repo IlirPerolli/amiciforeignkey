@@ -94,7 +94,7 @@ header("Location:files.php");
       <span class="navbar-toggler-icon"></span>
       </button>
         <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_mobile" style="width:100%">
-    <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Mesazhe" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+    <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Dokumente" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled style="display: none">Kerko</button>
     </form>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -117,7 +117,7 @@ header("Location:files.php");
           <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
         </ul>
         <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
-        <img src="img/multiple-users-silhouette.png" style = "width:30px; margin-bottom: 10px;" />
+        <img src="img/multiple-users-silhouette.png" style = "width:30px;" />
         </button>
         <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
           <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
