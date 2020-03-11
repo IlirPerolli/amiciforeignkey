@@ -93,10 +93,10 @@ header("Location:files.php");
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
-        <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_mobile" style="width:100%">
-    <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Dokumente" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled style="display: none">Kerko</button>
-    </form>
+      <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_mobile" style="width:100%">
+        <input type = "text" class="form-control mr-sm-12" style="width:100%" placeholder="Kerko Dokumente" aria-label="Search" id= "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled style="display: none">Kerko</button>
+      </form>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" id = "Kryefaqja">
@@ -120,8 +120,8 @@ header("Location:files.php");
         <img src="img/multiple-users-silhouette.png" style = "width:30px;" />
         </button>
         <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
-          <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
+          <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Dokumente" aria-label="Search" id = "search1" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit1" disabled>Kerko</button>
         </form>
         <ul class="navbar-nav mx-3">
           <li class="nav-item dropdown">
@@ -153,7 +153,7 @@ header("Location:files.php");
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <br><br><br><br><br><span class = "br-mob"><br></span>
-     <span id="search-br"><br><br> </span>
+      <span id="search-br"><br><br> </span>
       <div style = "text-align:center">
         <div class = "container">
           <br>
@@ -378,7 +378,7 @@ header("Location:files.php");
               echo '<img src = "user-files-logos/UTorrent_(logo).png" class = "download-photo"/>';
               }
               else if (strpos($row['file'],'.sql') !== false){
-               echo '<img src = "user-files-logos/sql.png" class = "download-photo"/>';
+              echo '<img src = "user-files-logos/sql.png" class = "download-photo"/>';
               }
               else {
               echo '<img src = "https://image.flaticon.com/icons/svg/148/148947.svg?fbclid=IwAR1qMT-iyh6nQNlIyVNu4VaFEiLQoRa4FUZD5iv8xM5ZjL3h_nYbFTi-y_k" class = "download-photo"/>';
@@ -785,12 +785,20 @@ header("Location:files.php");
                                 <script type="text/javascript">
                                 function searchfunction(){
                                 var i=document.getElementById("search");
+                                var j=document.getElementById("search1");
                                 if(i.value=="")
                                 {
                                 document.getElementById("search-submit").disabled=true;
                                 }
                                 else
-                                document.getElementById("search-submit").disabled=false;}
+                                document.getElementById("search-submit").disabled=false;
+                                if(j.value=="")
+                                {
+                                document.getElementById("search-submit1").disabled=true;
+                                }
+                                else
+                                document.getElementById("search-submit1").disabled=false;
+                                }
                                 </script>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

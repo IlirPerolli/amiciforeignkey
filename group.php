@@ -402,8 +402,8 @@ input[type=radio] + label>img {
 </button>
 
   <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
-    <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit" disabled>Kerko</button>
+    <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search1" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit1" disabled>Kerko</button>
     </form>
      <ul class="navbar-nav mx-3" id="prova">
     <li class="nav-item dropdown">
@@ -591,12 +591,21 @@ else
     document.getElementById("abc2").disabled=false;}
 function searchfunction(){
 var i=document.getElementById("search");
+var j=document.getElementById("search1");
 if(i.value=="")
     {
     document.getElementById("search-submit").disabled=true;
     }
 else
-    document.getElementById("search-submit").disabled=false;}
+    document.getElementById("search-submit").disabled=false;
+if(j.value=="")
+    {
+    document.getElementById("search-submit1").disabled=true;
+    }
+else
+    document.getElementById("search-submit1").disabled=false;
+
+}
 
 
 
