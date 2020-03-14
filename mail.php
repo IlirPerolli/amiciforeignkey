@@ -1,5 +1,5 @@
 <?php
-function unapproved_account_mail($email, $name,$viti,$username){
+function unapproved_account_mail($email, $name,$viti,$username,$mosha){
 date_default_timezone_set('Etc/UTC');
 
 // Edit this path if PHPMailer is in a different location.
@@ -17,7 +17,7 @@ $mail->setFrom('amicillogaria@gmail.com', 'amici llogaria'); // Set the sender o
 $mail->addAddress($email, $name); // Set the recipient of the message.
 $mail->isHTML(true);
 $mail->Subject = 'Llogaria u krijua me sukses'; // The subject of the message.
-$mail->Body = "<p>Faleminderit per regjistrimin tuaj.</p><p>Se shpejti llogaria juaj do te behet aktive pasi te konfirmohet nga njeri prej administratoreve.</p><p>Te dhenat personale:</p><p><b>Emri:</b> $name</p><p><b>Email:</b> $email</p><p><b>Viti akademik:</b> $viti</p><p><b>Username:</b> $username</p><p><b>#amiciteam</b></p>";
+$mail->Body = "<p>Faleminderit per regjistrimin tuaj.</p><p>Se shpejti llogaria juaj do te behet aktive pasi te konfirmohet nga njeri prej administratoreve.</p><p>Te dhenat personale:</p><p><b>Emri dhe mbiemri:</b> $name</p><p><b>Data e lindjes:</b> $mosha</p><p><b>Viti akademik:</b> $viti</p><p><b>Email:</b> $email</p><p><b>Username:</b> $username</p><p><b>#amiciteam</b></p>";
 if ($mail->send()) {
    // echo "Mesazhi u dergua me sukses!";
 } else {

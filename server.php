@@ -108,6 +108,7 @@ include("config.php");
 			$_SESSION['email'] = $email;
 			$_SESSION['viti']=$viti;
 			$_SESSION['username'] = $username;
+			$_SESSION['mosha'] = $mosha;
 			$_SESSION['hapja'] = true;
 			/*include("mail.php");
 			$name = $emri." ".$mbiemri;

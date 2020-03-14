@@ -14,10 +14,11 @@
       $email = $_SESSION['email'];
       $viti = $_SESSION['viti'];
       $username = $_SESSION['username'];
+      $mosha = $_SESSION['mosha'];
       $_SESSION['hapja'] = true;
      
       $name = $emri." ".$mbiemri;
-      unapproved_account_mail($email, $name,$viti,$username); 
+      unapproved_account_mail($email, $name,$viti,$username, $mosha); 
     header('Refresh: 120; URL=main.php');
     $_SESSION['hapja'] = false;
     }
