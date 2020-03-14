@@ -130,7 +130,8 @@ font-family: SamsungSharpSans-Medium;
         <img src = "img/avatar.jpg" class = "avatar"/><br><br> 
          <p id = "email">Email:</p>
           <input type = "text" name = "email" id = "email" placeholder = "Shkruani emailin" onkeydown = "if (event.keyCode == 13)
-          document.getElementById('btnEmail').click()"  autocomplete="off" autofocus required />
+          document.getElementById('btnEmail').click()" oninvalid="this.setCustomValidity('Ju lutem shkruani emailin'); document.getElementById('email').style.color='#FA3B4B'"
+    oninput="this.setCustomValidity(''); document.getElementById('email').style.color='black'"  autocomplete="off" autofocus required />
 
           <input type = "submit" id = "btnEmail" name="submit_email" value = "Rikthe fjalekalimin">
      <?php include('errors.php'); ?>

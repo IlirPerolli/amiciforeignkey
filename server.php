@@ -534,7 +534,7 @@ if (isset($_POST['submit_email'])){
   reset_password($email,$token);
      $sql1 = "UPDATE users set token = '$token', tokenExpire=DATE_ADD(NOW(),INTERVAL 5 MINUTE) where email='$email'";
   $results = mysqli_query($db, $sql1);
-  array_push($success,"Ju lutem kontrolloni emailin per te marre linkun e rikthimit te fjalekalimit");
+  array_push($success,"Ju lutem kontrolloni emailin ne spam, per rikthimin e fjalekalimit");
   }
   else{
     array_push($errors, "Ky email nuk ekziston");

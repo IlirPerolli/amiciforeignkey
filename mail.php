@@ -69,7 +69,7 @@ $mail->setFrom('amicillogaria@gmail.com', 'amici llogaria'); // Set the sender o
 $mail->addAddress($email); // Set the recipient of the message.
 $mail->isHTML(true);
 $mail->Subject = 'Rikthe fjalekalimin'; // The subject of the message.
-$mail->Body = "<p>Pershendetje,</p><p>Per te rikthyer fjalekalimin klikoni ne linkun ne vijim:</p><p>amici.epizy.com/forgot_password.php?email=$email&token=$token </p><p> <b> #amiciteam </b></p>";
+$mail->Body = "<p>Pershendetje,</p><p>Per te rikthyer fjalekalimin klikoni ne linkun ne vijim:</p><p>amici.epizy.com/forgot_password.php?email=$email&token=$token </p> <p><i>*Nese nuk keni bere kerkese per rikthimin e fjalekalimit, thjeshte injoroni kete email. </i> </p> <p> <b> #amiciteam </b></p>";
 if ($mail->send()) {
    //array_push($success, "Ju lutem kontrolloni emailin");
 } else {
