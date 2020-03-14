@@ -5,7 +5,8 @@
 
 	$username = "";
 	$email    = "";
-	$errors = array(); 
+	$errors = array();
+	$success = array(); 
 	$_SESSION['success'] = "";
 
 	// lidhu me databaze
@@ -102,9 +103,15 @@ include("config.php");
 
 
 		}
-
+			$_SESSION['emri'] = $emri;
+			$_SESSION['mbiemri'] = $mbiemri;
+			$_SESSION['email'] = $email;
+			$_SESSION['viti']=$viti;
+			$_SESSION['username'] = $username;
 			$_SESSION['hapja'] = true;
-				
+			/*include("mail.php");
+			$name = $emri." ".$mbiemri;
+			unapproved_account_mail($email, $name,$viti,$username);	*/
 			header('location: success.php');
 		}
 		else {
@@ -516,6 +523,57 @@ function compressImage($source, $destination, $quality) {
 
 }
 
+if (isset($_POST['submit_email'])){
+  $email = $_POST['email'];
+  $sql = "SELECT * from users where email='$email'";
+  $results = mysqli_query($db, $sql);
+  if (mysqli_num_rows($results) == 1){
+    $token = generateRandomString();
+      include("mail.php");
+  reset_password($email,$token);
+     $sql1 = "UPDATE users set token = '$token', tokenExpire=DATE_ADD(NOW(),INTERVAL 5 MINUTE) where email='$email'";
+  $results = mysqli_query($db, $sql1);
+  array_push($success,"Ju lutem kontrolloni emailin per te marre linkun e rikthimit te fjalekalimit");
+  }
+  else{
+    array_push($errors, "Ky email nuk ekziston");
+  }
+}
+if (isset($_POST['reset_password'])){
+	$password = mysqli_real_escape_string($db, $_POST['password']);
+	$password1 = mysqli_real_escape_string($db, $_POST['password1']);
+	$email = mysqli_real_escape_string($db, $_GET['email']);
+	$token =  mysqli_real_escape_string($db, $_GET['token']);
+      $sql = "SELECT * from users where email='$email' and token='$token' and token<>'' and  tokenExpire > NOW()";
+      $results = mysqli_query($db, $sql);
+      if (mysqli_num_rows($results)==1){
+      	if ($password != $password1) {
+			array_push($errors, "Fjalekalimet nuk pershtaten");
+		}
+		if (strlen($_POST['password']) <8 && strlen($_POST['password'])!=0 ){
+	array_push($errors, "Ju lutem shenoni 8 e me shume karaktere te fjalekalimit te ri!");
+}
+if (strlen($_POST['password']) >255 ){
+	array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi i ri!");
+}
+if (empty($password)) { array_push($errors, "Ju lutem plotesoni fjalekalimin"); }
+
+		if (count($errors)==0){
+			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+			$sql = "UPDATE users SET password='$password', token='' WHERE email='$email'";
+		
+			mysqli_query($db, $sql);
+			header("Location:login.php");
+			die();
+
+		}
+
+      }
+      else{
+      	header("Location:forgot_password.php");
+      }
+}
 ?>
 
 

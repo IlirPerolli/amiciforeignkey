@@ -150,6 +150,9 @@ var characters = textbox.value.split('');
     <label class="custom-control-label" for="defaultUnchecked">Shfaq Fjal&euml;kalimin</label>
 </div>
         <div class = "account" style = "margin-top: 10px;">
+        <a href= "forgot_password.php">Keni harruar fjalekalimin?</a>
+      </div>
+        <div class = "account" style = "margin-top: 10px;">
         Nuk keni llogari? <a href= "create-account.php">Regjistrohu</a>
       </div>
      

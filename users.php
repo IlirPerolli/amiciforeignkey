@@ -40,7 +40,14 @@ include("config.php");
                if(isset($_GET['user'])){
 
             $number=$_GET['user'];
-
+          $sql1 = "SELECT * from users where id='$number'";
+          $results1 = mysqli_query($db, $sql1);
+          $row = $results1->fetch_assoc();
+          $email = $row['email'];
+          $name = $row['Name']." ".$row['Surname'];
+          include("mail.php");
+          approved_account_mail($email, $name);
+          
             $sql = "UPDATE users SET verification='1' WHERE id='$number'";
     
       mysqli_query($db, $sql);
