@@ -17,7 +17,7 @@ exit();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="people.png" />
     <meta name="description" content="Amici Llogaria, vendi per te biseduar dhe per te shkembyer dokumente me njeri tjetrin" />
-    <meta name="keywords" content="amici, llogaria, amicillogaria, amici llogaria, ilir, krijo llogari, kyqu ne amici, bisedo, ilir perolli" />
+    <meta name="keywords" content="amici, llogaria, amicillogaria, amici llogaria, krijo llogari, kyqu ne amici, bisedo" />
     <meta name="google-site-verification" content="BTzlSeSQ5eRBLSlE1PrhaaNGD474rk60IL-1DZ0PnFg" />
     <link rel = "stylesheet" type = "text/css" href = "login-stili.css">
     <meta name="theme-color" content="#2f476d">
@@ -90,8 +90,8 @@ exit();
     <div class="contact-form">
       <?php
       if (isset($_GET['email']) && isset($_GET['token'])){
-      $email = $_GET['email'];
-      $token = $_GET['token'];
+      $email = mysqli_real_escape_string($db, $_GET['email']);
+      $token = mysqli_real_escape_string($db,$_GET['token']);
       $sql = "SELECT * from users where email='$email' and token='$token' and token<>'' and  tokenExpire > NOW()";
       $results = mysqli_query($db, $sql);
       if (mysqli_num_rows($results)==1){

@@ -563,7 +563,7 @@ else
 
   if(isset($_GET['keyword'])){
    
-$search_term = $_GET['keyword'];
+$search_term = mysqli_real_escape_string($db,$_GET['keyword']);
 $search_term = trim($search_term);
 //$search_term = preg_replace("#[^0-9a-z]#i", "", $search_term);
 

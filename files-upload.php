@@ -50,7 +50,7 @@ $imageFileType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
 
 if (count($errors) == 0){
 move_uploaded_file($file["tmp_name"], "user-files/".$filename);
-
+$filename = mysqli_real_escape_string($db, $file["name"]); // To prevent SQL Injection
 
 $query = "INSERT INTO userfiles (file,date, time, id_user) 
             VALUES('$filename','$date', '$time', '$id_user')";

@@ -694,8 +694,9 @@ die();
     }
     
     $vitiakademik = $_SESSION['vitiakademik'];
-$search_term = $_GET['keyword'];
+$search_term = mysqli_real_escape_string($db,$_GET['keyword']);
 $search_term = trim($search_term);
+
 //$search_term = preg_replace("#[^0-9a-z]#i", "", $search_term);
 /*
 
@@ -704,8 +705,7 @@ $search_term = trim($search_term);
 ORDER BY id DESC";
 */
 
-    $sql_check_for_replies = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND Comments  LIKE '%$search_term%'
-ORDER BY id DESC"; // Shiko per komente dhe replya
+    $sql_check_for_replies = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE academicyear='$vitiakademik' AND Comments  LIKE '%$search_term%' ORDER BY id DESC"; // Shiko per komente dhe replya
     $query = mysqli_query($db, $sql_check_for_replies);
        $replyingtoarray=array(); // Krijo varg per replyat
     while(($row_check = $query->fetch_assoc()) !== null){ 

@@ -270,7 +270,7 @@ header("Location:files.php");
           $orderby="DESC";
           }
           $vitiakademik = $_SESSION['vitiakademik'];
-          $search_term = $_GET['keyword'];
+          $search_term = mysqli_real_escape_string($db,$_GET['keyword']);
           $search_term = trim($search_term);
           $sql = "SELECT userfiles.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, file, time,date from userfiles inner join users on userfiles.id_user = users.id WHERE academicyear='$vitiakademik' and file LIKE '%$search_term%' ORDER BY id $orderby";
           $results = mysqli_query($db, $sql);

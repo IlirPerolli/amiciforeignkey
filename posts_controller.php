@@ -320,7 +320,7 @@ else
 
   if(isset($_GET['keyword'])){
     $vitiakademik = $_SESSION['vitiakademik'];
-$search_term = $_GET['keyword'];
+$search_term = mysqli_real_escape_string($db,$_GET['keyword']);
 $search_term = trim($search_term);
 //$search_term = preg_replace("#[^0-9a-z]#i", "", $search_term);
 
@@ -387,7 +387,7 @@ $sql .= ") ORDER BY id DESC"; // Radhiti prej komentit te fundit
 
     $query = mysqli_query($db, $sql);
     $count = mysqli_num_rows($query);
-    echo "<div class='search-term-display' style = 'padding-top:20px'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
+    echo "<div class='search-term-display' style = 'padding-top:55px'>Rezultatet e kerkimit per: ". $search_term. " | ".$count. " rezultate". "</div>";
     echo'<div class="dropdown-divider"></div>'; 
    // if((preg_match('/^\s+$/', $search_term)) == 1){
  //header("Location:group.php");

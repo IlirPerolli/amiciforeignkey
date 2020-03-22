@@ -40,9 +40,19 @@ include("config.php");
 		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
 		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
 		if (preg_match('~[0-9]+~', $emri)) {array_push($errors, "Emri nuk duhet te permbaje numra"); }
+		if (strpos($emri,'>') !== false){array_push($errors, "Emri nuk mund te permbaje '>'"); }
+		if (strpos($emri,'&') !== false){array_push($errors, "Emri nuk mund te permbaje '&'"); }
+		if (strpos($emri,'=') !== false){array_push($errors, "Emri nuk mund te permbaje '='"); }
+		if (strpos($emri,"'") !== false){array_push($errors, "Emri nuk mund te permbaje '"); }
+		if (strpos($emri,'`') !== false){array_push($errors, "Emri nuk mund te permbaje '`'"); }
 		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
 		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
 		if (preg_match('~[0-9]+~', $mbiemri)) {array_push($errors, "Mbiemri nuk duhet te permbaje numra"); }
+		if (strpos($mbiemri,'>') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '>'"); }
+		if (strpos($mbiemri,'&') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '&'"); }
+		if (strpos($mbiemri,'=') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '='"); }
+		if (strpos($mbiemri,"'") !== false){array_push($errors, "Mbiemri nuk mund te permbaje '"); }
+		if (strpos($mbiemri,'`') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '`'"); }
 		if (empty($mosha)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
 		if (($gender) == -1){array_push($errors, "Ju lutem zgjedhni gjinine"); }
 		if (($viti) == -1) { array_push($errors, "Ju lutem zgjedhni vitin akademik"); }
@@ -525,7 +535,7 @@ function compressImage($source, $destination, $quality) {
 }
 
 if (isset($_POST['submit_email'])){
-  $email = $_POST['email'];
+  $email = mysqli_real_escape_string($db, $_POST['email']);
   $sql = "SELECT * from users where email='$email'";
   $results = mysqli_query($db, $sql);
   if (mysqli_num_rows($results) == 1){
