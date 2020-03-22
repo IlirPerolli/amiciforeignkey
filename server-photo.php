@@ -42,7 +42,7 @@ $results1 = mysqli_query($db, $query1);
 
     compressImage($_FILES['fileToUpload']['tmp_name'],$target_file,60);
 $username = $_SESSION['username'];
-$target_file1 = $_FILES["fileToUpload"]["name"];
+$target_file1 = mysqli_real_escape_string($db, $_FILES["fileToUpload"]["name"]);
 
 if (strpos($target_file1,'Snapchat') !== false) {
 
