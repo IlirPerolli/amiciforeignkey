@@ -639,7 +639,7 @@ var characters = textbox.value.split('');
 
   if (isset($_GET['edit-comment'])){
 
-$number=$_GET['edit-comment'];
+$number=mysqli_real_escape_string($db, $_GET['edit-comment']);
 $query100 = " SELECT users.username, Comments from userposts inner join users on userposts.id_user = users.id WHERE userposts.id ='$number'";
                                     $results100 = mysqli_query($db, $query100);
                                     $row100 = $results100->fetch_assoc();
