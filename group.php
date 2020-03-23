@@ -67,7 +67,10 @@ else{
    }
     //Shiko se a ka sortim dhe nese po atehere vendose me nje variabel
              if (isset($_GET['orderby'])){
-      $orderby = $_GET['orderby'];
+              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:group.php");die();}
+              else{
+                  $orderby = $_GET['orderby'];
+              }
     }
     else {
       $orderby="DESC";
@@ -686,8 +689,11 @@ die();
 
   if(isset($_GET['keyword'])){
     //Shiko nese ka sortim dhe nese po fute ne nje variabel
-    if (isset($_GET['orderby'])){
-      $orderby = $_GET['orderby'];
+          if (isset($_GET['orderby'])){
+              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:group.php");die();}
+              else{
+                  $orderby = $_GET['orderby'];
+              }
     }
     else {
       $orderby="DESC";

@@ -226,8 +226,11 @@ header("Location:files.php");
           include('errors.php');
           echo '<br>';
           if (isset($_GET['orderby'])){
-          $orderby = $_GET['orderby'];
-          }
+              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
+              else{
+                  $orderby = $_GET['orderby'];
+              }
+    }
           else {
           $orderby="DESC";
           }
@@ -263,9 +266,12 @@ header("Location:files.php");
           //Kerkimi me search
           if(isset($_GET['keyword'])){
           //Shiko nese ka sortim dhe nese po fute ne nje variabel
-          if (isset($_GET['orderby'])){
-          $orderby = $_GET['orderby'];
-          }
+           if (isset($_GET['orderby'])){
+              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
+              else{
+                  $orderby = $_GET['orderby'];
+              }
+    }
           else {
           $orderby="DESC";
           }
