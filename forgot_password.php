@@ -14,7 +14,7 @@ exit();
     window.history.replaceState( null, null, window.location.href );
     } //Mos u submit nese bohet refresh faqja
     </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <?php include("bootstrap_css.php");?>
     <link rel="icon" type="image/png" href="people.png" />
     <meta name="description" content="Amici Llogaria, vendi per te biseduar dhe per te shkembyer dokumente me njeri tjetrin" />
     <meta name="keywords" content="amici, llogaria, amicillogaria, amici llogaria, krijo llogari, kyqu ne amici, bisedo" />
@@ -81,11 +81,7 @@ exit();
   </head>
   <body>
     <?php include('success_alert.php'); ?>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
     <div class = "titulli"><span style = "color:black"> amici  </span><span style = "  color:#9E9E9E;" >rikthimi </span></div>
     <div class="contact-form">
       <?php
@@ -133,5 +129,6 @@ exit();
     </script>
     <?php
     ?>
+    <?php include("bootstrap_javascript.php");?>  
   </body>
 </html>

@@ -524,4 +524,7 @@ overflow: auto;
    border: none !important;
    box-shadow: none;
 }
- 
+/* Per alertin e corona virusit */
+ #close-alert:focus{
+  outline: none;
+ }

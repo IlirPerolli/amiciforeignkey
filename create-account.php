@@ -12,7 +12,7 @@
 <head>
   
  <link rel="icon" type="image/png" href="people.png" />
-     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+ <?php include("bootstrap_css.php");?>
   <meta name="theme-color" content="#2f476d">
 <meta name="msapplication-navbutton-color" content="#2f476d">
 <link rel = "stylesheet" type = "text/css" href="account-stili.css">
