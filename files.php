@@ -197,12 +197,7 @@ header("Location:files.php");
           <div class="spinner-border" role="status" id = "loading" style="width: 4rem; height: 4rem;">
             <span class="sr-only">Loading...</span>
           </div>
-          <script>
-          $(".custom-file-input").on("change", function() {
-          var fileName = $(this).val().split("\\").pop();
-          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-          });
-          </script>
+         
           <?php if (!isset($_GET['keyword'])){?>
           <div class = "sort_container">
             <select name="order" onchange="location = this.value;">
@@ -925,5 +920,11 @@ header("Location:files.php");
                                   </div>
                                 </div>
                                 <?php include("bootstrap_javascript.php");?>  
+                                 <script>
+                                  $(".custom-file-input").on("change", function() {
+                                  var fileName = $(this).val().split("\\").pop();
+                                  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                  });
+                                  </script>
                               </body>
                             </html>
