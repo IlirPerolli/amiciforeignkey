@@ -389,7 +389,7 @@ var characters = textbox.value.split('');
       if (mysqli_num_rows($results) == 0){
         header("Location:lessons.php");
       }
-       $querycheck = "SELECT folder_uploads.id, users.Name, users.Surname, users.username, folder_uploads.upload_name, folder_uploads.link, folder_uploads.photo, folder_uploads.date, folder_uploads.time FROM folder_uploads inner join users on folder_uploads.id_user = users.id WHERE id_folder='$number' order by id asc";
+       $querycheck = "SELECT folder_uploads.id, users.Name, users.Surname, users.username, folder_uploads.upload_name, folder_uploads.link, folder_uploads.photo, folder_uploads.date, folder_uploads.time FROM folder_uploads inner join users on folder_uploads.id_user = users.id WHERE id_folder='$number' order by id desc";
       $results = mysqli_query($db, $querycheck);
       while(($row = $results->fetch_assoc()) !== null){ 
  echo '<div class = "folder">';
@@ -521,7 +521,7 @@ else {
   </div>';
 }
 
-   $querycheck = "SELECT users.Name, users.Surname, users.username, folders.id, folders.photo,folders.folder_name,folders.date,folders.time FROM folders inner join users on folders.id_user = users.id order by id asc";
+   $querycheck = "SELECT users.Name, users.Surname, users.username, folders.id, folders.photo,folders.folder_name,folders.date,folders.time FROM folders inner join users on folders.id_user = users.id order by id desc";
       $results = mysqli_query($db, $querycheck);
       while(($row = $results->fetch_assoc()) !== null){ 
  echo '<div class = "folder">';
