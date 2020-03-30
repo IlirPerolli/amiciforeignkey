@@ -30,7 +30,7 @@ exit();
       font-family: SamsungSharpSans-Bold;
     }
     body{
-      background: #FAFAFA;
+      background: #F3F3F3;
     }
  
 
