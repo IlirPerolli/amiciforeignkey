@@ -399,6 +399,15 @@ unlink($myFile);
 		$sql = "DELETE FROM users WHERE username = '$username'";
 		mysqli_query($db, $sql);
 
+		//Regjistro ankesen ne file // Fshij nese paraqet bug
+$abonimi = $_POST['abonohu'];
+$file = fopen("DeleteAccountComments/$username.txt", "w+") or die ("file not open");
+$s = "Komenti: ".$abonimi."\n";
+fputs($file, $s) or die("Data not write");
+fclose($file);
+
+
+
 		
 			header('Location: logout.php');
 			die();

@@ -9,19 +9,6 @@ include ("verify_user.php");
      include("check-vitiakademik.php");
 
 ?>
-<?php
-$emriifajlit = $_SESSION['username'];
-if (isset($_POST['deleteacc'])){
-$abonimi = $_POST['abonohu'];
-$file = fopen("DeleteAccountComments/$emriifajlit.txt", "w+") or die ("file not open");
-$s = "Komenti: ".$abonimi."\n";
-fputs($file, $s) or die("Data not write");
-fclose($file);
-
-
-}
-
- ?>
  <?php 
 
 
