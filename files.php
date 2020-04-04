@@ -690,8 +690,11 @@ header("Location:files.php");
                                 <span class="sr-only">Para</span>
                               </a>
                             </li>
-                            <?php
-                            // vendos faqet
+                            
+<?php
+/* 
+***************** Before ****************
+ // vendos faqet
                             for($pages=1; $pages<=$number_of_pages; $pages++){
                             //Shiko se mos ka sortim
                             if(isset($_GET['orderby'])){
@@ -714,7 +717,205 @@ header("Location:files.php");
                             
                             
                             }
-                            ?>
+                            *****************************************
+
+                            
+
+
+*/
+
+
+
+
+
+//Nese jemi ne faqen me e madhe se 3 atehere:
+if ($page >3 && $page <=$number_of_pages){
+  //Nese gjendemi ne faqen e parafundit
+  if ($page== $number_of_pages-1){
+//Nese jane gjithsej 5 faqe
+if ($number_of_pages ==5){
+  //Paraqiti te gjitha
+ for ($pages=1; $pages<=$number_of_pages; $pages++){
+       //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+    }
+}
+
+else{
+  //Perndryshe paraqit ... anash dhe le vetem 2 faqe
+    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+    for ($pages=$page-3; $pages<=$page+1; $pages++){
+       //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+      
+    } 
+  }
+
+
+
+  }
+  //Nese jemi ne faqen e fundit
+  else if ($page== $number_of_pages){
+    //Nese jane vetem 5 faqe mos paraqit ...
+    if ($number_of_pages == 5){
+
+    }
+    //Perndryshe paraqiti ...
+    else{
+    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+    }
+    //Paraqit 4 faqe paraprake 
+    for ($pages=$page-4 ; $pages<=$page; $pages++){
+      //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+    } 
+  } 
+  //Nese jane me shume se 5 faqe dhe faqet gjinden ne midis te kushteve
+    else{
+      echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+    for ($pages=$page-2; $pages<=$page+2; $pages++){
+       //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+    }
+      //Nese vetem edhe 2 faqe mbeten krejt atehere mos i qit ...
+     if ($page == $number_of_pages-2){
+      
+     }
+     //Nese ka edhe me shume faqe te mbetura
+     else{
+       echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+     }
+  }
+}
+ //Nese jemi me poshte se faqja 3
+else{
+  //Nese jane me shume se 5 faqe atehere paraqiti 5 te parat
+  if ($number_of_pages>5){
+     for ($pages=1; $pages<=5; $pages++){
+      //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+
+    }
+    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+  }
+  //Nese jane me pak se 5 faqe atehere paraqiti vetem ato qe jane 
+  else{
+   for ($pages=1; $pages<=$number_of_pages; $pages++){
+       //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+      
+    
+    }
+
+  }
+}
+?>
                             
                             <?php
                             if ($page<$number_of_pages){
