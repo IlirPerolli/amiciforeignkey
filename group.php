@@ -1124,7 +1124,7 @@ echo'
     <img src = "img/gallery.png" id="gallery-icon"/>
 </label>
 <input name="fileToUpload" id="fileToUpload" type="file" accept="image/*"/>'; 
-echo'<input type = "text" class = "diskutimi" name = "diskuto" placeholder = "Shkruaj mendimet tuaja... " oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" id="abc" autocomplete="off" onkeyup="success()"/>';
+echo'<input type = "text" class = "diskutimi" name = "diskuto" placeholder = "Shkruaj mendimet tuaja... " oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" id="abc" autocomplete="off" autofocus onkeyup="success()"/>';
 
 echo'<input type = "submit" class = "biseda" name = "user-discuss" value = "Dergo" id="abc2" disabled/>';
 echo'<div class = "spinner">';
@@ -1473,12 +1473,22 @@ die();
 </div>
 
 </div>
+<!-- Shiko a eshte jashte kerkimi-->
 <?php if (!isset($_GET['keyword'])) {?>
 <!-- Numri i faqeve -->
 <div class = "pagination-wrapper">
 <nav aria-label="..." class="pagination">
   <ul class="pagination pagination-md justify-content-center" style=" margin: 0 auto !important;">
-    
+  <!-- 
+  *********** Butoni Fillim ************
+  <?php if (($page > 3) && ($number_of_pages > 5) ){ ?>
+     <li class="page-item">
+      <a class="page-link" href="?page=1" aria-label="First">
+        <span aria-hidden="true">Fillim</span>
+        <span class="sr-only">First</span>
+      </a>
+    </li>
+    <?php } ?>-->
 
        <?php 
        if ($page>1){
@@ -1620,13 +1630,42 @@ if ($page==$pages){
   //Nese jemi ne faqen e fundit
   else if ($page== $number_of_pages){
     //Nese jane vetem 5 faqe mos paraqit ...
-    if ($number_of_pages == 5){
+    if ($number_of_pages == 4){
 
     }
+    else if ($number_of_pages == 5){
+
+    }
+    
     //Perndryshe paraqiti ...
     else{
     echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
     }
+    //Nese jane vetem 4 faqe paraqiti 3 te parat
+    if ($number_of_pages ==4){
+    //Paraqit 4 faqe paraprake 
+    for ($pages=$page-3 ; $pages<=$page; $pages++){
+      //Shiko se mos ka sortim
+        if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+      }
+              }
+              else{
+                if ($page==$pages){
+         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+      else{
+         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+      }
+              }
+    } }
+    //Nese jane 5 faqe paraqiti 4 te parat
+    else{
     //Paraqit 4 faqe paraprake 
     for ($pages=$page-4 ; $pages<=$page; $pages++){
       //Shiko se mos ka sortim
@@ -1647,9 +1686,11 @@ if ($page==$pages){
          echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
       }
               }
-      
-    
-    } 
+    } }
+
+
+
+
   } 
   //Nese jane me shume se 5 faqe dhe faqet gjinden ne midis te kushteve
     else{
@@ -1780,12 +1821,25 @@ $pas = $page;
         <span class="sr-only">Pas</span>
       </a>
     </li>
+    <!--
+    *********** Butoni Fund ************
+    <?php if (($page < $number_of_pages-2) && ($number_of_pages > 5) ){ ?>
+     <li class="page-item">
+      <a class="page-link" href="?page=<?php echo $number_of_pages;?>" aria-label="Last">
+        <span aria-hidden="true">Fund</span>
+        <span class="sr-only">Last</span>
+      </a>
+    </li>
+    <?php } ?>-->
   </ul>
 </nav>
 </div>
 <br><br>
 <!-- Perfundimi i numrit te faqeve -->
-<?php } ?>
+
+<?php 
+ //Mbarimi i Shiko se a eshte jashte kerkimit...
+} ?>
 <script type="text/javascript">
   $(function () {
   $('[data-toggle="tooltip"]').tooltip()

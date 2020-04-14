@@ -71,10 +71,10 @@ header("Location:files.php");
     <link rel = "stylesheet" type = "text/css" href = "files-stili.css">
     <script src="navi.js"></script>
     <style>
-        @media screen and (max-width: 960px){
-      .toast{
-  margin-top: 60px !important;
-}
+    @media screen and (max-width: 960px){
+    .toast{
+    margin-top: 60px !important;
+    }
     }
     </style>
   </head>
@@ -152,7 +152,7 @@ header("Location:files.php");
           </ul>
         </div>
       </nav>
-     
+      
       <br><br><br><br><br><span class = "br-mob"><br></span>
       <span id="search-br"><br><br> </span>
       <div style = "text-align:center">
@@ -197,7 +197,7 @@ header("Location:files.php");
           <div class="spinner-border" role="status" id = "loading" style="width: 4rem; height: 4rem;">
             <span class="sr-only">Loading...</span>
           </div>
-         
+          
           <?php if (!isset($_GET['keyword'])){?>
           <div class = "sort_container">
             <select name="order" onchange="location = this.value;">
@@ -222,11 +222,11 @@ header("Location:files.php");
           include('errors.php');
           echo '<br>';
           if (isset($_GET['orderby'])){
-              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
-              else{
-                  $orderby = $_GET['orderby'];
-              }
-    }
+          if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
+          else{
+          $orderby = $_GET['orderby'];
+          }
+          }
           else {
           $orderby="DESC";
           }
@@ -262,12 +262,12 @@ header("Location:files.php");
           //Kerkimi me search
           if(isset($_GET['keyword'])){
           //Shiko nese ka sortim dhe nese po fute ne nje variabel
-           if (isset($_GET['orderby'])){
-              if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
-              else{
-                  $orderby = $_GET['orderby'];
-              }
-    }
+          if (isset($_GET['orderby'])){
+          if (($_GET['orderby']!= "desc") && ($_GET['orderby']!="asc")){header("Location:files.php");die();}
+          else{
+          $orderby = $_GET['orderby'];
+          }
+          }
           else {
           $orderby="DESC";
           }
@@ -654,7 +654,16 @@ header("Location:files.php");
           <div class = "pagination-wrapper">
             <nav aria-label="..." class="pagination">
               <ul class="pagination pagination-md justify-content-center" style=" margin: 0 auto !important;">
-                
+                <!--
+                *********** Butoni Fillim ************
+                <?php if (($page > 3) && ($number_of_pages > 5) ){ ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=1" aria-label="First">
+                    <span aria-hidden="true">Fillim</span>
+                    <span class="sr-only">First</span>
+                  </a>
+                </li>
+                <?php } ?>-->
                 <?php
                 if ($page>1){
                 if(isset($_GET['orderby'])){
@@ -691,10 +700,10 @@ header("Location:files.php");
                               </a>
                             </li>
                             
-<?php
-/* 
-***************** Before ****************
- // vendos faqet
+                            <?php
+                            /*
+                            ***************** Before ****************
+                            // vendos faqet
                             for($pages=1; $pages<=$number_of_pages; $pages++){
                             //Shiko se mos ka sortim
                             if(isset($_GET['orderby'])){
@@ -718,204 +727,215 @@ header("Location:files.php");
                             
                             }
                             *****************************************
-
                             
-
-
-*/
-
-
-
-
-
-//Nese jemi ne faqen me e madhe se 3 atehere:
-if ($page >3 && $page <=$number_of_pages){
-  //Nese gjendemi ne faqen e parafundit
-  if ($page== $number_of_pages-1){
-//Nese jane gjithsej 5 faqe
-if ($number_of_pages ==5){
-  //Paraqiti te gjitha
- for ($pages=1; $pages<=$number_of_pages; $pages++){
-       //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-    }
-}
-
-else{
-  //Perndryshe paraqit ... anash dhe le vetem 2 faqe
-    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
-    for ($pages=$page-3; $pages<=$page+1; $pages++){
-       //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-      
-    } 
-  }
-
-
-
-  }
-  //Nese jemi ne faqen e fundit
-  else if ($page== $number_of_pages){
-    //Nese jane vetem 5 faqe mos paraqit ...
-    if ($number_of_pages == 5){
-
-    }
-    //Perndryshe paraqiti ...
-    else{
-    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
-    }
-    //Paraqit 4 faqe paraprake 
-    for ($pages=$page-4 ; $pages<=$page; $pages++){
-      //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-    } 
-  } 
-  //Nese jane me shume se 5 faqe dhe faqet gjinden ne midis te kushteve
-    else{
-      echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
-    for ($pages=$page-2; $pages<=$page+2; $pages++){
-       //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-    }
-      //Nese vetem edhe 2 faqe mbeten krejt atehere mos i qit ...
-     if ($page == $number_of_pages-2){
-      
-     }
-     //Nese ka edhe me shume faqe te mbetura
-     else{
-       echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
-     }
-  }
-}
- //Nese jemi me poshte se faqja 3
-else{
-  //Nese jane me shume se 5 faqe atehere paraqiti 5 te parat
-  if ($number_of_pages>5){
-     for ($pages=1; $pages<=5; $pages++){
-      //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-
-    }
-    echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
-  }
-  //Nese jane me pak se 5 faqe atehere paraqiti vetem ato qe jane 
-  else{
-   for ($pages=1; $pages<=$number_of_pages; $pages++){
-       //Shiko se mos ka sortim
-        if(isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
-      }
-              }
-              else{
-                if ($page==$pages){
-         echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-      else{
-         echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
-      }
-              }
-      
-    
-    }
-
-  }
-}
-?>
+                            */
+                            //Nese jemi ne faqen me e madhe se 3 atehere:
+                            if ($page >3 && $page <=$number_of_pages){
+                            //Nese gjendemi ne faqen e parafundit
+                            if ($page== $number_of_pages-1){
+                            //Nese jane gjithsej 5 faqe
+                            if ($number_of_pages ==5){
+                            //Paraqiti te gjitha
+                            for ($pages=1; $pages<=$number_of_pages; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            
+                            
+                            }
+                            }
+                            else{
+                            //Perndryshe paraqit ... anash dhe le vetem 2 faqe
+                            echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+                            for ($pages=$page-3; $pages<=$page+1; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            
+                            
+                            
+                            }
+                            }
+                            }
+                            //Nese jemi ne faqen e fundit
+                            else if ($page== $number_of_pages){
+                            //Nese jane vetem 5 faqe mos paraqit ...
+                            if ($number_of_pages == 4){
+                            }
+                            else if ($number_of_pages == 5){
+                            }
+                            
+                            //Perndryshe paraqiti ...
+                            else{
+                            echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+                            }
+                            //Nese jane vetem 4 faqe paraqiti 3 te parat
+                            if ($number_of_pages ==4){
+                            //Paraqit 4 faqe paraprake
+                            for ($pages=$page-3 ; $pages<=$page; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            } }
+                            //Nese jane 5 faqe paraqiti 4 te parat
+                            else{
+                            //Paraqit 4 faqe paraprake
+                            for ($pages=$page-4 ; $pages<=$page; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            } }
+                            }
+                            //Nese jane me shume se 5 faqe dhe faqet gjinden ne midis te kushteve
+                            else{
+                            echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+                            for ($pages=$page-2; $pages<=$page+2; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            
+                            
+                            }
+                            //Nese vetem edhe 2 faqe mbeten krejt atehere mos i qit ...
+                            if ($page == $number_of_pages-2){
+                            
+                            }
+                            //Nese ka edhe me shume faqe te mbetura
+                            else{
+                            echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+                            }
+                            }
+                            }
+                            //Nese jemi me poshte se faqja 3
+                            else{
+                            //Nese jane me shume se 5 faqe atehere paraqiti 5 te parat
+                            if ($number_of_pages>5){
+                            for ($pages=1; $pages<=5; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            
+                            
+                            }
+                            echo '<li class="page-item"><a class="page-link" style="color:#007bff;">...</a></li>';
+                            }
+                            //Nese jane me pak se 5 faqe atehere paraqiti vetem ato qe jane
+                            else{
+                            for ($pages=1; $pages<=$number_of_pages; $pages++){
+                            //Shiko se mos ka sortim
+                            if(isset($_GET['orderby'])){
+                            $orderby = $_GET['orderby'];
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'&orderby='.$orderby.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            else{
+                            if ($page==$pages){
+                            echo '<li class="page-item disabled" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            else{
+                            echo '<li class="page-item" id="'.$pages.'"><a class="page-link" href="?page=' .$pages.'">'. $pages .'</a></li>';
+                            }
+                            }
+                            
+                            
+                            }
+                            }
+                            }
+                            ?>
                             
                             <?php
                             if ($page<$number_of_pages){
@@ -952,180 +972,191 @@ if ($page==$pages){
                                             <span class="sr-only">Pas</span>
                                           </a>
                                         </li>
+                                        <!--
+                                        *********** Butoni Fund ************
+                                        <?php if (($page < $number_of_pages-2) && ($number_of_pages > 5) ){ ?>
+                                        <li class="page-item">
+                                          <a class="page-link" href="?page=<?php echo $number_of_pages;?>" aria-label="Last">
+                                            <span aria-hidden="true">Fund</span>
+                                            <span class="sr-only">Last</span>
+                                          </a>
+                                        </li>
+                                        <?php } ?>-->
                                       </ul>
-                                    </nav>
-                                  </div>
-                                  <br><br>
-                                  <!-- Perfundimi i numrit te faqeve -->
+                                    </ul>
+                                  </nav>
                                 </div>
-                                <?php
-                                //Mbarimi i Shiko se a eshte jashte kerkimit...
-                                }?>
-                                <script type="text/javascript">
-                                var cw = $('.download-photo').width();
-                                $('.download-photo').css({
-                                'height': cw + 'px'
-                                });
-                                </script>
-                                <script type="text/javascript">
-                                $(document).ready(function() {
-                                $("#btnFiles").click(function() {
-                                $(this).html(
-                                `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Duke ngarkuar...`
-                                );
-                                //$('#loading').show();
-                                });
-                                });
-                                </script>
-                                <script type="text/javascript">
-                                $(document).ready(function() {
-                                $("#btnFiles1").click(function() {
-                                $('#loading').show();
-                                $('#btnFiles1').hide();
-                                });
-                                });
-                                </script>
-                                <script type="text/javascript">
-                                function searchfunction(){
-                                var i=document.getElementById("search");
-                                var j=document.getElementById("search1");
-                                if(i.value=="")
-                                {
-                                document.getElementById("search-submit").disabled=true;
-                                }
-                                else
-                                document.getElementById("search-submit").disabled=false;
-                                if(j.value=="")
-                                {
-                                document.getElementById("search-submit1").disabled=true;
-                                }
-                                else
-                                document.getElementById("search-submit1").disabled=false;
-                                }
-                                </script>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+                                <br><br>
+                                <!-- Perfundimi i numrit te faqeve -->
+                              </div>
+                              <?php
+                              //Mbarimi i Shiko se a eshte jashte kerkimit...
+                              }?>
+                              <script type="text/javascript">
+                              var cw = $('.download-photo').width();
+                              $('.download-photo').css({
+                              'height': cw + 'px'
+                              });
+                              </script>
+                              <script type="text/javascript">
+                              $(document).ready(function() {
+                              $("#btnFiles").click(function() {
+                              $(this).html(
+                              `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Duke ngarkuar...`
+                              );
+                              //$('#loading').show();
+                              });
+                              });
+                              </script>
+                              <script type="text/javascript">
+                              $(document).ready(function() {
+                              $("#btnFiles1").click(function() {
+                              $('#loading').show();
+                              $('#btnFiles1').hide();
+                              });
+                              });
+                              </script>
+                              <script type="text/javascript">
+                              function searchfunction(){
+                              var i=document.getElementById("search");
+                              var j=document.getElementById("search1");
+                              if(i.value=="")
+                              {
+                              document.getElementById("search-submit").disabled=true;
+                              }
+                              else
+                              document.getElementById("search-submit").disabled=false;
+                              if(j.value=="")
+                              {
+                              document.getElementById("search-submit1").disabled=true;
+                              }
+                              else
+                              document.getElementById("search-submit1").disabled=false;
+                              }
+                              </script>
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
+                                      
+                                      <?php
+                                      $username = $_SESSION['username'];
+                                      $sql = "SELECT * from admins where username='$username'";
+                                      $results = mysqli_query($db, $sql);
+                                      if (mysqli_num_rows($results)==1){
+                                      ?>
+                                      <form action="#" method="post" style="height:10px;">
                                         
+                                        <!-- Button trigger modal -->
+                                        <button type="submit" class="btn btn-light" id="reset_online" name="reset_online" title="Rifresko" >
+                                        <img src= "img/reset-icon.png" style = "width:30px; margin-top: -6px; margin-left: 5px;"/>
+                                        </button>
+                                      </form>
+                                      <?php }?>
+                                      <?php
+                                      if (isset($_POST['reset_online'])){
+                                      $sql = "UPDATE users set online=0";
+                                      mysqli_query($db,$sql);
+                                      header("Location:files.php");
+                                      }
+                                      ?>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <span style = "color:green; font-size:20px" >Online</span>
+                                      <br><br>
+                                      <!-- ONLINE -->
+                                      <ul class="list-unstyled">
                                         <?php
-                                        $username = $_SESSION['username'];
-                                        $sql = "SELECT * from admins where username='$username'";
-                                        $results = mysqli_query($db, $sql);
-                                        if (mysqli_num_rows($results)==1){
-                                        ?>
-                                        <form action="#" method="post" style="height:10px;">
-                                          
-                                          <!-- Button trigger modal -->
-                                          <button type="submit" class="btn btn-light" id="reset_online" name="reset_online" title="Rifresko" >
-                                          <img src= "img/reset-icon.png" style = "width:30px; margin-top: -6px; margin-left: 5px;"/>
-                                          </button>
-                                        </form>
-                                        <?php }?>
-                                        <?php
-                                        if (isset($_POST['reset_online'])){
-                                        $sql = "UPDATE users set online=0";
-                                        mysqli_query($db,$sql);
-                                        header("Location:files.php");
+                                        $vitiakademik = $_SESSION['vitiakademik'];
+                                        $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
+                                        $results = mysqli_query($db, $query);
+                                        while(($row = $results->fetch_assoc()) !== null){
+                                        echo '
+                                        <li class="media">
+                                          <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                          <div class="media-body">';
+                                            echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
+                                            $username = $row['username'];
+                                            $sql = "SELECT * from admins where username='$username'";
+                                            $results1 = mysqli_query($db, $sql);
+                                            if (mysqli_num_rows($results1)==1){
+                                            echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
+                                            }
+                                            echo' </h5>';
+                                            
+                                            if (mysqli_num_rows($results1)==1){
+                                            echo 'Administrator';
+                                            }
+                                            
+                                            else{
+                                            echo 'Student';
+                                            }
+                                            
+                                            echo'
+                                          </div>
+                                        </li>
+                                        <br>';
                                         }
                                         ?>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <span style = "color:green; font-size:20px" >Online</span>
-                                        <br><br>
-                                        <!-- ONLINE -->
-                                        <ul class="list-unstyled">
-                                          <?php
-                                          $vitiakademik = $_SESSION['vitiakademik'];
-                                          $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
-                                          $results = mysqli_query($db, $query);
-                                          while(($row = $results->fetch_assoc()) !== null){
-                                          echo '
-                                          <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
-                                            <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
-                                              $username = $row['username'];
-                                              $sql = "SELECT * from admins where username='$username'";
-                                              $results1 = mysqli_query($db, $sql);
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
-                                              }
-                                              echo' </h5>';
-                                              
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo 'Administrator';
-                                              }
-                                              
-                                              else{
-                                              echo 'Student';
-                                              }
-                                              
-                                              echo'
-                                            </div>
-                                          </li>
-                                          <br>';
-                                          }
-                                          ?>
-                                        </ul>
-                                        <!-- END OF ONLINE -->
-                                        <!-- OFFLINE -->
-                                        <span style = "color:grey; font-size:20px" >Offline</span>
-                                        <br><br>
-                                        
-                                        <ul class="list-unstyled">
-                                          <?php
-                                          $vitiakademik = $_SESSION['vitiakademik'];
-                                          $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
-                                          $results = mysqli_query($db, $query);
-                                          while(($row = $results->fetch_assoc()) !== null){
-                                          echo '
-                                          <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
-                                            <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
-                                              $username = $row['username'];
-                                              $sql = "SELECT * from admins where username='$username'";
-                                              $results1 = mysqli_query($db, $sql);
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
-                                              }
-                                              echo' </h5>';
-                                              
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo 'Administrator';
-                                              }
-                                              
-                                              else{
-                                              echo 'Student';
-                                              }
-                                              
-                                              echo'
-                                            </div>
-                                          </li>
-                                          <br>';
-                                          }
-                                          ?>
-                                        </ul>
-                                        <!-- END OF OFFLINE -->
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
-                                      </div>
+                                      </ul>
+                                      <!-- END OF ONLINE -->
+                                      <!-- OFFLINE -->
+                                      <span style = "color:grey; font-size:20px" >Offline</span>
+                                      <br><br>
+                                      
+                                      <ul class="list-unstyled">
+                                        <?php
+                                        $vitiakademik = $_SESSION['vitiakademik'];
+                                        $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
+                                        $results = mysqli_query($db, $query);
+                                        while(($row = $results->fetch_assoc()) !== null){
+                                        echo '
+                                        <li class="media">
+                                          <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                          <div class="media-body">';
+                                            echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
+                                            $username = $row['username'];
+                                            $sql = "SELECT * from admins where username='$username'";
+                                            $results1 = mysqli_query($db, $sql);
+                                            if (mysqli_num_rows($results1)==1){
+                                            echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
+                                            }
+                                            echo' </h5>';
+                                            
+                                            if (mysqli_num_rows($results1)==1){
+                                            echo 'Administrator';
+                                            }
+                                            
+                                            else{
+                                            echo 'Student';
+                                            }
+                                            
+                                            echo'
+                                          </div>
+                                        </li>
+                                        <br>';
+                                        }
+                                        ?>
+                                      </ul>
+                                      <!-- END OF OFFLINE -->
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
                                     </div>
                                   </div>
                                 </div>
-                                <?php include("bootstrap_javascript.php");?>  
-                                 <script>
-                                  $(".custom-file-input").on("change", function() {
-                                  var fileName = $(this).val().split("\\").pop();
-                                  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                                  });
-                                  </script>
-                              </body>
-                            </html>
+                              </div>
+                              <?php include("bootstrap_javascript.php");?>
+                              <script>
+                              $(".custom-file-input").on("change", function() {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                              });
+                              </script>
+                            </body>
+                          </html>
