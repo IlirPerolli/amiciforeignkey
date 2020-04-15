@@ -1480,15 +1480,22 @@ die();
 <nav aria-label="..." class="pagination">
   <ul class="pagination pagination-md justify-content-center" style=" margin: 0 auto !important;">
   <!-- 
-  *********** Butoni Fillim ************
+  *********** Butoni Fillim ************-->
   <?php if (($page > 3) && ($number_of_pages > 5) ){ ?>
-     <li class="page-item">
-      <a class="page-link" href="?page=1" aria-label="First">
+     <li class="page-item" id="first_last_buttons">
+       <?php 
+       if(isset($_GET['orderby'])){
+          echo '<a class="page-link" href="?page=1&orderby='.$orderby.'" aria-label="First">';
+       }
+       else{
+         echo '<a class="page-link" href="?page=1" aria-label="First">';
+       }
+      ?>
         <span aria-hidden="true">Fillim</span>
         <span class="sr-only">First</span>
       </a>
     </li>
-    <?php } ?>-->
+    <?php } ?>
 
        <?php 
        if ($page>1){
@@ -1822,15 +1829,23 @@ $pas = $page;
       </a>
     </li>
     <!--
-    *********** Butoni Fund ************
+    *********** Butoni Fund ************-->
     <?php if (($page < $number_of_pages-2) && ($number_of_pages > 5) ){ ?>
-     <li class="page-item">
-      <a class="page-link" href="?page=<?php echo $number_of_pages;?>" aria-label="Last">
+     <li class="page-item" id="first_last_buttons">
+      <?php 
+       if(isset($_GET['orderby'])){
+          echo '<a class="page-link" href="?page='.$number_of_pages.'&orderby='.$orderby.'" aria-label="Last">';
+       }
+       else{
+         echo '<a class="page-link" href="?page='.$number_of_pages.'" aria-label="Last">';
+       }
+      ?>
+     
         <span aria-hidden="true">Fund</span>
         <span class="sr-only">Last</span>
       </a>
     </li>
-    <?php } ?>-->
+    <?php } ?>
   </ul>
 </nav>
 </div>

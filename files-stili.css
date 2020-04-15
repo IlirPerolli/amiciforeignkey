@@ -155,6 +155,11 @@ background: white;
 padding-right: 10px !important;
 }
 }
+@media screen and (max-width: 640px){
+  #first_last_buttons{
+  display: none;
+}
+}
 @media screen and (max-width: 550px){
 #search{
 width:70%;

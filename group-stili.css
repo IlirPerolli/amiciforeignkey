@@ -84,7 +84,9 @@ margin-right: 30px !important;
 }
   }
     @media screen and (max-width: 640px){
-     
+     #first_last_buttons{
+  display: none;
+}
      
   .counter{
       margin-left: 0px !important;
