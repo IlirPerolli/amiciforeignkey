@@ -39,36 +39,31 @@ include("config.php");
 		// validimi i formes: sigurohu qe forma eshte plotesuar korrektesisht
 		if (empty($emri)) { array_push($errors, "Ju lutem plotesoni emrin"); }
 		if (strlen($emri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek emri"); }
-		if (preg_match('~[0-9]+~', $emri)) {array_push($errors, "Emri nuk duhet te permbaje numra"); }
-		if (strpos($emri,'>') !== false){array_push($errors, "Emri nuk mund te permbaje '>'"); }
-		if (strpos($emri,'&') !== false){array_push($errors, "Emri nuk mund te permbaje '&'"); }
-		if (strpos($emri,'=') !== false){array_push($errors, "Emri nuk mund te permbaje '='"); }
-		if (strpos($emri,"'") !== false){array_push($errors, "Emri nuk mund te permbaje '"); }
-		if (strpos($emri,'`') !== false){array_push($errors, "Emri nuk mund te permbaje '`'"); }
+		if(!preg_match("/^[a-zA-Z ]*$/", $emri)) {
+			array_push($errors, "Emri duhet te permbaje vetem shkronja");
+		}
 		if (empty($mbiemri)) { array_push($errors, "Ju lutem plotesoni mbiemrin"); }
 		if (strlen($mbiemri) > 50){array_push($errors, "Ju lutem shenoni me pak se 50 karaktere tek mbiemri"); }
-		if (preg_match('~[0-9]+~', $mbiemri)) {array_push($errors, "Mbiemri nuk duhet te permbaje numra"); }
-		if (strpos($mbiemri,'>') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '>'"); }
-		if (strpos($mbiemri,'&') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '&'"); }
-		if (strpos($mbiemri,'=') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '='"); }
-		if (strpos($mbiemri,"'") !== false){array_push($errors, "Mbiemri nuk mund te permbaje '"); }
-		if (strpos($mbiemri,'`') !== false){array_push($errors, "Mbiemri nuk mund te permbaje '`'"); }
+		if(!preg_match("/^[a-zA-Z ]*$/", $mbiemri)) {
+			array_push($errors, "Mbiemri duhet te permbaje vetem shkronja");
+		}
 		if (empty($mosha)) { array_push($errors, "Ju lutem zgjedhni daten e lindjes"); }
 		if (($gender) == -1){array_push($errors, "Ju lutem zgjedhni gjinine"); }
 		if (($viti) == -1) { array_push($errors, "Ju lutem zgjedhni vitin akademik"); }
 		if (empty($email)) { array_push($errors, "Ju lutem plotesoni emailin"); }
 		if (strlen($email) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek emaili"); }
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			array_push($errors, "Formati i email adreses nuk eshte i sakte");
+		}
 		if (empty($username)) { array_push($errors, "Ju lutem plotesoni perdoruesin"); }
 		if (strlen($username) > 255){ array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek perdoruesi"); }
 		if (preg_match('/\s/',$username)) { array_push($errors, "Username permban hapesire");}
 		if (empty($password_1)) { array_push($errors, "Ju lutem plotesoni fjalekalimin"); }
 	    if (strlen($password_1) < 8){array_push($errors, "Ju lutem shenoni me shume se 8 karaktere te fjalekalimit"); }
 		if (strlen($password_1) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi"); }
-		if (strpos($username,'>') !== false){array_push($errors, "Username nuk mund te permbaje '>'"); }
-		if (strpos($username,'&') !== false){array_push($errors, "Username nuk mund te permbaje '&'"); }
-		if (strpos($username,'=') !== false){array_push($errors, "Username nuk mund te permbaje '='"); }
-		if (strpos($username,"'") !== false){array_push($errors, "Username nuk mund te permbaje '"); }
-		if (strpos($username,'`') !== false){array_push($errors, "Username nuk mund te permbaje '`'"); }
+		if(!preg_match('/^[a-zA-Z0-9\-\_\.]*$/', $username)) { array_push($errors, "Emrat e perdoruesve mund te përmbajne shkronja (a-z), numra (0-9) dhe simbole (.), (-), (_)");
+
+		}
 		if ($password_1 != $password_2) {
 			array_push($errors, "Fjalekalimet nuk pershtaten");
 		}
