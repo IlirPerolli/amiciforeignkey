@@ -61,9 +61,7 @@ include("config.php");
 		if (empty($password_1)) { array_push($errors, "Ju lutem plotesoni fjalekalimin"); }
 	    if (strlen($password_1) < 8){array_push($errors, "Ju lutem shenoni me shume se 8 karaktere te fjalekalimit"); }
 		if (strlen($password_1) > 255){array_push($errors, "Ju lutem shenoni me pak se 255 karaktere tek fjalekalimi"); }
-		if(!preg_match('/^[a-zA-Z0-9\-\_\.]*$/', $username)) { array_push($errors, "Emrat e perdoruesve mund te përmbajne shkronja (a-z), numra (0-9) dhe simbole (.), (-), (_)");
-
-		}
+		if(!preg_match('/^[a-zA-Z0-9\-\_\.]*$/', $username)) { array_push($errors, "Emrat e perdoruesve mund te permbajne shkronja (a-z), numra (0-9) dhe simbole (.), (-), (_)");}
 		if ($password_1 != $password_2) {
 			array_push($errors, "Fjalekalimet nuk pershtaten");
 		}
