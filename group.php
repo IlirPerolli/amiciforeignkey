@@ -374,6 +374,7 @@ input[type=radio] + label>img {
 
 </head>
 <body>
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark  bg-dark">
 
   <a class="navbar-brand" href="index.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:35px;">amici grupi</a>
@@ -414,7 +415,6 @@ input[type=radio] + label>img {
 <button type="button" class="btn btn-primary" title="Perdoruesit" data-toggle="modal" data-target="#exampleModalLong" id = "studentet-menu">
 <img src="img/multiple-users-silhouette.png" style = "width:30px;" />
 </button>
-
   <form class="form-inline my-2 my-lg-0" method="get" action="#" id="search_form_pc">
     <input type = "text" class="form-control mr-sm-2" placeholder="Kerko Mesazhe" aria-label="Search" id = "search1" name="keyword" autocomplete="off" onkeyup="searchfunction()"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-submit1" disabled>Kerko</button>
@@ -445,141 +445,10 @@ input[type=radio] + label>img {
   </div>
 </nav>
 
-  
+  <?php include("friends-list.php");?>
   <div style = "text-align:center; margin-top: 78px;">
 
-<!-- Modal -->
-<div class="modal fade" id="theme_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Zgjedh Sfondin</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<form action="#" method="post" id="theme-form">
-
-
-  <div class="theme">
-  <input type="radio" name="theme" id="mountain" class="input-hidden" value="mountain"  />
-<label for="mountain">
-  <img src="themes/mountain.jpg" class="theme-photo" />
-</label>
-</div>
-
-  <div class="theme">
-<input type="radio" name="theme" id="forest" class="input-hidden" value="forest"/>
-<label for="forest">
-     <img src="themes/forest.jpg" class="theme-photo" />
-</label>
-</div>
-  <div class="theme">
-<input type="radio" name="theme" id="sunset" class="input-hidden" value="sunset"/>
-<label for="sunset">
-     <img src="themes/sunset.jpg" class="theme-photo" />
-</label>
-</div>
-  <div class="theme">
-<input type="radio" name="theme" id="pier" class="input-hidden" value="pier"/>
-<label for="pier">
-     <img src="themes/pier.jpg" class="theme-photo" />
-</label>
-</div>
-  <div class="theme">
-<input type="radio" name="theme" id="image1" class="input-hidden" value="image1"/>
-<label for="image1">
-     <img src="themes/image1.jpg" class="theme-photo" />
-</label>
-</div>
-
- <div class="theme">
-<input type="radio" name="theme" id="image2" class="input-hidden" value="image2"/>
-<label for="image2">
-     <img src="themes/image2.jpg" class="theme-photo" />
-</label>
-</div>
- <div class="theme">
-<input type="radio" name="theme" id="image3" class="input-hidden" value="image3"/>
-<label for="image3">
-     <img src="themes/image3.jpg" class="theme-photo" />
-</label>
-</div>
- <div class="theme">
-<input type="radio" name="theme" id="image4" class="input-hidden" value="image4"/>
-<label for="image4">
-     <img src="themes/image4.jpg" class="theme-photo" />
-</label>
-</div>
- <div class="theme">
-<input type="radio" name="theme" id="image5" class="input-hidden" value="image5"/>
-<label for="image5">
-     <img src="themes/image5.jpg" class="theme-photo" />
-</label>
-</div>
- <div class="theme">
-<input type="radio" name="theme" id="image6" class="input-hidden" value="image6"/>
-<label for="image6">
-     <img src="themes/image6.jpg" class="theme-photo" />
-</label>
-</div>
-
-   <br><br>
-
-<label for="customRange1">Zgjedh dukshmerine</label>
-<input type="range" min="0.5" max="1" name="opacity" step="0.01" class="custom-range" id="customRange1" onchange='document.getElementById("opacityvalue").innerText = document.getElementById("customRange1").value;'>
-
-<span id= "opacity">Dukshmeria </span><span id="opacityvalue">0.75</span>
-
-
-      </div>
-      <div class="modal-footer">
-        <div class="modal-theme-buttons">
-        <button type="button" class="btn btn-secondary" id="theme_dismiss" data-dismiss="modal">Mbyll</button>
-  <button type="submit" class="btn btn-success" id="theme_apply" name="theme_apply"> Ruaj Ndryshimet</button>
-      
-
-       
-        <?php
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM group_themes WHERE username='$username'";
-
-$results = mysqli_query($db, $query);
- 
-
-          if (mysqli_num_rows($results) == 1) {
-
-         ?>
-          <button type="button" class="btn btn-danger" id="theme_remove" onclick="window.location.href='?theme_remove'">Hiq sfondin</button>
-<?php }
-          ?>
-              </form>
-        </div>
-        
-             <?php 
-if(isset($_POST['theme_apply'])){
-  $theme = $_POST['theme'];
-    $opacity = $_POST['opacity'];
-  if (empty($theme)){
-    header("Location:group.php");
-    die();
-  }
-   if ($opacity >= 0.5 && $opacity <=1){
-  header("Location:?theme=".$theme."&opacity=".$opacity);
-   }
-   else{
-    header("Location: group.php");
-   }
-
-
-}
-?>
-
-      </div>
-    </div>
-  </div>
-</div>
+<?php include("theme_selector.php");?>
 
 <div class = "postimet-container">
 <!--
@@ -1848,129 +1717,6 @@ $pas = $page;
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Studentet</h5>
-              <?php 
-
- $username = $_SESSION['username'];
-  $sql = "SELECT * from admins where username='$username'";
-  $results = mysqli_query($db, $sql);
-  if (mysqli_num_rows($results)==1){
-          ?>
-        <form action="#" method="post" style="height:10px;">
-    
-           <!-- Button trigger modal -->
-    <button type="submit" class="btn btn-light" id="reset_online" name="reset_online" title="Rifresko" >
-  <img src= "img/reset-icon.png" style = "width:30px; margin-top: -6px; margin-left: 5px;"/>
-</button>
-
-        </form>
-        <?php }?>
-        <?php 
-          if (isset($_POST['reset_online'])){
-            $sql = "UPDATE users set online=0";
-            mysqli_query($db,$sql);
-            header("Location:group.php");
-          }
-        ?>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <span style = "color:green; font-size:20px" >Online</span>
-        <br><br>
-
-         <!-- ONLINE -->
-                                        <ul class="list-unstyled">
-                                          <?php
-                                          $vitiakademik = $_SESSION['vitiakademik'];
-                                          $query = "SELECT * FROM users WHERE online='1' and academicyear = $vitiakademik ORDER by Name asc";
-                                          $results = mysqli_query($db, $query);
-                                          while(($row = $results->fetch_assoc()) !== null){
-                                          echo '
-                                          <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
-                                            <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
-                                              $username = $row['username'];
-                                              $sql = "SELECT * from admins where username='$username'";
-                                              $results1 = mysqli_query($db, $sql);
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px"/>';
-                                              }
-                                              echo' </h5>';
-                                              
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo 'Administrator';
-                                              }
-                                              
-                                              else{
-                                              echo 'Student';
-                                              }
-                                              
-                                              echo'
-                                            </div>
-                                          </li>
-                                          <br>';
-                                          }
-                                          ?>
-                                        </ul>
-                                        <!-- END OF ONLINE -->
-
-<!-- OFFLINE -->
-                                        <span style = "color:grey; font-size:20px" >Offline</span>
-                                        <br><br>
-                                        
-                                        <ul class="list-unstyled">
-                                          <?php
-                                          $vitiakademik = $_SESSION['vitiakademik'];
-                                          $query = "SELECT * FROM users WHERE online='0' and academicyear = $vitiakademik ORDER by Name asc";
-                                          $results = mysqli_query($db, $query);
-                                          while(($row = $results->fetch_assoc()) !== null){
-                                          echo '
-                                          <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
-                                            <div class="media-body">';
-                                              echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
-                                              $username = $row['username'];
-                                              $sql = "SELECT * from admins where username='$username'";
-                                              $results1 = mysqli_query($db, $sql);
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo '<img src = "img/verify-icon.png" title="Administrator" alt="Administrator" class="administrator-icon" style = "width:20px; margin-bottom:1px;"/>';
-                                              }
-                                              echo' </h5>';
-                                              
-                                              if (mysqli_num_rows($results1)==1){
-                                              echo 'Administrator';
-                                              }
-                                              
-                                              else{
-                                              echo 'Student';
-                                              }
-                                              
-                                              echo'
-                                            </div>
-                                          </li>
-                                          <br>';
-                                          }
-                                          ?>
-                                        </ul>
-                                        <!-- END OF OFFLINE -->
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
-      </div>
-    </div>
-  </div>
-</div>
      <?php include("bootstrap_javascript.php");?>  
      <script>
   function startDictation() {
