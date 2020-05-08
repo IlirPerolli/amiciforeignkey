@@ -816,14 +816,10 @@ $row['Name'] = strtolower($row['Name']);
 if (($_SESSION['username']) == $row['username']){
                           
                          //  echo '<a href = "group.php?remove-comment='. $row3['id'].'"><img src = "1282956.png" class = "remove-comment" title = "Fshij Komentin"> </a>';
-
                             echo '<form action="#" method="post" style = "position:absolute; right:0">
-                            
                             <button name="delete-comment" title = "Fshij Komentin" type="submit" value="'. $row['id'].'" style = "padding: 0;border: none;background: none; cursor:pointer;position:absolute; right:0;">
                             <img src="img/1282956.png" class = "remove-comment"/>
-
                             </button>
-                           
                               </form>';
                      
                                 if (isset($_POST['delete-comment'])){
@@ -946,16 +942,11 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
                          if (($_SESSION['username']) == $row1['username']){
                           
                          //  echo '<a href = "group.php?remove-comment='. $row3['id'].'"><img src = "1282956.png" class = "remove-comment" title = "Fshij Komentin"> </a>';
-
                             echo '<form action="#" method="post" style = "position:absolute; right:0">
-                            
                             <button name="delete-comment" title = "Fshij Komentin" type="submit" value="'. $row1['id'].'" style = "padding: 0;border: none;background: none; cursor:pointer;position:absolute; right:0;">
                             <img src="img/1282956.png" class = "remove-comment"/>
-
                             </button>
-                           
                               </form>';
-                      
                                 if (isset($_POST['delete-comment'])){
                                   $value = $_POST['delete-comment'];
  $query100 = " SELECT users.username from userposts inner join users on userposts.id_user = users.id WHERE userposts.id ='$value'";
@@ -1124,7 +1115,7 @@ echo'
     <img src = "img/gallery.png" id="gallery-icon"/>
 </label>
 <input name="fileToUpload" id="fileToUpload" type="file" accept="image/*"/>'; 
-echo'<input type = "text" class = "diskutimi" name = "diskuto" placeholder = "Shkruaj mendimet tuaja... " oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" id="abc" autocomplete="off" autofocus onkeyup="success()"/>';
+echo'<input type = "text" class = "diskutimi" name = "diskuto" placeholder = "Shkruaj mendimet tuaja... " oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" id="abc" autocomplete="off" onkeyup="success()"/>';
 
 echo'<input type = "submit" class = "biseda" name = "user-discuss" value = "Dergo" id="abc2" disabled/>';
 echo'<div class = "spinner">';
@@ -1182,13 +1173,9 @@ echo'<div class="alert alert-secondary" id= "alert-group" role="alert">
                          //  echo '<a href = "group.php?remove-comment='. $row3['id'].'"><img src = "1282956.png" class = "remove-comment" title = "Fshij Komentin"> </a>';
 
                             echo '<form action="#" method="post" style = "position:absolute; right:0">
-                            
                             <button name="delete-comment" title = "Fshij Komentin" type="submit" value="'. $row3['id'].'" style = "padding: 0;border: none;background: none; cursor:pointer;position:absolute; right:0;">
                             <img src="img/1282956.png" class = "remove-comment"/>
-
                             </button>
-                         
-
                               </form>';
                       
                                 if (isset($_POST['delete-comment'])){
@@ -1310,12 +1297,9 @@ while(($row = $results->fetch_assoc()) !== null){
                          //  echo '<a href = "group.php?remove-comment='. $row3['id'].'"><img src = "1282956.png" class = "remove-comment" title = "Fshij Komentin"> </a>';
 
                             echo '<form action="#" method="post" style = "position:absolute; right:0">
-                            
                             <button name="delete-comment" title = "Fshij Komentin" type="submit" value="'. $row['id'].'" style = "padding: 0;border: none;background: none; cursor:pointer;position:absolute; right:0;">
                             <img src="img/1282956.png" class = "remove-comment"/>
-
                             </button>
-                           
                               </form>';
                       
                                 if (isset($_POST['delete-comment'])){
@@ -1860,97 +1844,7 @@ $pas = $page;
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
-<script>
-  function startDictation() {
 
-    if (window.hasOwnProperty('webkitSpeechRecognition')) {
-
-      var recognition = new webkitSpeechRecognition();
-
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.lang = "en-US";
-      recognition.start();
-
-      recognition.onresult = function(e) {
-        document.getElementById('abc').value
-                                 = e.results[0][0].transcript;
-        recognition.stop();
-        //document.getElementById('labnol').submit(); Emri i formes
-      };
-
-      recognition.onerror = function(e) {
-        recognition.stop();
-      }
-
-    }
-  }
-</script>
-<script>
-var myText = document.getElementById("abc");
-var wordCount = document.getElementById("wordCount");
-
-myText.addEventListener("keyup",function(){
-  var characters = myText.value.split('');
-  wordCount.innerText = characters.length;
-  if (characters.length>255){
-    document.getElementById("wordCount").style.color = "red";
-  }
-  else if (characters.length==0){
-    document.getElementById("wordCount").style.color = "#212529";
-  }
-  else {
-    document.getElementById("wordCount").style.color = "green";
-  }
-});
-</script>
-     <script type="text/javascript">
-    $('#fileToUpload').on('change', function() {
- var numb = $(this)[0].files[0].size/1024/1024;
-numb = numb.toFixed(2);
-if(numb > 10){
-window.location.href = "group.php?fileerror";
-}
-else if (numb>0){
-  document.getElementById("success-photo").style.display="block";
-document.getElementById("gallery-icon").style.display="none";
-document.getElementById("custom-file-upload").style.background="#25AE88";
-}
-else{
-document.getElementById("gallery-icon").style.display="block";
-document.getElementById("success-photo").style.display="none";
-}
-        });
-
-  </script>
-    <script type="text/javascript">
- $(document).ready(function() {
-    $("#abc2").click(function() {
-  $('#loading').attr('style','display:inline-block !important');
-    $('.spinner').attr('style','display:inline-block !important');
-  //$('#loading').show();
-  //$('#counter').hide(); 
-
-    });
-});
-</script>
-<script type="text/javascript">
-  function show_replies(id){
-   document.getElementById("replies-container_"+id).style.display="block";
-   document.getElementById("show_replies_button_"+id).style.display="none";
-   document.getElementById("hide_replies_button_"+id).style.display="block";
-   document.getElementById("preview_reply_"+id).style.display="none";
-
-  }
-    function hide_replies(id){
-   document.getElementById("replies-container_"+id).style.display="none";
-   document.getElementById("show_replies_button_"+id).style.display="block";
-    document.getElementById("hide_replies_button_"+id).style.display="none";
-    document.getElementById("preview_reply_"+id).style.display="block";
-  }
-
-</script>
 </div>
 
 
@@ -2077,6 +1971,97 @@ document.getElementById("success-photo").style.display="none";
     </div>
   </div>
 </div>
-     <?php include("bootstrap_javascript.php");?>                 
+     <?php include("bootstrap_javascript.php");?>  
+     <script>
+  function startDictation() {
+
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.lang = "en-US";
+      recognition.start();
+
+      recognition.onresult = function(e) {
+        document.getElementById('abc').value
+                                 = e.results[0][0].transcript;
+        recognition.stop();
+        //document.getElementById('labnol').submit(); Emri i formes
+      };
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+
+    }
+  }
+</script>
+<script>
+var myText = document.getElementById("abc");
+var wordCount = document.getElementById("wordCount");
+
+myText.addEventListener("keyup",function(){
+  var characters = myText.value.split('');
+  wordCount.innerText = characters.length;
+  if (characters.length>255){
+    document.getElementById("wordCount").style.color = "red";
+  }
+  else if (characters.length==0){
+    document.getElementById("wordCount").style.color = "#212529";
+  }
+  else {
+    document.getElementById("wordCount").style.color = "green";
+  }
+});
+</script>
+     <script type="text/javascript">
+    $('#fileToUpload').on('change', function() {
+ var numb = $(this)[0].files[0].size/1024/1024;
+numb = numb.toFixed(2);
+if(numb > 10){
+window.location.href = "group.php?fileerror";
+}
+else if (numb>0){
+  document.getElementById("success-photo").style.display="block";
+document.getElementById("gallery-icon").style.display="none";
+document.getElementById("custom-file-upload").style.background="#25AE88";
+}
+else{
+document.getElementById("gallery-icon").style.display="block";
+document.getElementById("success-photo").style.display="none";
+}
+        });
+
+  </script>
+    <script type="text/javascript">
+ $(document).ready(function() {
+    $("#abc2").click(function() {
+  $('#loading').attr('style','display:inline-block !important');
+    $('.spinner').attr('style','display:inline-block !important');
+  //$('#loading').show();
+  //$('#counter').hide(); 
+
+    });
+});
+</script>
+<script type="text/javascript">
+  function show_replies(id){
+   document.getElementById("replies-container_"+id).style.display="block";
+   document.getElementById("show_replies_button_"+id).style.display="none";
+   document.getElementById("hide_replies_button_"+id).style.display="block";
+   document.getElementById("preview_reply_"+id).style.display="none";
+
+  }
+    function hide_replies(id){
+   document.getElementById("replies-container_"+id).style.display="none";
+   document.getElementById("show_replies_button_"+id).style.display="block";
+    document.getElementById("hide_replies_button_"+id).style.display="none";
+    document.getElementById("preview_reply_"+id).style.display="block";
+  }
+
+</script>               
 </body>
 </html>
