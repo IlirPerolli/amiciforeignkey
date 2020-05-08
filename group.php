@@ -657,8 +657,6 @@ echo'
     <label for="validationTextarea">Ndrysho Komentin</label>
     <textarea class="form-control is-invalid" name = "edited-comment" rows="3" id="validationTextarea" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" placeholder="Ju lutem shenoni komentin per ta ndryshuar" required>'.$comment.'</textarea>
     <input name = "submit-edited-comment" type="submit" value="Ndrysho" style = "background:#28a745; border-color:#28a745; border-radius:.25rem; margin-top:10px;">
-    
-    
   </div>
   </form>
   </div>';
@@ -682,7 +680,9 @@ header("Location:group.php");
   }
 else{
    header("Location:group.php");
-}        
+}   
+//Per te aplikuar javascriptin e bootstrapit qe te punojne butonat   
+     include("bootstrap_javascript.php");
 die();
    }
 
