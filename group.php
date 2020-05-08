@@ -650,8 +650,8 @@ $query100 = " SELECT users.username, Comments from userposts inner join users on
                                     $row100 = $results100->fetch_assoc();
 if ($_SESSION['username'] == $row100['username']){
   $comment = $row100['Comments'];
-echo'
-<div id = "edit-comment" style = "margin-top:100px">
+echo' <span class="br-for-editcomment-mobile"> <br> </span>
+<div id = "edit-comment" style = "margin-top:110px">
 <form class="was-validated" method= "post">
   <div class="mb-3" style = "width:90%; margin:auto;" > 
     <label for="validationTextarea">Ndrysho Komentin</label>
