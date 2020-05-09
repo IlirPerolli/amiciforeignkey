@@ -44,10 +44,21 @@ unlink($myFile);
       //$query1= "UPDATE users SET notification = notification - 1 WHERE academicyear = '$vitiakademik'";
       //mysqli_query($db, $query1);
       //endprove
-      if (isset($_GET['page'])){
+      if (isset($_GET['page']) && isset($_GET['orderby'])){
+         $number = $_GET['page'];
+          $orderby = $_GET['orderby'];
+          header('Location:group.php?page='.$number.'&orderby='.$orderby);
+      }
+
+      else if (isset($_GET['page'])){
         $number = $_GET['page'];
        header('Location:group.php?page='.$number);
       
+    }
+    else if (isset($_GET['orderby'])){
+        $orderby = $_GET['orderby'];
+        header('Location:group.php?orderby='.$orderby);
+        
     }
     else if (isset($_GET['keyword'])){
         $keyword = $_GET['keyword'];
@@ -543,11 +554,24 @@ header("Location:group.php");
     else {
      $query = "UPDATE userposts SET Comments = '$edited_comment', edited=1 WHERE id='$number'";
                     mysqli_query($db, $query);
-                    //Nese behet ndryshimi i komentit ne nje faqe te caktuar
-                       if(isset($_GET['page'])){
-                $number = $_GET['page'];
-                header('Location:group.php?page='.$number);
-              }
+//Nese behet ndryshimi i komentit ne nje faqe te caktuar dhe ne nje order
+if (isset($_GET['page']) && isset($_GET['orderby'])){
+         $number = $_GET['page'];
+          $orderby = $_GET['orderby'];
+          header('Location:group.php?page='.$number.'&orderby='.$orderby);
+      }
+//Nese behet ndryshimi i komentit ne nje faqe te caktuar
+      else if (isset($_GET['page'])){
+        $number = $_GET['page'];
+       header('Location:group.php?page='.$number);
+      
+    }
+    //Nese behet ndryshimi i komentit ne nje order te caktuar
+    else if (isset($_GET['orderby'])){
+        $orderby = $_GET['orderby'];
+        header('Location:group.php?orderby='.$orderby);
+        
+    }
               //Nese behet ndryshimi i komentit ne search
               else if (isset($_GET['keyword'])){
                 $keyword = $_GET['keyword'];
@@ -1090,9 +1114,21 @@ echo'<div class="alert alert-secondary" id= "alert-group" role="alert">
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                 if(isset($_GET['page'])){
+                
+                if (isset($_GET['page']) && isset($_GET['orderby'])){
+                  $number = $_GET['page'];
+                   $orderby = $_GET['orderby'];
+                header('Location:group.php?page='.$number.'&orderby='.$orderby.'&remove-comment='. $value);
+                }
+
+
+                else if(isset($_GET['page'])){
                 $number = $_GET['page'];
                 header('Location:group.php?page='.$number.'&remove-comment='. $value);
+              }
+              else if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+                header('Location:group.php?orderby='.$orderby.'&remove-comment='. $value);
               }
               else{
                 header('Location:group.php?remove-comment='. $value);
@@ -1148,9 +1184,20 @@ echo'<div class="alert alert-secondary" id= "alert-group" role="alert">
             
             if ($_SESSION['username'] == $row100['username']){
 
-                                  if(isset($_GET['page'])){
+              if (isset($_GET['page']) && isset($_GET['orderby'])){
+                  $number = $_GET['page'];
+                   $orderby = $_GET['orderby'];
+                header('Location:group.php?page='.$number.'&orderby='.$orderby.'&edit-comment='. $value);
+                }
+
+
+                else if(isset($_GET['page'])){
                 $number = $_GET['page'];
-                header('Location:group.php?page='.$number.'&edit-comment='. $value);
+               header('Location:group.php?page='.$number.'&edit-comment='. $value);
+              }
+              else if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+                 header('Location:group.php?orderby='.$orderby.'&edit-comment='. $value);
               }
               else{
                   header('Location:group.php?edit-comment='. $value);
@@ -1221,10 +1268,22 @@ while(($row = $results->fetch_assoc()) !== null){
                                 
            
             
-            if ($_SESSION['username'] == $row100['username']){
-                               if(isset($_GET['page'])){
+           if ($_SESSION['username'] == $row100['username']){
+                
+                if (isset($_GET['page']) && isset($_GET['orderby'])){
+                  $number = $_GET['page'];
+                   $orderby = $_GET['orderby'];
+                header('Location:group.php?page='.$number.'&orderby='.$orderby.'&remove-comment='. $value);
+                }
+
+
+                else if(isset($_GET['page'])){
                 $number = $_GET['page'];
                 header('Location:group.php?page='.$number.'&remove-comment='. $value);
+              }
+              else if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+                header('Location:group.phpp?orderby='.$orderby.'&remove-comment='. $value);
               }
               else{
                 header('Location:group.php?remove-comment='. $value);
@@ -1274,14 +1333,26 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                   if(isset($_GET['page'])){
+
+              if (isset($_GET['page']) && isset($_GET['orderby'])){
+                  $number = $_GET['page'];
+                   $orderby = $_GET['orderby'];
+                header('Location:group.php?page='.$number.'&orderby='.$orderby.'&edit-comment='. $value);
+                }
+
+
+                else if(isset($_GET['page'])){
                 $number = $_GET['page'];
-                header('Location:group.php?page='.$number.'&edit-comment='. $value);
+               header('Location:group.php?page='.$number.'&edit-comment='. $value);
+              }
+              else if(isset($_GET['orderby'])){
+                $orderby = $_GET['orderby'];
+                 header('Location:group.php?orderby='.$orderby.'&edit-comment='. $value);
               }
               else{
                   header('Location:group.php?edit-comment='. $value);
               }
-                   
+                              
 
                               }
                               else {
