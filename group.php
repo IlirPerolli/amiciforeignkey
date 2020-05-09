@@ -543,7 +543,21 @@ header("Location:group.php");
     else {
      $query = "UPDATE userposts SET Comments = '$edited_comment', edited=1 WHERE id='$number'";
                     mysqli_query($db, $query);
-                    header("Location:group.php");
+                    //Nese behet ndryshimi i komentit ne nje faqe te caktuar
+                       if(isset($_GET['page'])){
+                $number = $_GET['page'];
+                header('Location:group.php?page='.$number);
+              }
+              //Nese behet ndryshimi i komentit ne search
+              else if (isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:group.php?keyword='.$keyword);
+              }
+              else{
+                  header('Location:group.php');
+              }
+                   
+                    
   }
   }
   }
@@ -757,7 +771,17 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?edit-comment='. $value);
+                        
+                         if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:group.php?keyword='.$keyword.'&edit-comment='. $value);
+              }
+              else{
+                header('Location:group.php?edit-comment='. $value);
+              }
+                 
+              
+                  
 
                               }
                               else {
@@ -877,7 +901,17 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?edit-comment='. $value);
+                              
+             
+                    if(isset($_GET['keyword'])){
+                $keyword = $_GET['keyword'];
+                header('Location:group.php?keyword='.$keyword.'&edit-comment='. $value);
+              }
+              else{
+                header('Location:group.php?edit-comment='. $value);
+              }
+              
+                   
 
                               }
                               else {
@@ -1113,7 +1147,15 @@ echo'<div class="alert alert-secondary" id= "alert-group" role="alert">
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?edit-comment='. $value);
+
+                                  if(isset($_GET['page'])){
+                $number = $_GET['page'];
+                header('Location:group.php?page='.$number.'&edit-comment='. $value);
+              }
+              else{
+                  header('Location:group.php?edit-comment='. $value);
+              }
+                              
 
                               }
                               else {
@@ -1232,7 +1274,14 @@ $query100 = " SELECT users.username from userposts inner join users on userposts
            
             
             if ($_SESSION['username'] == $row100['username']){
-                                header('Location:group.php?edit-comment='. $value);
+                                   if(isset($_GET['page'])){
+                $number = $_GET['page'];
+                header('Location:group.php?page='.$number.'&edit-comment='. $value);
+              }
+              else{
+                  header('Location:group.php?edit-comment='. $value);
+              }
+                   
 
                               }
                               else {
