@@ -26,7 +26,7 @@ $emri = strtolower($emri);
 $mbiemri = strtolower($mbiemri);
 $emri = ucfirst($emri);
 $mbiemri = ucfirst($mbiemri);
-echo "<title>".$emri. " ". $mbiemri. " - Raporto Bug". " </title>";
+echo "<title>".$emri. " ". $mbiemri. " &#8226; Raporto Bug". " </title>";
   
   ?>
     <script>

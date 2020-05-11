@@ -37,7 +37,7 @@ $emri = strtolower($emri);
 $mbiemri = strtolower($mbiemri);
 $emri = ucfirst($emri);
 $mbiemri = ucfirst($mbiemri);
-echo "<title>".$emri. " ". $mbiemri. " - Preferencat". " </title>";
+echo "<title>".$emri. " ". $mbiemri. " &#8226; Preferencat". " </title>";
   
   ?>
     <script>
