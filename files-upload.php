@@ -24,15 +24,17 @@ $filename = $file["name"];
 
 
 
-// **************** Shiko nese nuk ka uploaduar dhe nese jo mos e rrit countin ne databaze ************************
 
-if (file_exists("user-files/".$filename)) {
+if ($_FILES['file']['size'] ==0) { //Opsionale (te hiqet nese paraqit bug)
+   array_push($errors, "Ju lutem ngarkoni nje dokument");
+}
+// **************** Shiko nese nuk ka uploaduar dhe nese jo mos e rrit countin ne databaze ************************
+else if (file_exists("user-files/".$filename)) {
 array_push($errors, "Ekziston nje dokument tjeter me emer te njejte");
 
 }
 
-
-if ($_FILES['file']['size'] > 20000000) { //20MB
+else if ($_FILES['file']['size'] > 20000000) { //20MB
    array_push($errors, "Dokumenti ka nje madhesi te madhe");
 }
 if (strpos($filename,'Snapchat') !== false) {
@@ -50,7 +52,7 @@ $imageFileType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
 
 if (count($errors) == 0){
 move_uploaded_file($file["tmp_name"], "user-files/".$filename);
-$filename = mysqli_real_escape_string($db, $file["name"]); // To prevent SQL Injection
+//$filename = mysqli_real_escape_string($db, $file["name"]); // To prevent SQL Injection
 
 $query = "INSERT INTO userfiles (file,date, time, id_user) 
             VALUES('$filename','$date', '$time', '$id_user')";
