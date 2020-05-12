@@ -277,6 +277,9 @@ if ( window.history.replaceState ) {
   <script src="navi.js"></script>
   <style>
     @media screen and (max-width: 960px){
+      #collapse-google-meet{
+        width: 100% !important;
+      }
       .toast{
   margin-top: 60px !important;
 }
@@ -380,6 +383,20 @@ input[type=radio] + label>img {
   width:900px;
   margin:auto;
 }
+#collapse-google-meet{
+  font-size: 15px;
+    width: 900px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+  .google-meet-button, .google-meet-button:hover, .google-meet-button:active, .google-meet-button:visited {
+   background:white !important;
+   border: 1px solid grey;
+   border: none !important;
+   box-shadow: none !important;
+
+}
+
 </style>
 
 
@@ -1076,6 +1093,31 @@ echo '</div>';
 
 include('errors.php');
 echo'</form>';
+echo '<p>
+  <a class="btn google-meet-button" data-toggle="collapse" href="#collapse-google-meet" role="button" aria-expanded="false" aria-controls="collapse-google-meet">
+
+   Linqet per google meet
+  </a>
+</p>
+<div class="collapse" id="collapse-google-meet">
+  <div class="card card-body">
+  <p style="text-align:center"> <img src="img/warning.png" style="width:28px;margin-bottom:1px;"/><strong style="color:red">Verejtje!</strong> Ju duhet te jeni te kyqur me llogarine e universitetit per t\'u kyqur ne google meet. <br>Keto linqe sherbejne per ata studente qe deshirojne te punojne ne google meet por nuk kane autorizim te krijojne nje te tille. </p>
+
+<a href="https://meet.google.com/fwn-ztmh-vty"/>https://meet.google.com/fwn-ztmh-vty</a>
+<a href="https://meet.google.com/ufk-syhn-ksa"/>https://meet.google.com/ufk-syhn-ksa</a>
+<a href="https://meet.google.com/bmp-aiir-amc"/>https://meet.google.com/bmp-aiir-amc</a>
+<a href="https://meet.google.com/tfo-vjab-nxy"/>https://meet.google.com/tfo-vjab-nxy</a>
+<a href="https://meet.google.com/uwa-gpub-zqn"/>https://meet.google.com/uwa-gpub-zqn</a>
+<a href="https://meet.google.com/bxu-jcjj-wfx"/>https://meet.google.com/bxu-jcjj-wfx</a>
+<a href="https://meet.google.com/gqd-qbpp-pzj"/>https://meet.google.com/gqd-qbpp-pzj</a>
+<a href="https://meet.google.com/pnb-tjvb-zhm"/>https://meet.google.com/pnb-tjvb-zhm</a>
+<a href="https://meet.google.com/bbs-qtbs-ukc"/>https://meet.google.com/bbs-qtbs-ukc</a>
+<a href="https://meet.google.com/asq-etbv-uyh"/>https://meet.google.com/asq-etbv-uyh</a>
+<a href="https://meet.google.com/emd-njej-vmd"/>https://meet.google.com/emd-njej-vmd</a>
+<a href="https://meet.google.com/pxb-zdve-bsz"/>https://meet.google.com/pxb-zdve-bsz</a>
+<a href="https://meet.google.com/awu-xdpd-hdv"/>https://meet.google.com/awu-xdpd-hdv</a>
+  </div>
+</div>';
 echo'<div class="dropdown-divider" id="dropdown-divider"></div>'; 
 echo'<div class="alert alert-secondary" id= "alert-group" role="alert">
  <img src="img/warning.png" style="width:28px;margin-bottom:1px;"/><strong style="color:red">Verejtje!</strong> Fyerjet dhe perdorimi i fjaleve banale jane rreptesisht te ndaluara dhe do te rezultojne me suspendim te menjehershem nga platforma!
