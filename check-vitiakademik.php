@@ -47,17 +47,3 @@ echo '<style>#notification-counter-uploads{ display:none !important;}</style>';
     }
 
 ?>
-    
-<div class="toast" data-autohide="false" style=" position: fixed;z-index: 999;top:90px; left:10px; width: 290px; font-family: 'SamsungSharpSans-Medium'; text-align: center;">
-  <div class="toast-header">
-    <img src="img/warning.png" style="width:30px;"/>
-    <strong class="mr-auto">Kujdes</strong>
-    <small class="text-muted">#amiciteam</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" id="close-alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-  </div>
-  <div class="toast-body">
-  KUJDES PO, PANIKË JO<br> <i> #RriNShpi</i>
-  </div>
-</div>
