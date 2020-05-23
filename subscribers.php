@@ -129,7 +129,7 @@ font-family: SamsungSharpSans-Medium;
        <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id = "notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
        <a class="nav-link" href="admin.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Admin </a>
-       <a class="nav-link active" href="reported_bugs.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Raportimet <span class="sr-only">(current)</span></a>
+       <a class="nav-link active" href="reported_bugs.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Abonimet <span class="sr-only">(current)</span></a>
     </ul>
     <?php
     $anetaret = "SELECT * FROM users WHERE verification='1'";
