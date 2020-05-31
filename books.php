@@ -312,6 +312,7 @@ background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPS
       <a class="nav-link" href="files.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Dosjet  <span id = "notification-counter-uploads"> <?php echo $_SESSION['notification_uploads'] ?> </span> <span class="sr-only">(current)</span></a>
        <a class="nav-link" href="group.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Grupi <span id = "notification-counter"> <?php echo $_SESSION['notification'] ?> </span> <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="lessons.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Mesimet   <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="about.php" style = "font-family: SamsungSharpSans-Bold; font-size:20px;">Rreth nesh<span class="sr-only">(current)</span></a> 
        <a class="nav-link" href="admin.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Admin</a>
        <a class="nav-link active" href="books.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Librat <span class="sr-only">(current)</span></a>
     </ul>
@@ -358,6 +359,43 @@ else
 </script>
   <div style = "text-align:center">
     <div class = "max-width">
+      <?php 
+      if (isset($_GET['edit'])){
+        $id = $_GET['edit'];
+        $sql1 = "SELECT Name from books where id = '$id'";
+        $results1 = mysqli_query($db, $sql1);
+        if (mysqli_num_rows($results1) == 0){
+          header("Location:books.php");
+        }
+        $row1 = $results1->fetch_assoc();
+        echo "<br><form action='#' method='POST'";
+        echo "<label for='libri'>Ndrysho emrin e librit</label>";
+        echo '<input class="form-control" type="text" id="libri" name="book_name" placeholder="Sheno emrin e librit" value="'.$row1['Name'].'" style="width:500px;margin:auto">';
+        echo '<br><button type="submit" class="btn btn-secondary" name="edit_book">Ndrysho</button>';
+        echo '</form>';
+
+
+          if (isset($_POST['edit_book'])){
+            $bookname = mysqli_real_escape_string($db, $_POST['book_name']);
+           
+   $bookname = trim($bookname);  
+     if (ltrim($bookname, ' ') === '') {
+header("Location:books.php".$bookname);
+    }
+    
+    else if (strpos($bookname, ' ') === 0) { //Nese fillon me hapesire (Alt 255)
+    header("Location:books.php");
+}
+    
+    else {
+     $query = "UPDATE books SET Name = '$bookname' WHERE id='$id'";
+                    mysqli_query($db, $query);
+                      header("Location:books.php");
+
+          }
+        }}
+
+      ?>
 
 <div class = "contact-form">
     <form action="#" method="post" enctype="multipart/form-data">
@@ -432,7 +470,8 @@ $('.avatar').css({
       echo '<div class = "download-link">';
       echo '<a href = "'.$row['link'].'">'.$row['Name'].'  </a>';
       echo "<br>";
-      echo '<a href = "?remove='.$row['id'].'"> (Fshij Kete Liber)  </a>';
+      echo '<a href = "?remove='.$row['id'].'"> Fshij  </a>/';
+      echo '<a href = "?edit='.$row['id'].'"> Ndrysho  </a>';
       echo '</div>';
       echo '</div>';
       }
@@ -467,7 +506,8 @@ $('.avatar').css({
       echo '<div class = "download-link">';
       echo '<a href = "'.$row['link'].'">'.$row['Name'].'  </a>';
       echo "<br>";
-      echo '<a href = "?remove='.$row['id'].'"> (Fshij Kete Liber)  </a>';
+      echo '<a href = "?remove='.$row['id'].'"> Fshij</a>/';
+      echo '<a href = "?edit='.$row['id'].'"> Ndrysho  </a>';
       echo '</div>';
       echo '</div>';
       }
@@ -502,7 +542,8 @@ $('.avatar').css({
       echo '<div class = "download-link">';
       echo '<a href = "'.$row['link'].'">'.$row['Name'].'  </a>';
       echo "<br>";
-      echo '<a href = "?remove='.$row['id'].'"> (Fshij Kete Liber)  </a>';
+      echo '<a href = "?remove='.$row['id'].'"> Fshij  </a>/';
+      echo '<a href = "?edit='.$row['id'].'"> Ndrysho  </a>';
       echo '</div>';
       echo '</div>';
       }
