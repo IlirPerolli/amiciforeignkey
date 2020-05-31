@@ -38,19 +38,6 @@ exit();
 </head>
 <body>
 
-<div class="toast" data-autohide="false" style=" position: fixed;z-index: 999;top:90px; left:10px; width: 290px; font-family: 'SamsungSharpSans-Medium'; text-align: center;">
-  <div class="toast-header">
-    <img src="img/warning.png" style="width:30px;"/>
-    <strong class="mr-auto">Vërejtje</strong>
-    <small class="text-muted">#amiciteam</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" id="close-alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-  </div>
-  <div class="toast-body">
-  KUJDES <span style="color:green">PO</span>, PANIKË <span style="color:red">JO</span><br> <i> #rriNshpi</i>
-  </div>
-</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
   <a class="navbar-brand" href="main.php">amici llogaria</a>
   <ul class="navbar-nav mr-auto">
@@ -100,8 +87,5 @@ exit();
     <div class = "amici1"> <span class='amici' style = "font-size:15px"> amici</span><span class = "team" style = "font-size:15px; "> team <span style = "color:black;">&#9400; 2020 </span></span><!--<span class='amici' id = "amici1" style = "font-size:15px;">Gjakova</span>--></div>
    
      <?php include("bootstrap_javascript.php");?>
-      <script type="text/javascript">
- $('.toast').toast('show');
-</script>
 </body>
 </html>
