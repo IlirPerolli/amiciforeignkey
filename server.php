@@ -16,9 +16,9 @@ include("config.php");
 		$url = 'https://www.google.com/recaptcha/api/siteverify';
 		$privatekey = "6LcyX4QUAAAAAAbcsSA0IgoUdRVJy0_T0QWIRJ_H";
 
-		$response = file_get_contents($url."?secret=".$privatekey."&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR']);
+		//$response = file_get_contents($url."?secret=".$privatekey."&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR']);
 		
-		$data = json_decode($response);
+		//$data = json_decode($response);
 
 		// merr te dhenat nga forma
 		$emri = mysqli_real_escape_string($db, $_POST['emri']);
@@ -79,7 +79,7 @@ include("config.php");
 		}
 			// regjistro perdoruesin nese nuk ka ndonje error ne forme
 			if (count($errors) == 0) {
-				if (isset($data->success) AND $data->success==true){ 
+				//if (isset($data->success) AND $data->success==true){ 
 			
 		
 		//$password = md5($password_1);//enkripto passwordin para se te regjistrosh ne databaze
@@ -117,15 +117,15 @@ include("config.php");
 			$name = $emri." ".$mbiemri;
 			unapproved_account_mail($email, $name,$viti,$username);	*/
 			header('location: success.php');
-		}
-		else {
-		array_push($errors, "Ju lutem konfirmoni që nuk jeni 'robot' ");
-	}
+		//}
+		//else {
+		//array_push($errors, "Ju lutem konfirmoni që nuk jeni 'robot' ");
+	//}
 
 	}
-	else {
-		array_push($errors, "Ju lutem konfirmoni që nuk jeni 'robot' ");
-	}
+	//else {
+		//array_push($errors, "Ju lutem konfirmoni që nuk jeni 'robot' ");
+	//}
 	
 	
 	}
@@ -202,7 +202,7 @@ include("config.php");
 			}
 		
 			else if ($password == 1 && $row['verification'] == 0){
-				array_push($errors, "Llogaria eshte ne verifikim!");
+				array_push($errors, "Llogaria eshte ne verifikim. Do te behet aktive pasi te konfirmohet nga njeri prej administratoreve!");
 			}
 			else if ($password == 1 && $row['verification'] == 2){
 				array_push($errors, "Kerkojme falje, perkohesisht llogaria juaj eshte suspenduar :(");
