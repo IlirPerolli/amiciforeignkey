@@ -2,7 +2,7 @@
 ob_start();
 include("config.php");
 if (isset($_POST['upload-video'])){
-    $emri = mysqli_real_escape_string($db, $_POST['emri']);
+    //$emri = mysqli_real_escape_string($db, $_POST['emri']);
 	$linku = mysqli_real_escape_string($db, $_POST['linku']);
     $username = $_SESSION['username'];
     $query = "SELECT * from users WHERE username = '$username'";
@@ -10,6 +10,9 @@ if (isset($_POST['upload-video'])){
     $row = $results->fetch_assoc();
     $id_user = $row['id'];
 	$youtubeID = getYouTubeVideoId($linku);
+    //Merr emrin e videos se youtubes 
+   $emri = explode(' - YouTube',explode('</title>',explode('<title>',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
+   
 $photo = 'https://img.youtube.com/vi/' . $youtubeID . '/hqdefault.jpg';
 $number = $_GET['folder'];
   if (empty($linku)){array_push($errors, "Ju lutem shenoni linkun"); }
@@ -22,10 +25,8 @@ if (count($errors) == 0) {
 					  VALUES('$emri', '$linku', '$photo','$date','$time', '$number','$id_user' )";
 			mysqli_query($db, $query);
 			header("Location:lessons.php?folder=".$number);
-  }
-
+ }
 }
-
 function getYouTubeVideoId($pageVideUrl) {
     $link = $pageVideUrl;
     $video_id = explode("?v=", $link);
