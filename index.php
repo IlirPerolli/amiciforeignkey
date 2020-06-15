@@ -177,7 +177,9 @@ font-family: SamsungSharpSans-Medium;
     border-radius: 4px;
     cursor: pointer;
 }
-
+.red-dot{
+  width:10px; height: 10px; margin-bottom:10px;background: red; border-radius: 50%; display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -206,7 +208,7 @@ Error mesazhi paraprak
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">
-         Librat <div class="red-dot" style="width:10px; height: 10px; margin-bottom:10px;background: red; border-radius: 50%; display: inline-block;"></div>
+         Librat <div class="red-dot"></div>
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="librat-viti1.php" id ="librat-viti1" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti I</a>
