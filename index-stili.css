@@ -211,7 +211,7 @@ font-size: 20px;
     height: 100%;
   }
   .navbar{
-    background: #F9F9F9 !important; 
+    background: white !important; 
   }
   .navbar a{
     color:#191919 !important;
@@ -234,7 +234,7 @@ font-size: 30px;
 #button-ballina{
   padding: 15px 20px;
   width:200px;
-      background: white;
+   background: #F3F3F3;
 border: none;
  border-radius: 50px;
   cursor: pointer;
@@ -297,7 +297,8 @@ border: none;
   .button-navbar{
      padding: 15px 20px;
   width:200px;
-      background: white;
+  background: white;
+     
 border: none;
  border-radius: 50px;
   cursor: pointer;

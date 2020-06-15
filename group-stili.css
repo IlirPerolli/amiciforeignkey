@@ -68,7 +68,11 @@ margin-right: 30px !important;
       width:100%!important;
 
     }
+    .br-for-editcomment-mobile{
+      display: block !important; /*Per tel tek editimi i komenteve mos me dal bug ne tel*/
+    }
     #edit-comment{
+      margin-top: 50px !important;
       width:100%!important;
     }
     .remove-comment{
@@ -552,3 +556,6 @@ display: inline-block;
 #search-br{
   display: none;
 }
+.br-for-editcomment-mobile{
+      display: none;
+    }

@@ -1048,7 +1048,7 @@ header("Location:files.php");
                                   document.getElementById("search-submit1").disabled=false;
                                   }
                                   </script>
-                                  <?php include("friends_list.php");?>
+                                  <?php include("friends-list.php");?>
                                   <?php include("bootstrap_javascript.php");?>
                                   <script>
                                   $(".custom-file-input").on("change", function() {

@@ -114,8 +114,8 @@
 <div class="progress" style="height: 2px;">
   <div class="progress-bar" role="progressbar" id = "progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<br>
-   <div class="g-recaptcha" data-sitekey="6LcyX4QUAAAAAPXKMM4rbtUPXZi1fWNPdshj1-rA"></div>
+ <!--<br>
+  <div class="g-recaptcha" data-sitekey="6LcyX4QUAAAAAPXKMM4rbtUPXZi1fWNPdshj1-rA"></div>-->
 
       <input type="submit" name="reg_user" value="Regjistrohu">
       <div class = "account">

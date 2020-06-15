@@ -133,10 +133,6 @@ $querycheck = "SELECT * FROM books WHERE academicyear=3 order by id asc ";
   </div>
   <br><br><br>
   
-  <!--<a href="transparent_login_form.zip" download>
-    <img src="https://png.icons8.com/color/500/winrar.png" alt="W3Schools" width="150" height="142">
-  </a>-->
-  <div style = "text-align: center; font-size: 60px;">Së Shpejti 😉 </div>
 </div>
 <?php include("bootstrap_javascript.php");?>  
 </body>
