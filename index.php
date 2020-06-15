@@ -10,11 +10,6 @@
     include ("verify_user.php");
      include("check-vitiakademik.php");
 
-     //definimi i vitit akademik per shfaqjen e shokeve
-$vitiakademik = $_SESSION['vitiakademik'];
-$query = "SELECT * FROM users WHERE academicyear='$vitiakademik' AND verification='1' ORDER BY Name";
-           $results = mysqli_query($db, $query);
-
 
 ?>
 <?php
@@ -211,16 +206,17 @@ Error mesazhi paraprak
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">
-         Librat
-        </a>
+         Librat <div class="red-dot" style="width:10px; height: 10px; margin-bottom:10px;background: red; border-radius: 50%; display: inline-block;"></div>
+        </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="librat-viti1.php" id ="librat-viti1" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti I</a>
           
           <a class="dropdown-item" href="librat-viti2.php" id ="librat-viti2" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti II</a>
           <!--<div class="dropdown-divider"></div>-->
-          <a class="dropdown-item" href="librat-viti3.php" id ="librat-viti3" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti III</a>
+          <a class="dropdown-item" href="librat-viti3.php" id ="librat-viti3" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti III <span class="badge badge-secondary" style="margin-bottom: 10px;">E re</span></a>
         </div>
       </li>
+
      
   <a class="nav-link" href="files.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Dosjet  <span id = "notification-counter-uploads"> <?php echo $_SESSION['notification_uploads'] ?> </span> <span class="sr-only">(current)</span></a>
      
