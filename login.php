@@ -158,12 +158,13 @@ var characters = textbox.value.split('');
         </form>
 </div>
 <br><br>
-     <script type="text/javascript">
+
+ <?php include("bootstrap_javascript.php");?>  
+      <script type="text/javascript">
   var cw = $('.avatar-user').width();
 $('.avatar-user').css({
     'height': cw + 'px'
 });
-</script>
- <?php include("bootstrap_javascript.php");?>     
+</script>   
 </body>
 </html>
