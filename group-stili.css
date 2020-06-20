@@ -559,3 +559,7 @@ display: inline-block;
 .br-for-editcomment-mobile{
       display: none;
     }
+    .pershkrimi form{
+      margin:0; /* Tek editimi i komentit per te hequr hapesiren poshte */
+
+    }
