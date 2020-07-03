@@ -11,8 +11,9 @@ if (isset($_POST['upload-video'])){
     $id_user = $row['id'];
 	$youtubeID = getYouTubeVideoId($linku);
     //Merr emrin e videos se youtubes 
-   $emri = explode(' - YouTube',explode('</title>',explode('<title>',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
-   
+    //Ne vend te <title> u zevendesua me <meta ...> per shkak te nderrimit te algoritmit te youtubes
+   //$emri = explode(' - YouTube',explode('</title>',explode('<title>',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
+   $emri = explode(' - YouTube',explode('">',explode('<meta name="title" content="',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
 $photo = 'https://img.youtube.com/vi/' . $youtubeID . '/hqdefault.jpg';
 $number = $_GET['folder'];
   if (empty($linku)){array_push($errors, "Ju lutem shenoni linkun"); }
