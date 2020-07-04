@@ -9,13 +9,26 @@ if (isset($_POST['upload-video'])){
     $results = mysqli_query($db,$query);
     $row = $results->fetch_assoc();
     $id_user = $row['id'];
+    $number = $_GET['folder'];
 	$youtubeID = getYouTubeVideoId($linku);
+    if (!$youtubeID){//Nese futet tekst e jo link
+        header("Location:lessons.php?folder=".$number);
+        die();
+        }
     //Merr emrin e videos se youtubes 
     //Ne vend te <title> u zevendesua me <meta ...> per shkak te nderrimit te algoritmit te youtubes
    //$emri = explode(' - YouTube',explode('</title>',explode('<title>',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
    $emri = explode(' - YouTube',explode('">',explode('<meta name="title" content="',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
+   if (empty($emri)){//Nese ajo id nuk pershtatet fare
+    header("Location:lessons.php?folder=".$number);
+        die();
+   }
+
+   if (strlen($youtubeID)>11){//Nese id eshte mire po e tejkalon gjatesine e ID
+    $youtubeID = substr($youtubeID, 0,11);
+   }
 $photo = 'https://img.youtube.com/vi/' . $youtubeID . '/hqdefault.jpg';
-$number = $_GET['folder'];
+
   if (empty($linku)){array_push($errors, "Ju lutem shenoni linkun"); }
   
 date_default_timezone_set("Europe/Tirane");
