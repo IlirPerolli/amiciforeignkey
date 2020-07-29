@@ -46,7 +46,7 @@
                                           while(($row = $results->fetch_assoc()) !== null){
                                           echo '
                                           <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                            <img class="mr-3 rounded-circle" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
                                             <div class="media-body">';
                                               echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
                                               $username = $row['username'];
@@ -86,7 +86,7 @@
                                           while(($row = $results->fetch_assoc()) !== null){
                                           echo '
                                           <li class="media">
-                                            <img class="mr-3" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
+                                            <img class="mr-3 rounded-circle" src="user-photos/'.$row['userphotos'].'" style = "width:50px; height:50px" alt="'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'">
                                             <div class="media-body">';
                                               echo '<h5 class="mt-0 mb-1">'.htmlspecialchars($row['Name'])." ".htmlspecialchars($row['Surname']).'';
                                               $username = $row['username'];
