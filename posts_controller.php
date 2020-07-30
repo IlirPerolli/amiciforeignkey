@@ -69,7 +69,7 @@ else{
 
    }
 
-            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND replyingto is null ORDER BY id DESC";
+            $query3 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto is null ORDER BY id DESC";
             $results3 = mysqli_query($db, $query3);
 
              if (mysqli_num_rows($results3) == 0) {
@@ -322,7 +322,7 @@ $search_term = trim($search_term);
 
   ***************** Searchi i meparshem*******************
 
-   $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE(academicyear='1' or academicyear='2' or academicyear='3') AND replyingto is null AND Comments  LIKE '%$search_term%'
+   $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE(academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto is null AND Comments  LIKE '%$search_term%'
 ORDER BY id DESC";
 */
 
@@ -330,7 +330,7 @@ ORDER BY id DESC";
 //WHERE academicyear='$vitiakademik' AND Name LIKE '%$search_term%' OR Surname LIKE '%$search_term%' OR Comments LIKE '%$search_term%'
 //ORDER BY id";
 
-  $sql_check_for_replies = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND Comments  LIKE '%$search_term%'
+  $sql_check_for_replies = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND Comments  LIKE '%$search_term%'
 ORDER BY id DESC"; // Shiko per komente dhe replya
     $query = mysqli_query($db, $sql_check_for_replies);
        $replyingtoarray=array(); // Krijo varg per replyat
@@ -354,16 +354,16 @@ WHERE academicyear='$vitiakademik' AND Name LIKE '%$search_term%' OR Surname LIK
 ORDER BY id";
 */
    if (count($replyingtoarray)==0){ // Nese nuk ka replya
-     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND replyingto is null AND Comments  LIKE '%$search_term%'
+     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto is null AND Comments  LIKE '%$search_term%'
 ORDER BY id DESC";
    }
     else{ //Nese ka replya
     //Trego se pari komentet qe nuk i perkasin reply
-     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND replyingto is null AND Comments  LIKE '%$search_term%' union 
+     $sql = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto is null AND Comments  LIKE '%$search_term%' union 
 ";
 
 
-$sql .= "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND (";
+$sql .= "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited, uploadedphoto from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND (";
 foreach ($replyingtoarray as $replies) { // Itero rreth replyave
 $sql .= "userposts.id='$replies' or ";
 
@@ -488,7 +488,7 @@ if (($_SESSION['username']) == "ilirperolli"){
                          //Shfaqja e replysave
 
 
-                        $query1 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND replyingto = '$id' ORDER BY id";
+                        $query1 = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto = '$id' ORDER BY id";
             $results1 = mysqli_query($db, $query1);
 
              
@@ -668,7 +668,7 @@ echo'<div class="dropdown-divider"></div>';
 
 //Shfaqja e Replysave
                $id = $row3['id'];
-                        $query = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3') AND replyingto = '$id' ORDER BY id";
+                        $query = "SELECT userposts.id, users.Name, users.Surname, users.age, users.academicyear, users.username, users.userphotos, Comments, date, time, replyingto, edited from userposts inner join users on userposts.id_user = users.id WHERE (academicyear='1' or academicyear='2' or academicyear='3' or academicyear='4') AND replyingto = '$id' ORDER BY id";
             $results = mysqli_query($db, $query);
 while(($row = $results->fetch_assoc()) !== null){
   
