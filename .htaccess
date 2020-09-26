@@ -10,3 +10,4 @@ php_value memory_limit 2500M
 </IfModule>
 DirectoryIndex main.php
 ErrorDocument 404 /not-found-page.html
+ErrorDocument 403 /no-access.html

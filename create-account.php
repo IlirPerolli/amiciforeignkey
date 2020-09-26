@@ -90,13 +90,19 @@
     <option value="-1">Zgjedh</option>
     <option value="1" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '1') {
     echo ' selected="selected"';
-  } ?>>Viti 1</option>
+  } ?>>Viti 1 (Bachelor)</option>
   <option value="2" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '2') {
     echo ' selected="selected"';
-  } ?>>Viti 2</option>
+  } ?>>Viti 2 (Bachelor)</option>
   <option value="3" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '3') {
     echo ' selected="selected"';
-  } ?>>Viti 3</option>
+  } ?>>Viti 3 (Bachelor)</option>
+   <option value="4" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '4') {
+    echo ' selected="selected"';
+  } ?>>Viti 1 (Master)</option>
+   <option value="5" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '5') {
+    echo ' selected="selected"';
+  } ?>>Viti 2 (Master)</option>
   </select>
     <p id = "emaili">Emaili </p> 
   <input name="email" value ="<?php if(isset($_POST['email'])){echo $_POST['email'];}?>" type="email" placeholder = "Shkruani emailin" oninvalid="this.setCustomValidity('Ju lutem shkruani emailin'); document.getElementById('emaili').style.color='#FA3B4B'"

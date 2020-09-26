@@ -22,6 +22,8 @@ include("config.php");
       echo '<style>#d-viti2br { display:none;}</style>';
       echo '<style>#d-viti3 { display:none;}</style>';
       echo '<style>#d-viti3br { display:none;}</style>';
+        echo '<style>#librat-viti4 { display:none;}</style>';
+          echo '<style>#librat-viti5 { display:none;}</style>';
     }
       else if ( $_SESSION['vitiakademik'] == "2" ) {
       echo '<style>#librat-viti3br { display:none;}</style>';
@@ -30,6 +32,9 @@ include("config.php");
       echo '<style>#d-viti1br { display:none;}</style>';
       echo '<style>#d-viti3br { display:none;}</style>';
       echo '<style>#d-viti3 { display:none;}</style>';
+         echo '<style>#librat-viti4 { display:none;}</style>';
+          echo '<style>#librat-viti5 { display:none;}</style>';
+
     }
       else if ( $_SESSION['vitiakademik'] == "3" ) {
 
@@ -37,6 +42,16 @@ include("config.php");
       echo '<style>#d-viti1br { display:none;}</style>';
       echo '<style>#d-viti2br { display:none;}</style>';
       echo '<style>#d-viti2 { display:none;}</style>';
+         echo '<style>#librat-viti4 { display:none;}</style>';
+          echo '<style>#librat-viti5 { display:none;}</style>';
+    }
+     else if ( $_SESSION['vitiakademik'] == "4" ) {
+
+      echo '<style>#d-viti1 { display:none;}</style>';
+      echo '<style>#d-viti1br { display:none;}</style>';
+      echo '<style>#d-viti2br { display:none;}</style>';
+      echo '<style>#d-viti2 { display:none;}</style>';
+          echo '<style>#librat-viti5 { display:none;}</style>';
     }
     if ( $_SESSION['notification'] == "0") {
       echo '<style>#notification-counter{ display:none !important;}</style>';

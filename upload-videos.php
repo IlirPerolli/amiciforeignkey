@@ -15,8 +15,7 @@ if (isset($_POST['upload-video'])){
         header("Location:lessons.php?folder=".$number);
         die();
         }
-    //Merr emrin e videos se youtubes 
-    //Ne vend te <title> u zevendesua me <meta ...> per shkak te nderrimit te algoritmit te youtubes
+
    //$emri = explode(' - YouTube',explode('</title>',explode('<title>',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
    $emri = explode(' - YouTube',explode('">',explode('<meta name="title" content="',file_get_contents("https://www.youtube.com/watch?v=$youtubeID"))[1])[0])[0];
    if (empty($emri)){//Nese ajo id nuk pershtatet fare

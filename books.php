@@ -307,6 +307,8 @@ background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPS
           <a class="dropdown-item" href="librat-viti2.php" id ="librat-viti2" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti II</a>
           <!--<div class="dropdown-divider"></div>-->
           <a class="dropdown-item" href="librat-viti3.php" id ="librat-viti3" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti III</a>
+           <a class="dropdown-item" href="librat-viti4.php" id ="librat-viti4" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti I (Master)</a>
+            <a class="dropdown-item" href="librat-viti5.php" id ="librat-viti5" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti II (Master)</a>
         </div>
       </li>
       <a class="nav-link" href="files.php" style = "font-family: 'SamsungSharpSans-Bold'; font-size:20px;">Dosjet  <span id = "notification-counter-uploads"> <?php echo $_SESSION['notification_uploads'] ?> </span> <span class="sr-only">(current)</span></a>
@@ -427,6 +429,12 @@ $('.avatar').css({
   <option value="3" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '3') {
     echo ' selected="selected"';
   } ?>>Viti 3</option>
+    <option value="4" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '4') {
+    echo ' selected="selected"';
+  } ?>>Viti 4</option>
+    <option value="5" <?php if (isset($_POST['viti']) AND $_POST['viti'] == '5') {
+    echo ' selected="selected"';
+  } ?>>Viti 5</option>
   </select>
 
  <p style = "font-size: 20px; margin-bottom: 5px"> Zgjedh foto: </p>

@@ -1,0 +1,21 @@
+#include <cs50.h>
+#include <stdio.h>   
+void cough(){
+    printf("Cough");
+}
+int main (void){
+string answer = get_string("Si e keni emrin: ");
+printf("Pershendetje: %s \n", answer);
+int range = get_int("Shenoni numrin e iterimeve: ");
+    for (int i=1; i<=range; i++){
+        printf("Keni iteruar %i here \n",i);
+    }
+float paga = get_float("Shenoni pagen: ");
+printf("Paga juaj eshte: %.2f \n",paga);
+int numri = get_int("Shenoni numrin: ");
+    if (numri % 2 == 1){
+        printf("Numri %i eshte tek \n", numri); }
+    else {
+        printf("Numri %i eshte qift \n", numri);}
+    cough();
+}

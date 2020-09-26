@@ -216,6 +216,8 @@ Error mesazhi paraprak
           <a class="dropdown-item" href="librat-viti2.php" id ="librat-viti2" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti II</a>
           <!--<div class="dropdown-divider"></div>-->
           <a class="dropdown-item" href="librat-viti3.php" id ="librat-viti3" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti III <span class="badge badge-secondary" style="margin-bottom: 10px;">E re</span></a>
+          <a class="dropdown-item" href="librat-viti4.php" id ="librat-viti4" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti I (Master)</a>
+            <a class="dropdown-item" href="librat-viti5.php" id ="librat-viti5" style = "font-family: 'SamsungSharpSans-Bold'; font-size:17px;">Librat Viti II (Master)</a>
         </div>
       </li>
 
@@ -417,46 +419,7 @@ var chart = new Chart(ctx, {
     options: {}
 });
 </script>
-<div class = "max-width">
-  <div class = "per-ne-container">
-  <div class = "per-ne">
-        Rreth nesh
-      </div>
 
-<div class = "about-us">
-<img src = "img/00100sPORTRAIT_00100_BURST20181002110325788_COVER.jpg" class=  "avatar" /><br>
-<div class = "name">
-<span style = "color:black">Ilir </span><span style = "  color:#9E9E9E;" >Perolli</span>
-</div>
-<div class = "description">
-U Lind me 20 Korrik 1999 ne qytetin e Gjakoves. Shkollen fillore e kreu ne shkollen "Yll Morina" ndersa te mesmen ne gjimnazin "Hajdar Dushi". Ai vazhdon studimet ne Universitetin "Ukshin Hoti" ne Prizren ne fakultetin e Shkencave Kompjuterike </div>
-  
-</div>
-
-<div class = "about-us">
-<img src = "img/2942A29C-BE11-42FA-B9E3-BE424317DD23.png" class=  "avatar" /><br>
-<div class = "name">
-<span style = "color:black">Arianit </span><span style = "  color:#9E9E9E;" >Jaka</span>
-</div>
-<div class = "description">
-U Lind me 30 Dhjetor 1998 ne qytetin e Gjakoves. Shkollen fillore e kreu ne shkollen "Yll Morina" ndersa te mesmen ne gjimnazin "Hajdar Dushi". Ai vazhdon studimet ne Universitetin "Ukshin Hoti" ne Prizren ne fakultetin e Shkencave Kompjuterike </div>
- 
-</div>
-
-<div class = "about-us">
-<img src = "img/72BD3B4C-CA35-4863-AFD4-B9E08FD7603A.png" class=  "avatar" /><br>
-<div class = "name">
-<span style = "color:black">Albi </span><span style = "  color:#9E9E9E;" >Kusari</span>
-</div>
-<div class = "description">
-U Lind me 24 Tetor 1998 ne qytetin e Gjakoves. Shkollen fillore e kreu ne shkollen "Mustafa Bakija" ndersa te mesmen ne gjimnazin "Hajdar Dushi". Ai vazhdon studimet ne Universitetin "Ukshin Hoti" ne Prizren ne fakultetin e Shkencave Kompjuterike </div>
-
-</div>
-
-</div>
-
-
-</div>
 
 <div class = "subscribe">
 <div class = "max-width">
