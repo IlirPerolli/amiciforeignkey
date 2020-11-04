@@ -5,9 +5,9 @@
     include("check-vitiakademik.php");
     // Shiko nese useri eshte i kyqur. Nese jo, ridirekto ne login
     include ("verify_user.php");
-    if (!isset($_SESSION['vitiakademik']) || $_SESSION['vitiakademik'] == "1") {
-        header("Location: index.php");
-    }
+    // if (!isset($_SESSION['vitiakademik']) || $_SESSION['vitiakademik'] == "1") {
+    //     header("Location: index.php");
+    // }
     
    $username = $_SESSION['username'];
   $sql = "SELECT * from kursori_members where username='$username'";
