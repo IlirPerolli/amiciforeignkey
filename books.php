@@ -556,7 +556,43 @@ $('.avatar').css({
       }
 
       ?>
+      
 <!-- Mbarimi i Librave Viti 3 -->
+<br>
+      <br>
+<!-- Librat Viti 1 Master -->
+<table width="100%">
+  <tr>
+    <td><hr /></td>
+    <td style="width:1px; padding: 0 10px; white-space: nowrap;">Viti 1 Master</td>
+    <td><hr /></td>
+  </tr>
+</table>​
+<br>
+<?php 
+      $querycheck = "SELECT * FROM books WHERE academicyear=4 ";
+      $results = mysqli_query($db, $querycheck);
+      if (mysqli_num_rows($results) == 0){
+        echo "<br>";
+        echo "Nuk ka libra :(";
+        echo "<br>";
+        echo "<br>";
+      }
+      while(($row = $results->fetch_assoc()) !== null){ 
+      echo '<div class = "download-container">';
+        
+      echo '<a href = "'.$row['link'].'"> <img src = "books/'.$row['photo'] .'" class = "download-container-photo"/> </a>';
+      echo '<div class = "download-link">';
+      echo '<a href = "'.$row['link'].'">'.$row['Name'].'  </a>';
+      echo "<br>";
+      echo '<a href = "?remove='.$row['id'].'"> Fshij  </a>/';
+      echo '<a href = "?edit='.$row['id'].'"> Ndrysho  </a>';
+      echo '</div>';
+      echo '</div>';
+      }
+
+      ?>
+<!-- Mbarimi i Librave Viti 1 Master -->
 
 
 
