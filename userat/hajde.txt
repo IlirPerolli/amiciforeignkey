@@ -1,6 +1,0 @@
-Emri dhe Mbiemri: hajde
-Mosha: 18
-Viti Akademik: 2
-Emaili: ilir_perolli@live.com
-Username: idlfkl
-Password: kompjuteri123
